@@ -6,10 +6,13 @@
 
 import io
 import os
+import re
 import sys
 from shutil import rmtree
 
 from setuptools import find_packages, setup, Command
+
+here = os.path.abspath(os.path.dirname(__file__))
 
 # Package meta-data.
 NAME = 'drawzero'
@@ -17,24 +20,20 @@ DESCRIPTION = 'Простое рисование на холсте без бой
 URL = 'https://github.com/ShashkovS/drawzero'
 EMAIL = 'sh57@yandex.ru'
 AUTHOR = 'Sergey Shashkov'
-VERSION = '0.0.1'
+
+# Current version
+with io.open(os.path.join(here, NAME, '__init__.py'), encoding='utf-8') as f:
+    VERSION = re.search(r'\d+\.\d+\.\d+', f.read()).group()
 
 # What packages are required for this module to be executed?
-REQUIRED = [
-    'pygame',
-]
-
-# The rest you shouldn't have to touch too much :)
-# ------------------------------------------------
-# Except, perhaps the License and Trove Classifiers!
-# If you do change the License, remember to change the Trove Classifier for that!
-
-here = os.path.abspath(os.path.dirname(__file__))
+with io.open(os.path.join(here, 'requirements.txt'), encoding='utf-8') as f:
+    REQUIRED = [row.strip() for row in f.readlines() if re.fullmatch(r'\s*[\w=. -]', row)]
 
 # Import the README and use it as the long-description.
 # Note: this will only work if 'README.rst' is present in your MANIFEST.in file!
 with io.open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
-    long_description = '\n' + f.read()
+    LONG_DESCRIPTION = '\n' + f.read()
+
 
 class PublishCommand(Command):
     """Support setup.py publish."""
@@ -74,7 +73,7 @@ setup(
     name=NAME,
     version=VERSION,
     description=DESCRIPTION,
-    long_description=long_description,
+    long_description=LONG_DESCRIPTION,
     long_description_content_type='text/x-rst',
     author=AUTHOR,
     author_email=EMAIL,
@@ -92,10 +91,10 @@ setup(
     classifiers=[
         # Trove classifiers
         # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
+        'Intended Audience :: Education',
+        'Intended Audience :: End Users/Desktop',
         'Environment :: Win32 (MS Windows)',
-        'Environment :: Win32 (MS Windows)',
-        'Intended Audience :: Developers',
         'Environment :: X11 Applications',
         'Environment :: MacOS X',
         'License :: OSI Approved :: MIT License',
