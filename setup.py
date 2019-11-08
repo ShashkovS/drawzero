@@ -27,12 +27,15 @@ with io.open(os.path.join(here, NAME, '__init__.py'), encoding='utf-8') as f:
 
 # What packages are required for this module to be executed?
 with io.open(os.path.join(here, 'requirements.txt'), encoding='utf-8') as f:
-    REQUIRED = [row.strip() for row in f.readlines() if re.fullmatch(r'\s*[\w=. -]', row)]
+    REQUIRED = [row.strip() for row in f.readlines() if row.strip() and not row.strip().startswith('#')]
 
 # Import the README and use it as the long-description.
 # Note: this will only work if 'README.rst' is present in your MANIFEST.in file!
 with io.open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
     LONG_DESCRIPTION = '\n' + f.read()
+
+print(find_packages(exclude=('tests',)))
+exit()
 
 
 class PublishCommand(Command):
@@ -87,6 +90,10 @@ setup(
     },
     install_requires=REQUIRED,
     include_package_data=True,
+    package_data={
+        # If any package contains *.txt or *.rst files, include them:
+        '': ['*.txt', '*.rst', '*.in'],
+    },
     license='MIT',
     classifiers=[
         # Trove classifiers

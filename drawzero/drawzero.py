@@ -1,5 +1,5 @@
+import renderer
 from colordict import THECOLORS
-from renderer import *
 
 _ = lambda x: x  # That is for gettext localisation
 
@@ -44,7 +44,7 @@ def _make_int(num):
 def _make_flat(lst):
     flattened = []
     for el in lst:
-        if isinstance(el, (tuple, list)):
+        if not isinstance(el, (str, bytes)) and hasattr(el, '__iter__'):
             flattened.extend(_make_flat(el))
         else:
             flattened.append(el)
@@ -81,63 +81,68 @@ def _make_points_list(points):
 
 def line(start=(100, 100), end=(200, 200), color='white', *args):
     """Draw a line from start to end."""
-    draw_line(_make_pos(start), _make_pos(end), _make_color(color), )
+    renderer.draw_line(_make_pos(start), _make_pos(end), _make_color(color), )
 
 
 def circle(pos=(100, 100), radius=10, color='white', *args):
     """Draw a circle."""
-    draw_circle(_make_pos(pos), _make_int(radius), _make_color(color))
+    renderer.draw_circle(_make_pos(pos), _make_int(radius), _make_color(color))
 
 
 def filled_circle(pos=(100, 100), radius=10, color='white', *args):
     """Draw a filled circle."""
-    draw_filled_circle(_make_pos(pos), _make_int(radius), _make_color(color))
+    renderer.draw_filled_circle(_make_pos(pos), _make_int(radius), _make_color(color))
 
 
 def rect(color='white', *rect):
     """Draw a rectangle."""
-    draw_rect(_make_rect(rect), _make_color(color))
+    renderer.draw_rect(_make_rect(rect), _make_color(color))
 
 
 def filled_rect(color='white', *rect):
     """Draw a filled rectangle."""
-    draw_filled_rect(_make_rect(rect), _make_color(color))
+    renderer.draw_filled_rect(_make_rect(rect), _make_color(color))
 
 
 def polygon(color='white', *points):
     """Draw a polygon."""
-    draw_polygon(_make_color(color), _make_points_list(points))
+    renderer.draw_polygon(_make_color(color), _make_points_list(points))
 
 
 def filled_polygon(color='white', *points):
     """Draw a filled polygon."""
-    draw_filled_polygon(_make_color(color), _make_points_list(points))
+    renderer.draw_filled_polygon(_make_color(color), _make_points_list(points))
 
 
 def text(text='', pos=(100, 100), fontsize=24, color='black', *args, **kwargs):
     """Draw text to the screen."""
-    draw_text(text, _make_pos(pos), _make_int(fontsize), _make_color(color))
+    renderer.draw_text(text, _make_pos(pos), _make_int(fontsize), _make_color(color))
 
 
 def clear():
     """Reset the screen to black."""
-    draw_fill((0, 0, 0))
+    renderer.draw_fill((0, 0, 0))
 
 
 def fill(color='white'):
     """Fill the screen with a solid color."""
-    draw_fill(_make_color(color))
+    renderer.draw_fill(_make_color(color))
     pass
 
 
 def blit(image, pos):
     """Draw the image to the screen at the given position."""
-    draw_blit(image, _make_pos(pos))
+    renderer.draw_blit(image, _make_pos(pos))
 
 
 def window(width=500, height=500):
     """Resize window."""
-    draw_resize(_make_int(width), _make_int(height))
+    renderer.draw_resize(_make_int(width), _make_int(height))
+
+
+def set_line_width(width=2):
+    """Resize window."""
+    renderer.draw_set_line_width(width)
 
 
 ################################################################################
@@ -146,6 +151,7 @@ class Obj:
     pass
 
 
+# PyGameZero style
 screen = Obj()
 screen.clear = clear
 screen.fill = fill
@@ -159,4 +165,4 @@ screen.draw.filled_rect = filled_rect
 screen.draw.polygon = polygon
 screen.draw.filled_polygon = filled_polygon
 screen.draw.text = text
-tick = draw_tick
+tick = renderer.draw_tick

@@ -21,13 +21,13 @@ def draw_resize(width: int, height: int):
 
 def draw_line(start: Pt, end: Pt, color: Clr):
     """Draw a line from start to end."""
-    pygame.draw.line(_surface, color, start, end, 1)
+    pygame.draw.line(_surface, color, start, end, _dft_wid)
     pygame.display.update()
 
 
 def draw_circle(pos: Pt, radius: int, color: Clr):
     """Draw a circle."""
-    pygame.draw.circle(_surface, color, pos, radius, 1)
+    pygame.draw.circle(_surface, color, pos, radius, _dft_wid)
     pygame.display.update()
 
 
@@ -39,7 +39,7 @@ def draw_filled_circle(pos: Pt, radius: int, color: Clr):
 
 def draw_rect(rect: Rect, color: Clr):
     """Draw a rectangle."""
-    pygame.draw.rect(_surface, color, pygame.rect.Rect(rect), 1)
+    pygame.draw.rect(_surface, color, pygame.rect.Rect(rect), _dft_wid)
     pygame.display.update()
 
 
@@ -51,7 +51,7 @@ def draw_filled_rect(rect: Rect, color: Clr):
 
 def draw_polygon(color: Clr, points: List[Pt]):
     """Draw a polygon."""
-    pygame.draw.polygon(_surface, color, points, 1)
+    pygame.draw.polygon(_surface, color, points, _dft_wid)
     pygame.display.update()
 
 
@@ -96,6 +96,11 @@ def draw_tick():
         sys.exit()
 
 
+def draw_set_line_width(w):
+    global _dft_wid
+    _dft_wid = w
+
+
 def _draw_go():
     while True:
         draw_tick()
@@ -113,4 +118,5 @@ def _init_surface():
 _surface = _init_surface()
 _fps = pygame.time.Clock()
 _fonts = {}
+_dft_wid = 2
 atexit.register(_draw_go)
