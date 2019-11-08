@@ -1,5 +1,5 @@
-import renderer
-from colordict import THECOLORS
+from . import renderer
+from .colordict import THECOLORS
 
 _ = lambda x: x  # That is for gettext localisation
 
