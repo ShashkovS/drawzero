@@ -34,9 +34,6 @@ with io.open(os.path.join(here, 'requirements.txt'), encoding='utf-8') as f:
 with io.open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
     LONG_DESCRIPTION = '\n' + f.read()
 
-print(find_packages(exclude=('tests',)))
-exit()
-
 
 class PublishCommand(Command):
     """Support setup.py publish."""
