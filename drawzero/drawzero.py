@@ -166,3 +166,4 @@ screen.draw.polygon = polygon
 screen.draw.filled_polygon = filled_polygon
 screen.draw.text = text
 tick = renderer.draw_tick
+sleep = renderer.draw_sleep

@@ -96,6 +96,12 @@ def draw_tick():
         sys.exit()
 
 
+def draw_sleep(t):
+    ticks = int(t * 60 + 0.5)
+    for __ in range(ticks):
+        draw_tick()
+
+
 def draw_set_line_width(w):
     global _dft_wid
     _dft_wid = w
