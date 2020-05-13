@@ -7,25 +7,20 @@ clear()
 fill((50, 50, 50))
 # blit('test1', (0,0))
 
-line((100, 100), (200, 200), 'red')
-line((100, 100), (200, 300), 'green')
-circle((250, 280), 100, 'yellow')
-filled_circle((250, 250), 10, 'brown')
-text('Привет, мир!', (150, 100), 36, 'red')
-rect('blue', (100, 300, 50, 50))
-filled_rect('orange', (200, 300, 50, 50))
-polygon('white', [(10, 100), (50, 120), (20, 80)])
-filled_polygon('burlywood', 100, 200, 65, 152, 10, 171, 10, 229, 65, 248, )
+line('red', (400, 400), (800, 800))
+line('green', (200, 200), (400, 600))
+circle('yellow', (500, 560), 200)
+filled_circle('brown', (500, 500), 20)
+text('red', 'Привет, мир!', (300, 200), 72)
+rect('blue', (200, 600, 100, 100))
+filled_rect('orange', (400, 600, 100, 100))
+polygon('white', [(20, 200), (100, 240), (40, 160)])
+filled_polygon('burlywood', 200, 400, 130, 304, 20, 342, 20, 458, 130, 496, )
+screen.draw.line('red', (240, 240), (440, 440))
 
-screen.draw.line((120, 120), (220, 220), 'red')
-
-for i in range(0, 500, 4):
-    line((i, 500), (i, 450 - randint(0, 40)), (randint(0, 90), 255 - randint(0, 90), randint(0, 90)))
+for i in range(0, 1000, 8):
+    line((randint(0, 90), 255 - randint(0, 90), randint(0, 90)), (i, 1000), (i, 900 - randint(0, 80)))
 
 for i in range(60 * 5):
     tick()
-    circle(
-        (50 + i, 50 + i // 10),
-        10 + 2 * (i % 5),
-        (i % 255, (19 * i) % 255, (91 * i) % 255)
-    )
+    circle((i % 255, (19 * i) % 255, (91 * i) % 255), (100 + 2*i, 100 + i // 5), 20 + 4 * (i % 5))

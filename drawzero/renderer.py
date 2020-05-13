@@ -1,6 +1,6 @@
 import atexit
 import sys
-from typing import Tuple, List
+from typing import Tuple, List, Union
 
 import pygame
 
@@ -75,6 +75,12 @@ def draw_fill(color: Clr):
     pygame.display.update()
 
 
+def draw_clear(color: Clr = (0, 0, 0)):
+    """Fill the screen with a solid color."""
+    _surface.fill(color)  # Заливаем всё чёрным
+    pygame.display.update()
+
+
 def draw_blit(image, pos):
     """Draw the image to the screen at the given position."""
     EXTNS = ['png', 'gif', 'jpg', 'jpeg', 'bmp']
@@ -96,7 +102,7 @@ def draw_tick():
         sys.exit()
 
 
-def draw_sleep(t):
+def draw_sleep(t: Union[int, float]):
     ticks = int(t * 60 + 0.5)
     for __ in range(ticks):
         draw_tick()
@@ -113,7 +119,7 @@ def _draw_go():
 
 
 def _init_surface():
-    SCREEN_SIZE = (500, 500)
+    SCREEN_SIZE = (1000, 1000)
     pygame.init()
     _pygame_surface = pygame.display.set_mode(SCREEN_SIZE)
     _pygame_surface.fill((0, 0, 0))
