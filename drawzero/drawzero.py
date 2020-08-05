@@ -148,7 +148,7 @@ c_yellowgreen = (154, 205, 50)
 THECOLORS = {obj[2:]: globals()[obj] for obj in locals() if obj.startswith('c_')}
 
 _ = lambda x: x  # That is for gettext localisation
-_SECRET_PRINT = ''
+# _SECRET_PRINT = ''
 
 
 def _make_color(arg):
@@ -178,12 +178,12 @@ def _make_pos(pos):
     """Round a tuple position so it can be used for drawing."""
     if len(pos) != 2 or not isinstance(pos[0], (int, float)) or not isinstance(pos[1], (int, float)):
         raise TypeError(_('Координаты указывайте в виде (x, y), например, (100, 200)'))
-    return int(pos[0] + 0.5), int(pos[1] + 0.5)
+    return int(renderer.surface_size / 1000 * pos[0] + 0.5), int(renderer.surface_size / 1000 * pos[1] + 0.5)
 
 
 def _make_int(num):
     try:
-        return int(num)
+        return int(renderer.surface_size / 1000 * num + 0.5)
     except:
         raise TypeError(_('Здесь нужно целое число, например, 24. `{}` не подходит.'.format(num)))
 
@@ -213,7 +213,8 @@ def _make_rect(rect):
         raise TypeError(_('Укажите координаты прямоугольника в формате (x, y, w, h), '
                           'где x, y — координаты угла, и w, h — ширина и высота прямоугольника'))
     x, y, w, h = rect
-    return int(x + 0.5), int(y + 0.5), int(w + 0.5), int(h + 0.5)
+    return int(renderer.surface_size / 1000 * x + 0.5), int(renderer.surface_size / 1000 * y + 0.5), \
+           int(renderer.surface_size / 1000 * w + 0.5), int(renderer.surface_size / 1000 * h + 0.5)
 
 
 def _make_points_list(points):
@@ -222,89 +223,84 @@ def _make_points_list(points):
     tot_cords = _make_flat(points)
     if not all(isinstance(el, (int, float)) for el in tot_cords):
         raise TypeError(_('Координаты многоугольника должны быть целыми или действительными (вида 100 или 100.25)'))
-    cords_it = iter(tot_cords)
+    cords_it = iter(map(lambda x: renderer.surface_size / 1000 * x, tot_cords))
     return list(zip(cords_it, cords_it))
 
 
 def line(color='red', start=(100, 100), end=(200, 200), *args):
     """Draw a line from start to end."""
     parms = _make_pos(start), _make_pos(end), _make_color(color)
-    print(_SECRET_PRINT, 'line', parms)
+    # print(_SECRET_PRINT, 'line', parms)
     renderer.draw_line(*parms)
 
 
 def circle(color='red', pos=(100, 100), radius=10, *args):
     """Draw a circle."""
     parms = _make_pos(pos), _make_int(radius), _make_color(color)
-    print(_SECRET_PRINT, 'circle', parms)
+    # print(_SECRET_PRINT, 'circle', parms)
     renderer.draw_circle(*parms)
 
 
 def filled_circle(color='red', pos=(100, 100), radius=10, *args):
     """Draw a filled circle."""
     parms = _make_pos(pos), _make_int(radius), _make_color(color)
-    print(_SECRET_PRINT, 'filled_circle', parms)
+    # print(_SECRET_PRINT, 'filled_circle', parms)
     renderer.draw_filled_circle(*parms)
 
 
 def rect(color='red', *rect):
     """Draw a rectangle."""
     parms = _make_rect(rect), _make_color(color)
-    print(_SECRET_PRINT, 'rect', parms)
+    # print(_SECRET_PRINT, 'rect', parms)
     renderer.draw_rect(*parms)
 
 
 def filled_rect(color='red', *rect):
     """Draw a filled rectangle."""
     parms = _make_rect(rect), _make_color(color)
-    print(_SECRET_PRINT, 'filled_rect', parms)
+    # print(_SECRET_PRINT, 'filled_rect', parms)
     renderer.draw_filled_rect(*parms)
 
 
 def polygon(color='red', *points):
     """Draw a polygon."""
     parms = _make_color(color), _make_points_list(points)
-    print(_SECRET_PRINT, 'polygon', parms)
+    # print(_SECRET_PRINT, 'polygon', parms)
     renderer.draw_polygon(*parms)
 
 
 def filled_polygon(color='red', *points):
     """Draw a filled polygon."""
     parms = _make_color(color), _make_points_list(points)
-    print(_SECRET_PRINT, 'filled_polygon', parms)
+    # print(_SECRET_PRINT, 'filled_polygon', parms)
     renderer.draw_filled_polygon(*parms)
 
 
 def text(color='red', text='', pos=(100, 100), fontsize=24, *args, **kwargs):
     """Draw text to the screen."""
     parms = text, _make_pos(pos), _make_int(fontsize), _make_color(color)
-    print(_SECRET_PRINT, 'text', parms)
+    # print(_SECRET_PRINT, 'text', parms)
     renderer.draw_text(*parms)
 
 
 def clear():
     """Reset the screen to black."""
-    print(_SECRET_PRINT, 'clear')
+    # print(_SECRET_PRINT, 'clear')
     renderer.draw_clear()
 
 
 def fill(color='red'):
     """Fill the screen with a solid color."""
     parms = _make_color(color),  # Запятая нужна!
-    print(_SECRET_PRINT, 'fill', parms)
+    # print(_SECRET_PRINT, 'fill', parms)
     renderer.draw_fill(*parms)
 
 
 def blit(image, pos):
     """Draw the image to the screen at the given position."""
     parms = image, _make_pos(pos)
-    print(_SECRET_PRINT, 'blit', parms)
+    # print(_SECRET_PRINT, 'blit', parms)
     renderer.draw_blit(*parms)
-
-
-def window(width=1000, height=1000):
-    """Resize window."""
-    renderer.draw_resize(_make_int(width), _make_int(height))
 
 
 ################################################################################
