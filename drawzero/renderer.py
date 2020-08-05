@@ -1,12 +1,19 @@
 import atexit
 import sys
+import ctypes
+import os
 from typing import Tuple, List, Union
 
 import pygame
+import pygame.locals
 
 Pt = Tuple[int, int]
 Clr = Tuple[int, int, int]
 Rect = Tuple[int, int, int, int]
+
+_fps = pygame.time.Clock()
+_fonts = {}
+_dft_wid = 4
 
 if __name__ == '__main__':
     print("You shouldn't need run this module directly")
@@ -81,12 +88,22 @@ def draw_clear(color: Clr = (0, 0, 0)):
     pygame.display.update()
 
 
-def draw_blit(image, pos):
+def draw_blit(image: str, pos: Pt):
     """Draw the image to the screen at the given position."""
     EXTNS = ['png', 'gif', 'jpg', 'jpeg', 'bmp']
     TYPE = 'image'
     path = image
     _surface.blit(pygame.image.load(path).convert_alpha(), pos)
+    pygame.display.update()
+
+
+def _resize(nw: int, nh: int):
+    print('resize')
+    global _surface, surface_size
+    surface_size = min(nw, nh)
+    scaled = pygame.transform.smoothscale(_surface, (surface_size, surface_size))
+    _surface = pygame.display.set_mode((surface_size, surface_size), pygame.locals.RESIZABLE)
+    _surface.blit(scaled, (0, 0))
     pygame.display.update()
 
 
@@ -97,9 +114,12 @@ def draw_tick():
     except pygame.error:
         pygame.quit()
         sys.exit()
-    if any(event.type == pygame.QUIT for event in events):
-        pygame.quit()
-        sys.exit()
+    for event in events:
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        elif event.type == pygame.VIDEORESIZE:
+            _resize(event.w, event.h)
 
 
 def draw_sleep(t: Union[int, float]):
@@ -119,16 +139,21 @@ def _draw_go():
 
 
 def _init_surface():
-    SCREEN_SIZE = (1000, 1000)
+    if os.name == 'nt':
+        # need to get screen size with scale factor for HDPI
+        ctypes.windll.user32.SetProcessDPIAware()
     pygame.init()
-    _pygame_surface = pygame.display.set_mode(SCREEN_SIZE)
-    _pygame_surface.fill((0, 0, 0))
+    info = pygame.display.Info()
+    w, h = info.current_w, info.current_h
+    surface_size = 4 * min(w, h) // 5
+    # set window position
+    os.environ['SDL_VIDEO_WINDOW_POS'] = "{},{}".format((w - surface_size) // 2, (h - surface_size) // 2)
+    _surface = pygame.display.set_mode((surface_size, surface_size), pygame.locals.RESIZABLE)
+    _surface.fill((0, 0, 0))
     pygame.display.set_caption('Draw Zero')
-    return _pygame_surface
+    return surface_size, _surface
 
 
-_surface = _init_surface()
-_fps = pygame.time.Clock()
-_fonts = {}
-_dft_wid = 2
+surface_size, _surface = _init_surface()
+
 atexit.register(_draw_go)

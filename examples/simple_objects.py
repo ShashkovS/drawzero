@@ -4,8 +4,9 @@ from drawzero import *
 
 clear()
 
+rect('red', 50, 50, 900, 900)
+
 fill((50, 50, 50))
-# blit('test1', (0,0))
 
 line('red', (400, 400), (800, 800))
 line('green', (200, 200), (400, 600))
