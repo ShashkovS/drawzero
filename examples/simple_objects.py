@@ -9,6 +9,7 @@ rect('red', 50, 50, 900, 900)
 fill((50, 50, 50))
 
 line('red', (400, 400), (800, 800))
+line('blue', 200, 900, 900, 200)
 line('green', (200, 200), (400, 600))
 circle('yellow', (500, 560), 200)
 filled_circle('brown', (500, 500), 20)

@@ -229,35 +229,40 @@ def _make_points_list(points):
 
 def line(color='red', start=(100, 100), end=(200, 200), *args):
     """Draw a line from start to end."""
-    parms = _make_pos(start), _make_pos(end), _make_color(color)
+    coords = _make_flat([start, end, args])
+    parms = _make_pos(coords[:2]), _make_pos(coords[2:4]), _make_color(color)
     # print(_SECRET_PRINT, 'line', parms)
     renderer.draw_line(*parms)
 
 
 def circle(color='red', pos=(100, 100), radius=10, *args):
     """Draw a circle."""
-    parms = _make_pos(pos), _make_int(radius), _make_color(color)
+    coords = _make_flat([pos, radius, args])
+    parms = _make_pos(coords[:2]), _make_int(*coords[2:3]), _make_color(color)
     # print(_SECRET_PRINT, 'circle', parms)
     renderer.draw_circle(*parms)
 
 
 def filled_circle(color='red', pos=(100, 100), radius=10, *args):
     """Draw a filled circle."""
-    parms = _make_pos(pos), _make_int(radius), _make_color(color)
+    coords = _make_flat([pos, radius, args])
+    parms = _make_pos(coords[:2]), _make_int(*coords[2:3]), _make_color(color)
     # print(_SECRET_PRINT, 'filled_circle', parms)
     renderer.draw_filled_circle(*parms)
 
 
-def rect(color='red', *rect):
+def rect(color='red', pos=(100, 100), width=500, height=200, *args):
     """Draw a rectangle."""
-    parms = _make_rect(rect), _make_color(color)
+    coords = _make_flat([pos, width, height, args])
+    parms = _make_rect(coords[:4]), _make_color(color)
     # print(_SECRET_PRINT, 'rect', parms)
     renderer.draw_rect(*parms)
 
 
-def filled_rect(color='red', *rect):
+def filled_rect(color='red', pos=(100, 100), width=500, height=200, *args):
     """Draw a filled rectangle."""
-    parms = _make_rect(rect), _make_color(color)
+    coords = _make_flat([pos, width, height, args])
+    parms = _make_rect(coords[:4]), _make_color(color)
     # print(_SECRET_PRINT, 'filled_rect', parms)
     renderer.draw_filled_rect(*parms)
 
