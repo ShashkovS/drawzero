@@ -1,4 +1,4 @@
-import renderer
+from . import renderer
 import time
 
 c_antiquewhite = (250, 235, 215)
