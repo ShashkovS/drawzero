@@ -332,10 +332,11 @@ sleep = time.sleep
 FPS = 1 / 60
 
 
-def tick(*, _prev=[0]):
+def tick(reps=1, *, _prev=[0]):
     """Выждать такое время, чтобы частота обновления кадров была 60 FPS"""
-    cur = time.time()
-    dif = _prev[0] + FPS - cur
-    _prev[0] = cur
-    if dif > 0:
-        time.sleep(dif)
+    for _ in range(reps):
+        cur = time.time()
+        dif = _prev[0] + FPS - cur
+        _prev[0] = cur
+        if dif > 0:
+            time.sleep(dif)
