@@ -1,5 +1,4 @@
 from . import renderer
-import time
 
 c_antiquewhite = (250, 235, 215)
 c_aliceblue = (240, 248, 255)
@@ -148,7 +147,16 @@ c_yellowgreen = (154, 205, 50)
 THECOLORS = {obj[2:]: globals()[obj] for obj in locals() if obj.startswith('c_')}
 
 _ = lambda x: x  # That is for gettext localisation
-# _SECRET_PRINT = ''
+def jsonize(parms, sep=','):
+    if type(parms) == int or type(parms) == float:
+        return str(parms)
+    elif type(parms) == str:
+        return '"' + parms.replace('"', '\\"') + '"'
+    elif type(parms) == list or type(parms) == tuple:
+        return '[' + sep.join(map(jsonize, parms)) + ']'
+    else:
+        raise ValueError('Тип не поддерживается')
+
 
 
 def _make_color(arg):
@@ -231,81 +239,81 @@ def line(color='red', start=(100, 100), end=(200, 200), *args):
     """Draw a line from start to end."""
     coords = _make_flat([start, end, args])
     parms = _make_pos(coords[:2]), _make_pos(coords[2:4]), _make_color(color)
-    # print(_SECRET_PRINT, 'line', parms)
-    renderer.draw_line(*parms)
+    print('line', jsonize(parms, sep=', '))
+    # renderer.draw_line(*parms)
 
 
 def circle(color='red', pos=(100, 100), radius=10, *args):
     """Draw a circle."""
     coords = _make_flat([pos, radius, args])
     parms = _make_pos(coords[:2]), _make_int(*coords[2:3]), _make_color(color)
-    # print(_SECRET_PRINT, 'circle', parms)
-    renderer.draw_circle(*parms)
+    print('circle', jsonize(parms, sep=', '))
+    # renderer.draw_circle(*parms)
 
 
 def filled_circle(color='red', pos=(100, 100), radius=10, *args):
     """Draw a filled circle."""
     coords = _make_flat([pos, radius, args])
     parms = _make_pos(coords[:2]), _make_int(*coords[2:3]), _make_color(color)
-    # print(_SECRET_PRINT, 'filled_circle', parms)
-    renderer.draw_filled_circle(*parms)
+    print('filled_circle', jsonize(parms, sep=', '))
+    # renderer.draw_filled_circle(*parms)
 
 
 def rect(color='red', pos=(100, 100), width=500, height=200, *args):
     """Draw a rectangle."""
     coords = _make_flat([pos, width, height, args])
     parms = _make_rect(coords[:4]), _make_color(color)
-    # print(_SECRET_PRINT, 'rect', parms)
-    renderer.draw_rect(*parms)
+    print('rect', jsonize(parms, sep=', '))
+    # renderer.draw_rect(*parms)
 
 
 def filled_rect(color='red', pos=(100, 100), width=500, height=200, *args):
     """Draw a filled rectangle."""
     coords = _make_flat([pos, width, height, args])
     parms = _make_rect(coords[:4]), _make_color(color)
-    # print(_SECRET_PRINT, 'filled_rect', parms)
-    renderer.draw_filled_rect(*parms)
+    print('filled_rect', jsonize(parms, sep=', '))
+    # renderer.draw_filled_rect(*parms)
 
 
 def polygon(color='red', *points):
     """Draw a polygon."""
     parms = _make_color(color), _make_points_list(points)
-    # print(_SECRET_PRINT, 'polygon', parms)
-    renderer.draw_polygon(*parms)
+    print('polygon', jsonize(parms, sep=', '))
+    # renderer.draw_polygon(*parms)
 
 
 def filled_polygon(color='red', *points):
     """Draw a filled polygon."""
     parms = _make_color(color), _make_points_list(points)
-    # print(_SECRET_PRINT, 'filled_polygon', parms)
-    renderer.draw_filled_polygon(*parms)
+    print('filled_polygon', jsonize(parms, sep=', '))
+    # renderer.draw_filled_polygon(*parms)
 
 
 def text(color='red', text='', pos=(100, 100), fontsize=24, *args, **kwargs):
     """Draw text to the screen."""
     parms = text, _make_pos(pos), _make_int(fontsize), _make_color(color)
-    # print(_SECRET_PRINT, 'text', parms)
-    renderer.draw_text(*parms)
+    print('text', jsonize(parms, sep=', '))
+    # renderer.draw_text(*parms)
 
 
 def clear():
     """Reset the screen to black."""
-    # print(_SECRET_PRINT, 'clear')
-    renderer.draw_clear()
+    print('clear')
+    # renderer.draw_clear()
 
 
 def fill(color='red'):
     """Fill the screen with a solid color."""
     parms = _make_color(color),  # Запятая нужна!
-    # print(_SECRET_PRINT, 'fill', parms)
-    renderer.draw_fill(*parms)
+    print('fill', jsonize(parms, sep=', '))
+    # renderer.draw_fill(*parms)
 
 
 def blit(image, pos):
     """Draw the image to the screen at the given position."""
     parms = image, _make_pos(pos)
-    # print(_SECRET_PRINT, 'blit', parms)
-    renderer.draw_blit(*parms)
+    print('blit', jsonize(parms, sep=', '))
+    # renderer.draw_blit(*parms)
 
 
 ################################################################################
@@ -327,16 +335,5 @@ screen.draw.filled_rect = filled_rect
 screen.draw.polygon = polygon
 screen.draw.filled_polygon = filled_polygon
 screen.draw.text = text
-sleep = time.sleep
-
-FPS = 1 / 60
-
-
-def tick(reps=1, *, _prev=[0]):
-    """Выждать такое время, чтобы частота обновления кадров была 60 FPS"""
-    for _ in range(reps):
-        cur = time.time()
-        dif = _prev[0] + FPS - cur
-        _prev[0] = cur
-        if dif > 0:
-            time.sleep(dif)
+sleep = lambda t: print('sleep({})'.format(t))
+tick = lambda t: print('tick()')
