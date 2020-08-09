@@ -236,7 +236,7 @@ def _make_points_list(points):
 def line(color='red', start=(100, 100), end=(200, 200), *args):
     """Draw a line from start to end."""
     coords = _make_flat([start, end, args])
-    parms = _make_pos(coords[:2]), _make_pos(coords[2:4]), _make_color(color)
+    parms = _make_color(color), _make_pos(coords[:2]), _make_pos(coords[2:4])
     print('line', jsonize(parms, sep=', '))
     # renderer.draw_line(*parms)
 
@@ -244,7 +244,7 @@ def line(color='red', start=(100, 100), end=(200, 200), *args):
 def circle(color='red', pos=(100, 100), radius=10, *args):
     """Draw a circle."""
     coords = _make_flat([pos, radius, args])
-    parms = _make_pos(coords[:2]), _make_int(*coords[2:3]), _make_color(color)
+    parms = _make_color(color), _make_pos(coords[:2]), _make_int(*coords[2:3])
     print('circle', jsonize(parms, sep=', '))
     # renderer.draw_circle(*parms)
 
@@ -252,7 +252,7 @@ def circle(color='red', pos=(100, 100), radius=10, *args):
 def filled_circle(color='red', pos=(100, 100), radius=10, *args):
     """Draw a filled circle."""
     coords = _make_flat([pos, radius, args])
-    parms = _make_pos(coords[:2]), _make_int(*coords[2:3]), _make_color(color)
+    parms = _make_color(color), _make_pos(coords[:2]), _make_int(*coords[2:3])
     print('filled_circle', jsonize(parms, sep=', '))
     # renderer.draw_filled_circle(*parms)
 
@@ -260,7 +260,7 @@ def filled_circle(color='red', pos=(100, 100), radius=10, *args):
 def rect(color='red', pos=(100, 100), width=500, height=200, *args):
     """Draw a rectangle."""
     coords = _make_flat([pos, width, height, args])
-    parms = _make_rect(coords[:4]), _make_color(color)
+    parms = _make_color(color), _make_rect(coords[:4])
     print('rect', jsonize(parms, sep=', '))
     # renderer.draw_rect(*parms)
 
@@ -268,7 +268,7 @@ def rect(color='red', pos=(100, 100), width=500, height=200, *args):
 def filled_rect(color='red', pos=(100, 100), width=500, height=200, *args):
     """Draw a filled rectangle."""
     coords = _make_flat([pos, width, height, args])
-    parms = _make_rect(coords[:4]), _make_color(color)
+    parms = _make_color(color), _make_rect(coords[:4])
     print('filled_rect', jsonize(parms, sep=', '))
     # renderer.draw_filled_rect(*parms)
 
@@ -289,7 +289,7 @@ def filled_polygon(color='red', *points):
 
 def text(color='red', text='', pos=(100, 100), fontsize=24, *args, **kwargs):
     """Draw text to the screen."""
-    parms = text, _make_pos(pos), _make_int(fontsize), _make_color(color)
+    parms = _make_color(color), text, _make_pos(pos), _make_int(fontsize)
     print('text', jsonize(parms, sep=', '))
     # renderer.draw_text(*parms)
 
