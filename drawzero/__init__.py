@@ -1,6 +1,6 @@
 """Draw Zero, a zero-boilerplate graphing library for education.
 """
 
-__version__ = '0.1.4.1ejudge'
+__version__ = '0.1.5.ejudge'
 
 from .drawzero import *

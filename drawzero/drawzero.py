@@ -1,5 +1,3 @@
-from . import renderer
-
 c_antiquewhite = (250, 235, 215)
 c_aliceblue = (240, 248, 255)
 c_aquamarine = (127, 255, 212)
@@ -186,12 +184,12 @@ def _make_pos(pos):
     """Round a tuple position so it can be used for drawing."""
     if len(pos) != 2 or not isinstance(pos[0], (int, float)) or not isinstance(pos[1], (int, float)):
         raise TypeError(_('Координаты указывайте в виде (x, y), например, (100, 200)'))
-    return int(renderer.surface_size / 1000 * pos[0] + 0.5), int(renderer.surface_size / 1000 * pos[1] + 0.5)
+    return int(pos[0] + 0.5), int(pos[1] + 0.5)
 
 
 def _make_int(num):
     try:
-        return int(renderer.surface_size / 1000 * num + 0.5)
+        return int(num + 0.5)
     except:
         raise TypeError(_('Здесь нужно целое число, например, 24. `{}` не подходит.'.format(num)))
 
@@ -221,8 +219,8 @@ def _make_rect(rect):
         raise TypeError(_('Укажите координаты прямоугольника в формате (x, y, w, h), '
                           'где x, y — координаты угла, и w, h — ширина и высота прямоугольника'))
     x, y, w, h = rect
-    return int(renderer.surface_size / 1000 * x + 0.5), int(renderer.surface_size / 1000 * y + 0.5), \
-           int(renderer.surface_size / 1000 * w + 0.5), int(renderer.surface_size / 1000 * h + 0.5)
+    return int(x + 0.5), int(y + 0.5), \
+           int(w + 0.5), int(h + 0.5)
 
 
 def _make_points_list(points):
@@ -231,7 +229,7 @@ def _make_points_list(points):
     tot_cords = _make_flat(points)
     if not all(isinstance(el, (int, float)) for el in tot_cords):
         raise TypeError(_('Координаты многоугольника должны быть целыми или действительными (вида 100 или 100.25)'))
-    cords_it = iter(map(lambda x: renderer.surface_size / 1000 * x, tot_cords))
+    cords_it = iter(map(lambda x: x, tot_cords))
     return list(zip(cords_it, cords_it))
 
 
