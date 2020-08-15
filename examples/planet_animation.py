@@ -7,7 +7,6 @@ moon_orbit = 100
 moon_radius = 10
 moon_rot_step = 2 * pi / 60
 
-filled_circle(c_red, (500, 500), 100)
 i = 0
 while True:
     i += 1
@@ -16,8 +15,8 @@ while True:
     m_x = e_x + moon_orbit * cos(moon_rot_step * i)
     m_y = e_y + moon_orbit * sin(moon_rot_step * i)
 
+    clear()
+    filled_circle(c_red, (500, 500), 100)
     filled_circle(c_blue, (e_x, e_y), earth_radius)
     filled_circle(c_yellow, (m_x, m_y), moon_radius)
     tick()
-    filled_circle(c_black, (e_x, e_y), earth_radius)
-    filled_circle(c_black, (m_x, m_y), moon_radius)
