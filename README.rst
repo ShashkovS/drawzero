@@ -24,7 +24,7 @@ Here's some of the neat stuff you can do::
     filled_polygon('burlywood', 200, 400, 130, 304, 20, 342, 20, 458, 130, 496, )
 
 
-.. |Hello world image| image:: ./doc/hello_world.png?raw=true
+.. |Hello world image| image:: https://raw.githubusercontent.com/ShashkovS/drawzero/master/doc/hello_world.png
 
 Animation
 ---------
@@ -55,7 +55,7 @@ Animations are also straightforward::
         filled_circle(c_black, (e_x, e_y), earth_radius)
         filled_circle(c_black, (m_x, m_y), moon_radius)
 
-.. |Animation gif| image:: ./doc/planet_animation.gif?raw=true
+.. |Animation gif| image:: https://raw.githubusercontent.com/ShashkovS/drawzero/master/doc/planet_animation.gif
 
 Installation
 ------------
