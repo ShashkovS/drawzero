@@ -3,3 +3,6 @@ include *.rst
 
 # Include the license file
 include LICENSE
+
+# Images
+recursive-include doc *.rst *.png *.gif

@@ -1,24 +1,23 @@
 from drawzero import *
 from math import sin, cos, pi
+earth_orbit = 400
+earth_radius = 30
+earth_rot_step = 2 * pi / 360
+moon_orbit = 100
+moon_radius = 10
+moon_rot_step = 2 * pi / 60
 
 filled_circle(c_red, (500, 500), 100)
+i = 0
+while True:
+    i += 1
+    e_x = 500 + earth_orbit * cos(earth_rot_step * i)
+    e_y = 500 + earth_orbit * sin(earth_rot_step * i)
+    m_x = e_x + moon_orbit * cos(moon_rot_step * i)
+    m_y = e_y + moon_orbit * sin(moon_rot_step * i)
 
-r_e_o = 400
-r_e_r = 30
-phi_e = 2 * pi / 180
-
-r_m_o = 100
-r_m_r = 10
-phi_m = 2 * pi / 15
-
-for i in range(1000):
-    e_x = 500 + r_e_o * cos(phi_e * i)
-    e_y = 500 + r_e_o * sin(phi_e * i)
-    m_x = e_x + r_m_o * cos(phi_m * i)
-    m_y = e_y + r_m_o * sin(phi_m * i)
-
-    filled_circle(c_blue, (e_x, e_y), r_e_r)
-    filled_circle(c_yellow, (m_x, m_y), r_m_r)
+    filled_circle(c_blue, (e_x, e_y), earth_radius)
+    filled_circle(c_yellow, (m_x, m_y), moon_radius)
     tick()
-    filled_circle(c_black, (e_x, e_y), r_e_r)
-    filled_circle(c_black, (m_x, m_y), r_m_r)
+    filled_circle(c_black, (e_x, e_y), earth_radius)
+    filled_circle(c_black, (m_x, m_y), moon_radius)
