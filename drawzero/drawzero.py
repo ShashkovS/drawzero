@@ -1,5 +1,9 @@
-from . import renderer
-import time
+import os
+
+if os.environ.get('EJUDGE_MODE', False):
+    from . import renderer_ejudge as renderer
+else:
+    from . import renderer
 
 c_antiquewhite = (250, 235, 215)
 c_aliceblue = (240, 248, 255)
@@ -148,6 +152,8 @@ c_yellowgreen = (154, 205, 50)
 THECOLORS = {obj[2:]: globals()[obj] for obj in locals() if obj.startswith('c_')}
 
 _ = lambda x: x  # That is for gettext localisation
+
+
 # _SECRET_PRINT = ''
 
 
@@ -230,7 +236,7 @@ def _make_points_list(points):
 def line(color='red', start=(100, 100), end=(200, 200), *args):
     """Draw a line from start to end."""
     coords = _make_flat([start, end, args])
-    parms = _make_pos(coords[:2]), _make_pos(coords[2:4]), _make_color(color)
+    parms = _make_color(color), _make_pos(coords[:2]), _make_pos(coords[2:4])
     # print(_SECRET_PRINT, 'line', parms)
     renderer.draw_line(*parms)
 
@@ -238,7 +244,7 @@ def line(color='red', start=(100, 100), end=(200, 200), *args):
 def circle(color='red', pos=(100, 100), radius=10, *args):
     """Draw a circle."""
     coords = _make_flat([pos, radius, args])
-    parms = _make_pos(coords[:2]), _make_int(*coords[2:3]), _make_color(color)
+    parms = _make_color(color), _make_pos(coords[:2]), _make_int(*coords[2:3])
     # print(_SECRET_PRINT, 'circle', parms)
     renderer.draw_circle(*parms)
 
@@ -246,7 +252,7 @@ def circle(color='red', pos=(100, 100), radius=10, *args):
 def filled_circle(color='red', pos=(100, 100), radius=10, *args):
     """Draw a filled circle."""
     coords = _make_flat([pos, radius, args])
-    parms = _make_pos(coords[:2]), _make_int(*coords[2:3]), _make_color(color)
+    parms = _make_color(color), _make_pos(coords[:2]), _make_int(*coords[2:3])
     # print(_SECRET_PRINT, 'filled_circle', parms)
     renderer.draw_filled_circle(*parms)
 
@@ -254,7 +260,7 @@ def filled_circle(color='red', pos=(100, 100), radius=10, *args):
 def rect(color='red', pos=(100, 100), width=500, height=200, *args):
     """Draw a rectangle."""
     coords = _make_flat([pos, width, height, args])
-    parms = _make_rect(coords[:4]), _make_color(color)
+    parms = _make_color(color), _make_rect(coords[:4])
     # print(_SECRET_PRINT, 'rect', parms)
     renderer.draw_rect(*parms)
 
@@ -262,7 +268,7 @@ def rect(color='red', pos=(100, 100), width=500, height=200, *args):
 def filled_rect(color='red', pos=(100, 100), width=500, height=200, *args):
     """Draw a filled rectangle."""
     coords = _make_flat([pos, width, height, args])
-    parms = _make_rect(coords[:4]), _make_color(color)
+    parms = _make_color(color), _make_rect(coords[:4])
     # print(_SECRET_PRINT, 'filled_rect', parms)
     renderer.draw_filled_rect(*parms)
 
@@ -283,7 +289,7 @@ def filled_polygon(color='red', *points):
 
 def text(color='red', text='', pos=(100, 100), fontsize=24, *args, **kwargs):
     """Draw text to the screen."""
-    parms = text, _make_pos(pos), _make_int(fontsize), _make_color(color)
+    parms = _make_color(color), text, _make_pos(pos), _make_int(fontsize)
     # print(_SECRET_PRINT, 'text', parms)
     renderer.draw_text(*parms)
 
@@ -327,16 +333,5 @@ screen.draw.filled_rect = filled_rect
 screen.draw.polygon = polygon
 screen.draw.filled_polygon = filled_polygon
 screen.draw.text = text
-sleep = time.sleep
-
-FPS = 1 / 60
-
-
-def tick(reps=1, *, _prev=[0]):
-    """Выждать такое время, чтобы частота обновления кадров была 60 FPS"""
-    for _ in range(reps):
-        cur = time.time()
-        dif = _prev[0] + FPS - cur
-        _prev[0] = cur
-        if dif > 0:
-            time.sleep(dif)
+tick = renderer.draw_tick
+sleep = renderer.draw_sleep
