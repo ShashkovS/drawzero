@@ -53,8 +53,8 @@ def draw_clear(*parms):
     print('clear', format(jsonize(parms, sep=', ')))
 
 
-def draw_blit(*parms):
-    print('blit', format(jsonize(parms, sep=', ')))
+def draw_image(*parms):
+    print('image', format(jsonize(parms, sep=', ')))
 
 
 def draw_tick(r=1):
@@ -71,3 +71,4 @@ def draw_set_line_width(w):
 
 
 surface_size = 1000
+key_flags = None

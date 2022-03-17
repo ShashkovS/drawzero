@@ -16,7 +16,7 @@ while True:
     m_y = e_y + moon_orbit * sin(moon_rot_step * i)
 
     clear()
-    filled_circle(c_red, (500, 500), 100)
-    filled_circle(c_blue, (e_x, e_y), earth_radius)
-    filled_circle(c_yellow, (m_x, m_y), moon_radius)
+    filled_circle(C.red, (500, 500), 100)
+    filled_circle(C.blue, (e_x, e_y), earth_radius)
+    filled_circle(C.yellow, (m_x, m_y), moon_radius)
     tick()

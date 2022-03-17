@@ -21,7 +21,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 
 # Package meta-data.
 NAME = 'drawzero'
-DESCRIPTION = 'Простое рисование на холсте без бойлерплейта'
+DESCRIPTION = 'A zero-boilerplate canvas drawing framework for Python 3, based on Pygame.'
 URL = 'https://github.com/ShashkovS/drawzero'
 EMAIL = 'sh57@yandex.ru'
 AUTHOR = 'Sergey Shashkov'
@@ -114,6 +114,8 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: Implementation :: CPython',
         'Topic :: Multimedia :: Graphics',
     ],
