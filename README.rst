@@ -154,3 +154,12 @@ Installation
 In a Terminal window, type::
 
     pip install drawzero
+
+Or run the following programm::
+
+    import os, sys
+    python = sys.executable
+    user = '--user' if 'venv' not in python else ''
+    cmd = f'"{python}" -m pip install drawzero --upgrade {user}'
+    print(cmd)
+    os.system(cmd)
