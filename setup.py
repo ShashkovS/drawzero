@@ -5,7 +5,10 @@
 #   $ pip install twine
 
 # build and upload
+# pip install wheel
+
 # python setup.py sdist bdist_wheel
+# twine check dist/*
 # twine upload dist/*
 
 

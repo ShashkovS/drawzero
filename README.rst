@@ -62,7 +62,7 @@ Animations are also straightforward::
 
 
 Transparency
----------
+------------
 
 Transparency is also straightforward via alpha or RGBA::
 
@@ -104,7 +104,7 @@ Transparency is also straightforward via alpha or RGBA::
 
 
 Keyboard and mouse events
----------
+-------------------------
 
 Process keyboard events in two ways: check if key is pressed via `get_keys_pressed()` or run throw `keysdown` or `keysup` events::
 
@@ -155,7 +155,8 @@ In a Terminal window, type::
 
     pip install drawzero
 
-Or run the following programm::
+
+Or run the following program::
 
     import os, sys
     python = sys.executable
