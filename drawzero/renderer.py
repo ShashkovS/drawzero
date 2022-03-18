@@ -282,8 +282,8 @@ def _init():
     os.environ['SDL_VIDEO_WINDOW_POS'] = "{},{}".format((w - surface_size) // 2, (h - surface_size) // 2)
 
 
-_surface: pygame.Surface = None
-surface_size: int = 0
+_surface = None
+surface_size = 0
 keysdown = []
 keysup = []
 mousemotions = []

@@ -153,7 +153,7 @@ Installation
 
 In a Terminal window, type::
 
-    pip install drawzero
+    pip install drawzero --upgrade --user
 
 
 Or run the following program::
