@@ -267,7 +267,7 @@ def _display_update_if_no_animation():
 
 
 def draw_tick(r=1, *, display_update=True):
-    global keysdown, keysup, mousemotions, mousebuttonsdown, mousebuttonsup
+    global keysdown, keysup, mousemotions, mousebuttonsdown, mousebuttonsup, _animation_not_detected
     _create_surface()
     _animation_not_detected = False
     keysdown.clear()
@@ -319,6 +319,13 @@ def _draw_go():
     while True:
         # We need this hack to process close button clicks
         draw_tick(display_update=False)
+
+
+def draw_quit():
+    try:
+        pygame.quit()
+    except:
+        pass
 
 
 def mouse_pos():

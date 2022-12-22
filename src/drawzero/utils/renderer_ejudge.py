@@ -1,8 +1,13 @@
+from pathlib import Path
+
+
 def jsonize(parms, sep=','):
     if type(parms) == int or type(parms) == float:
         return str(parms)
     elif type(parms) == str:
         return '"' + parms.replace('"', '\\"') + '"'
+    elif isinstance(parms, Path):
+        return '"' + str(parms).replace('"', '\\"') + '"'
     elif type(parms) == list or type(parms) == tuple:
         return '[' + sep.join(map(jsonize, parms)) + ']'
     elif parms is None:
@@ -81,6 +86,11 @@ def draw_sleep(t=1):
 
 def draw_set_line_width(w):
     print('set_line_width({})'.format(w))
+    pass
+
+
+def draw_quit():
+    print('quit')
     pass
 
 
