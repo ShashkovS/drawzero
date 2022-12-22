@@ -71,13 +71,5 @@ class RunExamples(unittest.TestCase):
     #     __import__('examples.16_game_racing')
 
 
-def import_test_generator(module):
-    def test_module(self):
-        print(f'Testing module {module}')
-        __import__(module)
-
-    return test_module
-
-
 if __name__ == "__main__":
     unittest.main()
