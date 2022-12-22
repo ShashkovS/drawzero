@@ -3,8 +3,6 @@ from math import sin, cos, pi
 from utils.examples import copy_examples
 from utils.colors import C, COLORS, THECOLORS, ALL_COLORS
 
-__version__ = '0.3.1'
-
 if not bool(os.environ.get('EJUDGE_MODE', False)):
     from utils import renderer
 else:

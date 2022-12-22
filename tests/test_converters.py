@@ -1,6 +1,5 @@
 import unittest
 import drawzero
-import utils
 
 
 class ColorTest(unittest.TestCase):

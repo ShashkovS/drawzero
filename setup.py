@@ -30,7 +30,7 @@ EMAIL = 'sh57@yandex.ru'
 AUTHOR = 'Sergey Shashkov'
 
 # Current version
-with io.open(os.path.join(here, 'src', NAME, f'{NAME}.py'), encoding='utf-8') as f:
+with io.open(os.path.join(here, 'src', NAME, f'__about__.py'), encoding='utf-8') as f:
     VERSION = re.search(r'\d+\.\d+\.\d+', f.read()).group()
 
 # What packages are required for this module to be executed?
@@ -86,10 +86,7 @@ setup(
     author=AUTHOR,
     author_email=EMAIL,
     url=URL,
-    packages=find_packages(exclude=('tests',)),
-    # If your package is a single module, use this instead of 'packages':
-    # py_modules=['mypackage'],
-
+    packages=[f'src/{NAME}', f'src/{NAME}/utils', 'examples'],
     entry_points={
         'console_scripts': [],
     },
