@@ -86,7 +86,7 @@ sleep(1)
 
 particles = []
 move_y = 0
-while move_y < TOP + 50:
+while move_y < TOP - SAFE + 60:
     move_y += 1
     if move_y < TOP - SAFE:
         for __ in range(25):
@@ -97,3 +97,5 @@ while move_y < TOP + 50:
     tick()
     update_particles(particles)
     remove_particles(particles)
+
+quit()

@@ -18,7 +18,7 @@ def traf_light(red, yellow, green):
     filled_circle(red, (500, 400), 60)
 
 
-for i in range(5):
+for i in range(3):
     traf_light(red_on, yellow_off, green_off)
     sleep(1)
     traf_light(red_off, yellow_on, green_off)

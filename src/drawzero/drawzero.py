@@ -277,6 +277,10 @@ def sleep(t=1):
     _update_events_coordinates()
 
 
+def quit():
+    renderer.draw_quit()
+
+
 ################################################################################
 # Pygamezero compatibility
 

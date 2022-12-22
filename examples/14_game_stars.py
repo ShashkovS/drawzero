@@ -60,7 +60,7 @@ def draw_stars(stars):
         screen_y = int(500 + star.z / y)
         screen_r = int(star.r / y)
         filled_circle(star.color, (screen_x, screen_y), screen_r)
-    text('white', 'Press WASD or QE to move', (300, 5), 48)
+    text('white', 'Press WASD or QE to move', (500, 5), 48, '.^')
 
 
 def process_keys(pressed_keys, speed):
