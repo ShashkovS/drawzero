@@ -5,6 +5,8 @@ def jsonize(parms, sep=','):
         return '"' + parms.replace('"', '\\"') + '"'
     elif type(parms) == list or type(parms) == tuple:
         return '[' + sep.join(map(jsonize, parms)) + ']'
+    elif parms is None:
+        return 'null'
     else:
         raise ValueError('Тип не поддерживается')
 
@@ -31,6 +33,18 @@ def draw_rect(*parms):
 
 def draw_filled_rect(*parms):
     print('filled_rect', format(jsonize(parms, sep=', ')))
+
+
+def draw_ellipse(*parms):
+    print('ellipse', format(jsonize(parms, sep=', ')))
+
+
+def draw_filled_ellipse(*parms):
+    print('filled_ellipse', format(jsonize(parms, sep=', ')))
+
+
+def draw_arc(*parms):
+    print('arc', format(jsonize(parms, sep=', ')))
 
 
 def draw_polygon(*parms):
@@ -72,3 +86,12 @@ def draw_set_line_width(w):
 
 surface_size = 1000
 key_flags = None
+
+get_keys_pressed = lambda: []
+keys_mods_pressed = lambda: []
+get_mouse_pressed = lambda: []
+keysdown = []
+keysup = []
+mousemotions = []
+mousebuttonsdown = []
+mousebuttonsup = []

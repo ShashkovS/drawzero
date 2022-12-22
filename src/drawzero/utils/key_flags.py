@@ -1,6 +1,11 @@
+"""
+Great pack of pygame keyboard events constansts packed into object.
+"""
+
+
 import pygame.locals
 
-__all__ = ['key_flags']
+__all__ = ['key_flags', 'K', 'KEY']
 
 
 class KeyFlags:
@@ -217,4 +222,4 @@ class KeyFlags:
         print([f'K.{c}' for c in dir(self) if not c.startswith('__')])
 
 
-key_flags = KeyFlags()
+K = KEY = key_flags = KeyFlags()

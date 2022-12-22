@@ -1,4 +1,12 @@
-__all__ = ['C', 'COLORS', 'ALL_COLORS']
+"""
+Great pack of text colors.
+А dictionary of RGB tuples indexed by color names.
+Object with attributes indexed by color names for IDE hints.
+
+See https://www.pygame.org/docs/ref/color_list.html for sample swatches.
+"""
+
+__all__ = ['C', 'COLORS', 'ALL_COLORS', 'THECOLORS']
 
 
 class Colors:
@@ -151,4 +159,4 @@ class Colors:
 
 
 C = COLORS = Colors()
-ALL_COLORS = {color: getattr(Colors, color) for color in dir(Colors) if not color.startswith('_')}
+THECOLORS = ALL_COLORS = {color: getattr(Colors, color) for color in dir(Colors) if not color.startswith('_')}

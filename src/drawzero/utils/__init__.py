@@ -15,6 +15,4 @@ fill(color='red')
 blit(image, pos)
 """
 
-__version__ = '0.2.2'
-
-from .drawzero import *
+__version__ = '0.3.1'

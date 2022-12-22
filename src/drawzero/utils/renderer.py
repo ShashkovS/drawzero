@@ -2,21 +2,24 @@ import atexit
 import sys
 import ctypes
 import os
+from math import sin, cos
 from typing import Tuple, List, Union
 
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import pygame.locals
 
-from .key_flags import key_flags
+from utils.key_flags import key_flags
 
+# Types
 Pt = Tuple[int, int]
-Clr = Tuple[int, int, int]
+Clr = Union[Tuple[int, int, int], Tuple[int, int, int, int]]  # RGB or RGBA
 Rect = Tuple[int, int, int, int]
 
 _fps = pygame.time.Clock()
 _fonts = {}
 _dft_wid = 4
+_animation_not_detected = True
 
 if __name__ == '__main__':
     print("You shouldn't need run this module directly")
@@ -58,6 +61,7 @@ def draw_line(color: Clr, start: Pt, end: Pt, alpha: int = 255, line_width: int 
         points = [(x - minx + wid, y - miny + wid) for x, y in points]
         pygame.draw.line(transparent, color, points[0], points[1], wid)
         _surface.blit(transparent, (minx - wid, miny - wid))
+    _display_update_if_no_animation()
 
 
 def draw_circle(color: Clr, pos: Pt, radius: int, alpha: int = 255, line_width: int = None):
@@ -77,6 +81,48 @@ def draw_circle(color: Clr, pos: Pt, radius: int, alpha: int = 255, line_width: 
             color = [*color, alpha]
         pygame.draw.circle(transparent, color, (radius, radius), radius, wid)
         _surface.blit(transparent, (pos[0] - radius, pos[1] - radius))
+    _display_update_if_no_animation()
+
+
+def draw_ellipse(color: Clr, rect: Rect, alpha: int = 255, line_width: int = None):
+    """
+    Draw an ellipse.
+    Set line_width to zero to make it filled
+    """
+    _create_surface()
+    wid = line_width if line_width is not None else _dft_wid
+    if alpha == 255 and len(color) == 3:
+        pygame.draw.ellipse(_surface, color, pygame.rect.Rect(rect), wid)
+    else:
+        # create a surface with alpha channel
+        # We need some extra space for line width
+        transparent = pygame.Surface((rect[2] + 2 * wid, rect[3] + 2 * wid), pygame.SRCALPHA, 32)
+        transparent.fill((0, 0, 0, 0))
+        if len(color) == 3:
+            color = [*color, alpha]
+        pygame.draw.ellipse(transparent, color, pygame.rect.Rect((wid, wid, rect[2], rect[3])), wid)
+        _surface.blit(transparent, (rect[0] - wid, rect[1] - wid))
+    _display_update_if_no_animation()
+
+
+def draw_arc(color: Clr, rect: Rect, start_angle: float, stop_angle: float, alpha: int = 255, line_width: int = None):
+    """
+    Draw an arc.
+    """
+    _create_surface()
+    wid = line_width if line_width is not None else _dft_wid
+    if alpha == 255 and len(color) == 3:
+        pygame.draw.arc(_surface, color, pygame.rect.Rect(rect), start_angle, stop_angle, wid)
+    else:
+        # create a surface with alpha channel
+        # We need some extra space for line width
+        transparent = pygame.Surface((rect[2] + 2 * wid, rect[3] + 2 * wid), pygame.SRCALPHA, 32)
+        transparent.fill((0, 0, 0, 0))
+        if len(color) == 3:
+            color = [*color, alpha]
+        pygame.draw.arc(transparent, color, pygame.rect.Rect((wid, wid, rect[2], rect[3])), start_angle, stop_angle, wid)
+        _surface.blit(transparent, (rect[0] - wid, rect[1] - wid))
+    _display_update_if_no_animation()
 
 
 def draw_rect(color: Clr, rect: Rect, alpha: int = 255, line_width: int = None):
@@ -97,6 +143,7 @@ def draw_rect(color: Clr, rect: Rect, alpha: int = 255, line_width: int = None):
             color = [*color, alpha]
         pygame.draw.rect(transparent, color, pygame.rect.Rect((wid, wid, rect[2], rect[3])), wid)
         _surface.blit(transparent, (rect[0] - wid, rect[1] - wid))
+    _display_update_if_no_animation()
 
 
 def _get_bounding_box(points: List[Pt]) -> tuple:
@@ -131,14 +178,26 @@ def draw_polygon(color: Clr, points: List[Pt], alpha: int = 255, line_width: int
         points = [(x - minx + wid, y - miny + wid) for x, y in points]
         pygame.draw.polygon(transparent, color, points, wid)
         _surface.blit(transparent, (minx - wid, miny - wid))
+    _display_update_if_no_animation()
 
 
-def draw_text(color: Clr, text: str, pos: Pt, fontsize: int):
+def draw_text(color: Clr, text: str, pos: Pt, fontsize: int, align: str):
     """Draw text."""
     _create_surface()
     use_font = _fonts.get(fontsize, pygame.font.Font(None, fontsize))
     temp_surf = use_font.render(text, True, color)
-    _surface.blit(temp_surf, pos)
+    t_width, t_height = temp_surf.get_size()
+    x, y = pos
+    if align[0] == '.':
+        x -= t_width // 2
+    elif align[0] == '>':
+        x -= t_width
+    if align[1] == '.':
+        y -= t_height // 2
+    elif align[1] == 'v':
+        y -= t_height
+    _surface.blit(temp_surf, [x, y])
+    _display_update_if_no_animation()
 
 
 def draw_fill(color: Clr, alpha: int = 255):
@@ -152,12 +211,14 @@ def draw_fill(color: Clr, alpha: int = 255):
             color = [*color, alpha]
         transparent.fill(color)
         _surface.blit(transparent, (0, 0))
+    _display_update_if_no_animation()
 
 
 def draw_clear(color: Clr = (0, 0, 0)):
     """Fill the screen with a solid color."""
     _create_surface()
     _surface.fill(color)  # Заливаем всё чёрным
+    _display_update_if_no_animation()
 
 
 def draw_image(path: str, pos: Pt, width: int = None, alpha: int = 255):
@@ -177,6 +238,7 @@ def draw_image(path: str, pos: Pt, width: int = None, alpha: int = 255):
         temp.set_alpha(alpha)
         image = temp
     _surface.blit(image, pos)
+    _display_update_if_no_animation()
 
 
 def _resize(nw: int, nh: int):
@@ -195,9 +257,19 @@ def _display_update():
         sys.exit()
 
 
+def _display_update_if_no_animation():
+    if _animation_not_detected:
+        try:
+            pygame.display.update()
+        except pygame.error:
+            pygame.quit()
+            sys.exit()
+
+
 def draw_tick(r=1, *, display_update=True):
     global keysdown, keysup, mousemotions, mousebuttonsdown, mousebuttonsup
     _create_surface()
+    _animation_not_detected = False
     keysdown.clear()
     keysup.clear()
     mousemotions.clear()
