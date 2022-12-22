@@ -5,4 +5,4 @@ include *.rst
 include LICENSE
 
 # Images
-recursive-include doc *.rst *.png *.gif
+recursive-include docs *.rst *.png *.gif

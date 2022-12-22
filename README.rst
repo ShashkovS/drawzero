@@ -24,7 +24,7 @@ Here's some of the neat stuff you can do::
     filled_polygon('burlywood', 200, 400, 130, 304, 20, 342, 20, 458, 130, 496, )
 
 
-.. image:: https://raw.githubusercontent.com/ShashkovS/drawzero/master/doc/hello_world.png
+.. image:: https://raw.githubusercontent.com/ShashkovS/drawzero/master/docs/hello_world.png
     :width: 75%
 
 Animation
@@ -57,7 +57,7 @@ Animations are also straightforward::
         tick()
 
 
-.. image:: https://raw.githubusercontent.com/ShashkovS/drawzero/master/doc/planet_animation.gif
+.. image:: https://raw.githubusercontent.com/ShashkovS/drawzero/master/docs/planet_animation.gif
     :width: 50%
 
 
@@ -99,7 +99,7 @@ Transparency is also straightforward via alpha or RGBA::
     line(C.blue, (830, 100), (730, 200), line_width=10, alpha=128)
 
 
-.. image:: https://raw.githubusercontent.com/ShashkovS/drawzero/master/doc/transparent.png
+.. image:: https://raw.githubusercontent.com/ShashkovS/drawzero/master/docs/transparent.png
     :width: 50%
 
 
@@ -143,7 +143,7 @@ Process keyboard events in two ways: check if key is pressed via `get_keys_press
 
 
 
-.. image:: https://raw.githubusercontent.com/ShashkovS/drawzero/master/doc/keyboard_and_mouse_events.gif
+.. image:: https://raw.githubusercontent.com/ShashkovS/drawzero/master/docs/keyboard_and_mouse_events.gif
     :width: 50%
 
 
