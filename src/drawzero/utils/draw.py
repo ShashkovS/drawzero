@@ -1,13 +1,13 @@
 import os
 from math import sin, cos, pi
 
-from utils.examples import copy_examples
-from utils.colors import C, COLORS, THECOLORS, ALL_COLORS
+from drawzero.utils.examples import copy_examples
+from drawzero.utils.colors import C, COLORS, THECOLORS, ALL_COLORS
 
 if not bool(os.environ.get('EJUDGE_MODE', False)):
-    from utils import renderer
+    from drawzero.utils import renderer
 else:
-    from utils import renderer_ejudge as renderer
+    from drawzero.utils import renderer_ejudge as renderer
 
 VIRTUAL_SIZE = 1000
 
