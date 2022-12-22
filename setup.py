@@ -30,7 +30,7 @@ EMAIL = 'sh57@yandex.ru'
 AUTHOR = 'Sergey Shashkov'
 
 # Current version
-with io.open(os.path.join(here, NAME, '__init__.py'), encoding='utf-8') as f:
+with io.open(os.path.join(here, 'src', NAME, f'{NAME}.py'), encoding='utf-8') as f:
     VERSION = re.search(r'\d+\.\d+\.\d+', f.read()).group()
 
 # What packages are required for this module to be executed?
