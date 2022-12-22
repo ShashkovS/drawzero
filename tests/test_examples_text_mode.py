@@ -6,7 +6,7 @@ os.environ['EJUDGE_MODE'] = 'true'
 
 example_modules = [
     f'examples.{example.stem}'
-    for example in (pathlib.Path(__file__).parent.parent / 'examples').glob('*.py')
+    for example in (pathlib.Path(__file__).parent.parent / 'src' / 'drawzero' / 'examples').glob('*.py')
 ]
 
 

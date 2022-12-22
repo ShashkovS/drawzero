@@ -1,5 +1,6 @@
 import os
 from math import sin, cos, pi
+
 from utils.examples import copy_examples
 from utils.colors import C, COLORS, THECOLORS, ALL_COLORS
 

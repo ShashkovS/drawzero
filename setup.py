@@ -86,12 +86,13 @@ setup(
     author=AUTHOR,
     author_email=EMAIL,
     url=URL,
-    packages=[f'src/{NAME}', f'src/{NAME}/utils', 'examples'],
+    packages=find_packages("src"),
+    package_dir={"": "src"},
     entry_points={
         'console_scripts': [],
     },
     install_requires=REQUIRED,
-    include_package_data=True,
+    # include_package_data=True,
     package_data={
         # If any package contains *.txt or *.rst files, include them:
         '': ['*.txt', '*.rst', '*.in'],
