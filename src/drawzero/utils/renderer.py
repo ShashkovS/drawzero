@@ -2,14 +2,13 @@ import atexit
 import sys
 import ctypes
 import os
-from math import sin, cos
 from typing import Tuple, List, Union
 
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import pygame.locals
 
-from utils.key_flags import key_flags
+from drawzero.utils.key_flags import key_flags
 
 # Types
 Pt = Tuple[int, int]
