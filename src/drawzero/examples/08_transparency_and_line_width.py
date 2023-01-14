@@ -28,3 +28,9 @@ line(C.blue, (830, 100), (730, 200), line_width=10, alpha=128)
 rect('yellow', (500, 100), 100, 700, line_width=30, alpha=255)  # via alpha
 rect('#00FFFF', (520, 120), 100, 700, line_width=30, alpha=100)  # via alpha
 filled_rect((0, 255, 0, 50), (100, 500), 700, 100)  # via rgba
+
+ellipse('grey', (100, 850), 200, 100, alpha=100)
+filled_ellipse('red', (100 + 50, 850 + 25), 100, 50, alpha=100)
+arc('blue', (200, 850), 200, 100, start_angle=45, stop_angle=270, alpha=100, line_width=10)
+
+fill(C.magenta, alpha=30)

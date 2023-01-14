@@ -3,6 +3,7 @@ from math import sin, cos, pi
 
 from drawzero.utils.examples import copy_examples
 from drawzero.utils.colors import C, COLORS, THECOLORS, ALL_COLORS
+from drawzero.utils.pt import Pt
 
 if not bool(os.environ.get('EJUDGE_MODE', False)):
     from drawzero.utils import renderer
@@ -12,6 +13,9 @@ else:
 VIRTUAL_SIZE = 1000
 
 _ = lambda x: x  # That is for gettext localization
+PT_LIKE = (tuple, list, Pt)
+NUM_LIKE = (int, float)
+
 
 K = KEY = renderer.key_flags
 get_keys_pressed = renderer.get_keys_pressed
@@ -49,7 +53,7 @@ def _to_color(arg):
 
 def _to_pos(pos):
     """Round a tuple position, so it can be used for drawing."""
-    if len(pos) != 2 or not isinstance(pos[0], (int, float)) or not isinstance(pos[1], (int, float)):
+    if len(pos) != 2 or not isinstance(pos[0], NUM_LIKE) or not isinstance(pos[1], NUM_LIKE):
         raise TypeError('Координаты указывайте в виде (x, y), например, (100, 200)')
     return int(renderer.surface_size / VIRTUAL_SIZE * pos[0] + 0.5), int(renderer.surface_size / VIRTUAL_SIZE * pos[1] + 0.5)
 
@@ -64,7 +68,7 @@ def _to_scaled_int(num):
 def _to_flat(lst):
     flattened = []
     for el in lst:
-        if isinstance(el, (tuple, list)):
+        if isinstance(el, PT_LIKE):
             flattened.extend(_to_flat(el))
         else:
             flattened.append(el)
@@ -80,7 +84,7 @@ def _to_rect(rect):
         raise TypeError('Укажите координаты прямоугольника в формате (x, y, w, h), '
                         'где x, y — координаты угла, и w, h — ширина и высота прямоугольника')
     rect = _to_flat(rect)
-    if not all(isinstance(el, (int, float)) for el in rect):
+    if not all(isinstance(el, NUM_LIKE) for el in rect):
         raise TypeError('Координаты прямоугольника должны быть целыми или действительными (вида 100 или 100.25)')
     if len(rect) != 4:
         raise TypeError('Укажите координаты прямоугольника в формате (x, y, w, h), '
@@ -94,7 +98,7 @@ def _to_points_list(points):
     if not points:
         raise TypeError('Укажите координаты вершин многоугольника в формате ((x1,y1), (x2, y2), ...)')
     tot_cords = _to_flat(points)
-    if not all(isinstance(el, (int, float)) for el in tot_cords):
+    if not all(isinstance(el, NUM_LIKE) for el in tot_cords):
         raise TypeError('Координаты многоугольника должны быть целыми или действительными (вида 100 или 100.25)')
     cords_it = iter(map(lambda x: int(renderer.surface_size / VIRTUAL_SIZE * x + 0.5), tot_cords))
     return list(zip(cords_it, cords_it))
