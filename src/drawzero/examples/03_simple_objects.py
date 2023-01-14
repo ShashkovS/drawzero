@@ -50,6 +50,6 @@ text('white', "text('red', 'Hello, world!', (100, 100), 48, '<.')", (500, 800), 
 text(C.magenta, 'text', (200, 900), 48, '>v')
 text(C.red, '×', (200, 900), 72, '..')
 text(C.magenta, 'align', (200, 900), 48, '<^')
-text('white', "text(C.magenta, 'text', (200, 200), 48, '>v')", (500, 860), 32, '<.')
+text('white', "text(C.magenta, 'text', (200, 900), 48, '>v')", (500, 860), 32, '<.')
 text('white', "text(C.red, '×', (200, 900), 72, '..')", (500, 900), 32, '<.')
-text('white', "text(C.magenta, 'align', (200, 200), 48, '<^')", (500, 940), 32, '<.')
+text('white', "text(C.magenta, 'align', (200, 900), 48, '<^')", (500, 940), 32, '<.')

@@ -14,8 +14,8 @@ class CopyExamplesTest(unittest.TestCase):
         examples = []
         examples_dir = pathlib.Path('./examples')
         for obj in examples_dir.rglob('*'):
-            examples.append(str(obj))
-            print(obj)
+            if obj.suffix == '.py':
+                examples.append(str(obj))
         self.assertGreater(len(examples), 10, 'There must be at least 10 example files...')
         self.assertTrue(all(example_file_mask.search(name) for name in examples))
         if all(example_file_mask.search(name) for name in examples):
