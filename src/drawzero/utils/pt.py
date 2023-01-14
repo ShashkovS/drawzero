@@ -38,6 +38,7 @@ class Pt:
       * deep copy
         copy — a clone of point
     """
+    __slots__ = ['x', 'y', 'heading', '_heading_rad']
 
     def __init__(self, x=0.0, y=0.0, *, heading=0.0):
         """
@@ -60,6 +61,19 @@ class Pt:
         Pt(4,6,heading=0.0)
         """
         return Pt(self.x + other.x, self.y + other.y)
+
+    def __iadd__(self, other):
+        """ Add two points
+        Example:
+        >>> p1 = Pt(1, 2)
+        >>> p2 = Pt(3, 4)
+        >>> p1 += p2
+        >>> p1
+        Pt(4,6,heading=0.0)
+        """
+        self.x += other.x
+        self.y += other.y
+        return self
 
     def __mul__(self, other):
         """ Multiply by number
@@ -87,6 +101,17 @@ class Pt:
             return Pt(self.x * other, self.y * other)
         return NotImplemented
 
+    def __truediv__(self, other):
+        """ Multiply by number
+        Example:
+        >>> p = Pt(4, 6)
+        >>> p / 2
+        Pt(2.0,3.0,heading=0.0)
+        """
+        if isinstance(other, _NUMERIC):
+            return Pt(self.x / other, self.y / other)
+        return NotImplemented
+
     def __sub__(self, other):
         """ Substract two points
         Example:
@@ -96,6 +121,19 @@ class Pt:
         Pt(-2,-2,heading=0.0)
         """
         return Pt(self.x - other.x, self.y - other.y)
+
+    def __isub__(self, other):
+        """ Add two points
+        Example:
+        >>> p1 = Pt(1, 2)
+        >>> p2 = Pt(3, 4)
+        >>> p1 -= p2
+        >>> p1
+        Pt(-2,-2,heading=0.0)
+        """
+        self.x -= other.x
+        self.y -= other.y
+        return self
 
     def __neg__(self):
         """
@@ -136,9 +174,6 @@ class Pt:
         5.0
         """
         return hypot(self.x, self.y)
-
-    def __getnewargs__(self):
-        return self.x, self.y, self.heading
 
     def __str__(self):
         """ Human readeable
@@ -196,7 +231,6 @@ class Pt:
         2
         """
         return 2
-
 
     def reset(self):
         """Move point to the origin - coordinates (0,0).

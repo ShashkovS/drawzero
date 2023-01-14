@@ -183,7 +183,7 @@ def rect_rotated(color='red', pos=(100, 100), width=500, height=200, angle=0, *a
     mid_y = y + h / 2
     angle_rad = angle / 180 * pi
     points = [
-        _to_pos([mid_x + w / 2 * d1 * cos(angle_rad) + h / 2 * d2 * sin(angle_rad), mid_y - w / 2 * d1 * sin(angle_rad) + h / 2 * d2 * cos(angle_rad)])
+        _to_pos([mid_x + w / 2 * d1 * cos(angle_rad) - h / 2 * d2 * sin(angle_rad), mid_y + w / 2 * d1 * sin(angle_rad) + h / 2 * d2 * cos(angle_rad)])
         for d1, d2 in [(+1, +1), (-1, +1), (-1, -1), (+1, -1)]
     ]
     renderer.draw_polygon(color, points, alpha, line_width)
@@ -191,7 +191,7 @@ def rect_rotated(color='red', pos=(100, 100), width=500, height=200, angle=0, *a
 
 def filled_rect_rotated(color='red', pos=(100, 100), width=500, height=200, angle=0, *args, alpha: int = 255):
     """Draw a filled rotated rectangle."""
-    rect_rotated(color, pos, width, height, alpha, *args, alpha=alpha, line_width=0)
+    rect_rotated(color, pos, width, height, angle, *args, alpha=alpha, line_width=0)
 
 
 def polygon(color='red', *points, alpha: int = 255, line_width: int = None):
