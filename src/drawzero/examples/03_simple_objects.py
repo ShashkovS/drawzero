@@ -45,7 +45,7 @@ text('white', "arc('red', (350, 650), 100, 100, 45, 270)", (500, 700 + 40), 32, 
 
 # Text
 text('red', 'Hello, world!', (100, 800), 48, '<.')
-text('white', "text('red', 'Hello, world!', (100, 100), 48, '<.')", (500, 800), 32, '<.')
+text('white', "text('red', 'Hello, world!', (100, 800), 48, '<.')", (500, 800), 32, '<.')
 
 text(C.magenta, 'text', (200, 900), 48, '>v')
 text(C.red, '×', (200, 900), 72, '..')
