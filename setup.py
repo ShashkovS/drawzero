@@ -1,16 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Note: To use the 'upload' functionality of this file, you must:
-#   $ pip install twine
+# pip install wheel twine
 
 # build and upload
-# pip install wheel
-
 # python setup.py sdist bdist_wheel
-# twine check dist/*
-# twine upload dist/*
-
+# python -m twine check dist/*
+# python -m twine upload dist/*
 
 import io
 import os
