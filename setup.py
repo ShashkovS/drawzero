@@ -34,8 +34,8 @@ with io.open(os.path.join(here, 'requirements.txt'), encoding='utf-8') as f:
     REQUIRED = [row.strip() for row in f.readlines() if row.strip() and not row.strip().startswith('#')]
 
 # Import the README and use it as the long-description.
-# Note: this will only work if 'README.rst' is present in your MANIFEST.in file!
-with io.open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
+# Note: this will only work if 'README.md' is present in your MANIFEST.in file!
+with io.open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
     LONG_DESCRIPTION = '\n' + f.read()
 
 
@@ -78,7 +78,7 @@ setup(
     version=VERSION,
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
-    long_description_content_type='text/x-rst',
+    long_description_content_type='text/markdown',
     author=AUTHOR,
     author_email=EMAIL,
     url=URL,
@@ -108,11 +108,11 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: Implementation :: CPython',
         'Topic :: Multimedia :: Graphics',
     ],
