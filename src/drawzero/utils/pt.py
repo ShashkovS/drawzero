@@ -60,6 +60,8 @@ class Pt:
         >>> p1 + p2
         Pt(4,6,heading=0.0)
         """
+        if not isinstance(other, Pt):
+            return NotImplemented
         return Pt(self.x + other.x, self.y + other.y)
 
     def __iadd__(self, other):
@@ -71,6 +73,8 @@ class Pt:
         >>> p1
         Pt(4,6,heading=0.0)
         """
+        if not isinstance(other, Pt):
+            return NotImplemented
         self.x += other.x
         self.y += other.y
         return self
@@ -84,22 +88,34 @@ class Pt:
         >>> -2 * p
         Pt(-2,-4,heading=0.0)
         """
-        if isinstance(other, _NUMERIC):
-            return Pt(self.x * other, self.y * other)
-        return NotImplemented
+        if not isinstance(other, _NUMERIC):
+            return NotImplemented
+        return Pt(self.x * other, self.y * other)
+
+    def __imul__(self, other):
+        """ Multiply by number
+        Example:
+        >>> p = Pt(1, 2)
+        >>> p *= 3
+        >>> p
+        Pt(3,6,heading=0.0)
+        """
+        if not isinstance(other, _NUMERIC):
+            return NotImplemented
+        self.x *= other
+        self.y *= other
+        return self
 
     def __rmul__(self, other):
         """ Multiply by number
         Example:
         >>> p = Pt(1, 2)
-        >>> p * 3
-        Pt(3,6,heading=0.0)
         >>> -2 * p
         Pt(-2,-4,heading=0.0)
         """
-        if isinstance(other, _NUMERIC):
-            return Pt(self.x * other, self.y * other)
-        return NotImplemented
+        if not isinstance(other, _NUMERIC):
+            return NotImplemented
+        return Pt(self.x * other, self.y * other)
 
     def __truediv__(self, other):
         """ Multiply by number
@@ -108,9 +124,23 @@ class Pt:
         >>> p / 2
         Pt(2.0,3.0,heading=0.0)
         """
-        if isinstance(other, _NUMERIC):
-            return Pt(self.x / other, self.y / other)
-        return NotImplemented
+        if not isinstance(other, _NUMERIC):
+            return NotImplemented
+        return Pt(self.x / other, self.y / other)
+
+    def __itruediv__(self, other):
+        """ Multiply by number
+        Example:
+        >>> p = Pt(4, 6)
+        >>> p /= 2
+        >>> p
+        Pt(2.0,3.0,heading=0.0)
+        """
+        if not isinstance(other, _NUMERIC):
+            return NotImplemented
+        self.x /= other
+        self.y /= other
+        return self
 
     def __sub__(self, other):
         """ Substract two points
@@ -120,6 +150,8 @@ class Pt:
         >>> p1 - p2
         Pt(-2,-2,heading=0.0)
         """
+        if not isinstance(other, Pt):
+            return NotImplemented
         return Pt(self.x - other.x, self.y - other.y)
 
     def __isub__(self, other):
@@ -131,6 +163,8 @@ class Pt:
         >>> p1
         Pt(-2,-2,heading=0.0)
         """
+        if not isinstance(other, Pt):
+            return NotImplemented
         self.x -= other.x
         self.y -= other.y
         return self
@@ -159,7 +193,6 @@ class Pt:
         >>> p1 = Pt(1, 2)
         >>> p2 = p1.copy()
         >>> p1.forward(10)
-        >>> p1
         Pt(11.0,2.0,heading=0.0)
         >>> p2
         Pt(1,2,heading=0.0)
@@ -243,13 +276,13 @@ class Pt:
         Example (for a Point instance named point):
         >>> point = Pt(1, 2)
         >>> point.reset()
-        >>> point
         Pt(0,0,heading=0)
         """
         self.x = 0
         self.y = 0
         self.heading = 0
         self._heading_rad = 0
+        return self
 
     def forward(self, distance):
         """Move the point forward by the specified distance.
@@ -264,21 +297,20 @@ class Pt:
 
         Example (for a Point instance named point):
         >>> point = Pt(0, 0)
-        >>> point.position()
-        (0, 0)
+        >>> point
+        Pt(0,0,heading=0.0)
         >>> point.forward(25)
-        >>> point.position()
-        (25.0, 0.0)
+        Pt(25.0,0.0,heading=0.0)
         >>> point.forward(-75)
-        >>> point.position()
-        (-50.0, 0.0)
+        Pt(-50.0,0.0,heading=0.0)
         """
-        self.x += distance * cos(self._heading_rad)
-        self.y += distance * sin(self._heading_rad)
+        self.x = round(self.x + distance * cos(self._heading_rad), 12)
+        self.y = round(self.y + distance * sin(self._heading_rad), 12)
+        return self
 
     fd = forward
 
-    def back(self, distance):
+    def backward(self, distance):
         """Move the point backward by distance.
 
         Aliases: back | backward | bk
@@ -291,16 +323,16 @@ class Pt:
 
         Example (for a Point instance named point):
         >>> point = Pt(0, 0)
-        >>> point.position()
-        (0, 0)
+        >>> point
+        Pt(0,0,heading=0.0)
         >>> point.backward(30)
-        >>> point.position()
-        (-30.0, 0.0)
+        Pt(-30.0,0.0,heading=0.0)
         """
-        self.x -= distance * cos(self._heading_rad)
-        self.y -= distance * sin(self._heading_rad)
+        self.x = round(self.x - distance * cos(self._heading_rad), 12)
+        self.y = round(self.y - distance * sin(self._heading_rad), 12)
+        return self
 
-    backward = bk = back
+    back = bk = backward
 
     def right(self, angle):
         """Turn point right by angle degrees.
@@ -317,11 +349,11 @@ class Pt:
         >>> point.heading
         22
         >>> point.right(45)
-        >>> point.heading
-        337.0
+        Pt(0,0,heading=337.0)
         """
         self.heading = (self.heading - angle) % 360.0
         self._heading_rad = self.heading / 180.0 * pi
+        return self
 
     rt = right
 
@@ -340,16 +372,16 @@ class Pt:
         >>> point.heading
         22
         >>> point.left(45)
-        >>> point.heading
-        67.0
+        Pt(0,0,heading=67.0)
         """
         self.heading = (self.heading + angle) % 360.0
         self._heading_rad = self.heading / 180.0 * pi
+        return self
 
     lt = left
 
     def pos(self) -> tuple:
-        """Return the point's current location (x,y), as a Pt-vector.
+        """Return the point's current location (x,y), as a tuple.
 
         Aliases: pos | position
 
@@ -372,7 +404,9 @@ class Pt:
         Example (for a Point instance named point):
         >>> point = Pt()
         >>> point.left(60)
+        Pt(0.0,0.0,heading=60.0)
         >>> point.forward(100)
+        Pt(50.0,86.602540378444,heading=60.0)
         >>> print(point.xcor())
         50.0
         """
@@ -386,7 +420,9 @@ class Pt:
         Example (for a Point instance named point):
         >>> point = Pt()
         >>> point.left(60)
+        Pt(0.0,0.0,heading=60.0)
         >>> point.forward(100)
+        Pt(50.0,86.602540378444,heading=60.0)
         >>> print(point.ycor())
         86.6025403784
         """
@@ -414,14 +450,11 @@ class Pt:
         Pt(0,0,heading=0.0)
         >>> point = Pt()
         >>> point.setpos(60,30)
-        >>> point.position()
-        (60, 30)
+        Pt(60,30,heading=0.0)
         >>> point.setpos((20,80))
-        >>> point.position()
-        (20, 80)
+        Pt(20,80,heading=0.0)
         >>> point.setpos(tp)
-        >>> point.position()
-        (0, 0)
+        Pt(0,0,heading=0.0)
         """
         if isinstance(x, Pt):
             self.x = x.x
@@ -433,6 +466,7 @@ class Pt:
             self.x = x
         if y is not None:
             self.y = y
+        return self
 
     setpos = goto
     setposition = goto
@@ -442,17 +476,13 @@ class Pt:
         Example (for a Point instance named point):
         >>> tp = Pt(1, 0)
         >>> tp.rotate_around(90, (0, 0))
-        >>> tp.position()
-        (0.0, 1.0)
+        Pt(0.0,1.0,heading=0.0)
         >>> tp.rotate_around(90, Pt(0, 0))
-        >>> tp.position()
-        (-1.0, 0.0)
+        Pt(-1.0,0.0,heading=0.0)
         >>> tp.rotate_around(90, 0, 0)
-        >>> tp.position()
-        (-0.0, -1.0)
+        Pt(-0.0,-1.0,heading=0.0)
         >>> tp.rotate_around(180, [2, 3])
-        >>> tp.position()
-        (4.0, 7.0)
+        Pt(4.0,7.0,heading=0.0)
         """
         if isinstance(x, Pt):
             px = x.x
@@ -469,7 +499,8 @@ class Pt:
         c, s = cos(angle_rad), sin(angle_rad)
         ndx = dx * c + -dy * s
         ndy = dx * s + dy * c
-        self.x, self.y = px + ndx, py + ndy
+        self.x, self.y = round(px + ndx, 12), round(py + ndy, 12)
+        return self
 
     def home(self):
         """Move point to the origin - coordinates (0,0).
@@ -482,13 +513,13 @@ class Pt:
         Example (for a Point instance named point):
         >>> point = Pt(1, 2)
         >>> point.home()
-        >>> point
         Pt(0,0,heading=0)
         """
         self.x = 0
         self.y = 0
         self.heading = 0
         self._heading_rad = 0
+        return self
 
     def setx(self, x):
         """Set the point's first coordinate to x
@@ -504,10 +535,10 @@ class Pt:
         >>> point.position()
         (0, 240)
         >>> point.setx(10)
-        >>> point.position()
-        (10, 240)
+        Pt(10,240,heading=0.0)
         """
         self.x = x
+        return self
 
     def sety(self, y):
         """Set the point's second coordinate to y
@@ -523,10 +554,10 @@ class Pt:
         >>> point.position()
         (0, 40)
         >>> point.sety(-10)
-        >>> point.position()
-        (0, -10)
+        Pt(0,-10,heading=0.0)
         """
         self.y = y
+        return self
 
     def distance(self, x, y=None):
         """Return the distance from the point to (x,y) in point step degrees.
@@ -547,6 +578,7 @@ class Pt:
         50.0
         >>> pen = Pt()
         >>> pen.forward(77)
+        Pt(77.0,0.0,heading=0.0)
         >>> point.distance(pen)
         77.0
         """
@@ -614,11 +646,9 @@ class Pt:
         >>> point.position()
         (10, 10)
         >>> point.move_towards(20, 100, 10)
-        >>> point.position()
-        (30.0, 10.0)
+        Pt(30.0,10.0,heading=0.0)
         >>> point.move_towards(20, (30, 0))
-        >>> point.position()
-        (30.0, -10.0)
+        Pt(30.0,-10.0,heading=0.0)
         """
         if isinstance(x, Pt):
             px = x.x
@@ -636,6 +666,7 @@ class Pt:
             coef = distance / hypot(dx, dy)
             self.x += dx * coef
             self.y += dy * coef
+        return self
 
     def setheading(self, to_angle):
         """Set the orientation of the point to to_angle.
@@ -656,12 +687,14 @@ class Pt:
 
         Example (for a Point instance named point):
         >>> point = Pt(0, 0)
-        >>> point.setheading(90)
+        >>> point.setheading(90.0)
+        Pt(0,0,heading=90.0)
         >>> point.heading
         90.0
         """
         self.heading = to_angle % 360.0
         self._heading_rad = self.heading / 180.0 * pi
+        return self
 
     seth = setheading
 
