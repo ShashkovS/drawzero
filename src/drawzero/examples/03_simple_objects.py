@@ -1,6 +1,6 @@
 from drawzero import *
 
-# All simple shapes
+# All shapes
 
 # Fill with color rgb=(50, 50, 50)
 fill((50, 50, 50))
@@ -47,9 +47,9 @@ text('white', "arc('red', (350, 650), 100, 100, 45, 270)", (500, 700 + 40), 32, 
 text('red', 'Hello, world!', (100, 800), 48, '<.')
 text('white', "text('red', 'Hello, world!', (100, 800), 48, '<.')", (500, 800), 32, '<.')
 
-text(C.magenta, 'text', (200, 900), 48, '>v')
-text(C.red, '×', (200, 900), 72, '..')
-text(C.magenta, 'align', (200, 900), 48, '<^')
+text('magenta', 'text', (200, 900), 48, '>v')
+text('red', '×', (200, 900), 72, '..')
+text('magenta', 'align', (200, 900), 48, '<^')
 text('white', "text(C.magenta, 'text', (200, 900), 48, '>v')", (500, 860), 32, '<.')
 text('white', "text(C.red, '×', (200, 900), 72, '..')", (500, 900), 32, '<.')
 text('white', "text(C.magenta, 'align', (200, 900), 48, '<^')", (500, 940), 32, '<.')

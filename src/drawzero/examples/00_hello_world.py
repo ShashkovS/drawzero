@@ -1,4 +1,5 @@
-# Just import everything | Импортируем всё
+# Just import everything
+# Импортируем всё
 from drawzero import *
 
 # Red rectangle with upper left corner at (50, 150) and width = 900, height = 700
