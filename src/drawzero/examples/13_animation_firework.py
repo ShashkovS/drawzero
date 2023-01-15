@@ -1,18 +1,10 @@
 from drawzero import *
 import random
 import math
-from dataclasses import dataclass
 
-START = START_X, START_Y = (500, 200)
 G = -2.0
-START_SPEED = 20
-STICK_WIDTH = 5
-TOP = 600
-SAFE = 200
-GLOW = 15
 
 
-@dataclass
 class Particle:
     vx: float
     vy: float
@@ -22,25 +14,27 @@ class Particle:
     alive: bool
     max_age: int
     age: int = 0
+    GLOW = 15
+    START_SPEED = 20
 
-    def __init__(p, move_y):
+    def __init__(p, x, y):
         random_angle = random.uniform(0, 2 * math.pi)
-        random_speed = random.uniform(START_SPEED * 0.5, START_SPEED * 1.5)
+        random_speed = random.uniform(p.START_SPEED * 0.5, p.START_SPEED * 1.5)
         p.vx = math.cos(random_angle) * random_speed
         p.vy = math.sin(random_angle) * random_speed
         p.color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-        p.cx, p.cy = START_X, START_Y + move_y
+        p.cx, p.cy = x, y
         p.max_age = random.randint(5, 13)
         p.alive = True
 
     def draw(p):
         s = [255, 255, 204]
         f = [230, 230, 0]
-        if p.age > GLOW:
+        if p.age > p.GLOW:
             color = f
         else:
             color = [
-                s[c] * (GLOW - p.age) / GLOW + f[c] * (p.age) / GLOW
+                s[c] * (p.GLOW - p.age) / p.GLOW + f[c] * (p.age) / p.GLOW
                 for c in (0, 1, 2)
             ]
         filled_circle(color, (p.cx, p.cy), 4 - p.age // 6)
@@ -54,48 +48,74 @@ class Particle:
             p.alive = False
 
 
-def draw_particles(particles):
-    for p in particles:
-        p.draw()
+class Firework:
+    STICK_WIDTH = 5
+    HANDLE = 200
+    NEW_PARTICLES = 25
+    HANDLE_COLOR = (64, 64, 64)
+    POWDER_COLOR = (255, 255, 255)
+    BURNT_COLOR = (102, 102, 102)
+
+    def __init__(self, x, y, height, sleep=2):
+        self.ticks = 0
+        self.x = x
+        self.y = y
+        self.height = height
+        self.particles = []
+        self.cur_top = 0
+        self.sleep = sleep
+
+    def update(self):
+        self.ticks += 1
+        if self.ticks < 30 * self.sleep or self.cur_top > self.height:
+            return
+        self.cur_top += 1
+        self.update_particles()
+        self.remove_particles()
+        self.create_new_particles()
+
+    def draw(self):
+        self.draw_stick()
+        for p in self.particles:
+            p.draw()
+
+    def remove_particles(self):
+        last_good = -1
+        for cur in range(len(self.particles)):
+            p = self.particles[cur]
+            if p.alive:
+                last_good += 1
+                self.particles[last_good] = p
+        del self.particles[last_good + 1:]
+
+    def update_particles(self):
+        for p in self.particles:
+            p.update()
+
+    def create_new_particles(self):
+        if self.cur_top < self.height - self.HANDLE:
+            for __ in range(self.NEW_PARTICLES):
+                self.particles.append(Particle(x=self.x, y=self.y + self.cur_top))
+
+    def draw_stick(self):
+        w = self.STICK_WIDTH
+        real_top = min(self.cur_top, self.height - self.HANDLE)
+        filled_rect(self.HANDLE_COLOR, (self.x - w / 2, self.y), w, self.height)
+        filled_rect(self.BURNT_COLOR, (self.x - w / 2 - 2, self.y), w + 4, real_top)
+        filled_rect(self.POWDER_COLOR, (self.x - w / 2 - 3, self.y + real_top), w + 6, self.height - self.HANDLE - real_top)
+
+    def is_burnt(self):
+        return self.cur_top > 0 and len(self.particles) == 0
 
 
-def remove_particles(particles):
-    last_good = -1
-    for cur in range(len(particles)):
-        p = particles[cur]
-        if p.alive:
-            last_good += 1
-            particles[last_good] = p
-    del particles[last_good + 1:]
-
-
-def update_particles(particles):
-    for p in particles:
-        p.update()
-
-
-def draw_stick(done):
-    border = min(done, TOP - SAFE)
-    filled_rect((102, 102, 102), (START_X - STICK_WIDTH / 2 - 2, START_Y), STICK_WIDTH + 4, border)
-    filled_rect('white', (START_X - STICK_WIDTH / 2 - 3, START_Y + border), STICK_WIDTH + 6, TOP - border - SAFE)
-    filled_rect((64, 64, 64), (START_X - STICK_WIDTH / 2, START_Y + TOP - SAFE), STICK_WIDTH, SAFE)
-
-
-draw_stick(0)
-sleep(1)
-
-particles = []
-move_y = 0
-while move_y < TOP - SAFE + 60:
-    move_y += 1
-    if move_y < TOP - SAFE:
-        for __ in range(25):
-            particles.append(Particle(move_y=move_y))
-    fill('black')
-    draw_stick(move_y)
-    draw_particles(particles)
+firework1 = Firework(x=333, y=200, height=600, sleep=1)
+firework2 = Firework(x=666, y=400, height=500, sleep=2)
+while not firework1.is_burnt() or not firework2.is_burnt():
+    firework1.update()
+    firework2.update()
     tick()
-    update_particles(particles)
-    remove_particles(particles)
+    clear()
+    firework1.draw()
+    firework2.draw()
 
 quit()
