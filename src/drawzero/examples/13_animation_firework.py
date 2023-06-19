@@ -1,6 +1,7 @@
 from drawzero import *
 import random
 import math
+from typing import List
 
 G = -2.0
 
@@ -14,8 +15,10 @@ class Particle:
     alive: bool
     max_age: int
     age: int = 0
-    GLOW = 15
+    GLOW = 20
     START_SPEED = 20
+    MAX_SIZE = 4
+    SCALE = Gradient([C.yellow, C.red], 0, GLOW)
 
     def __init__(p, x, y):
         random_angle = random.uniform(0, 2 * math.pi)
@@ -24,20 +27,13 @@ class Particle:
         p.vy = math.sin(random_angle) * random_speed
         p.color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
         p.cx, p.cy = x, y
-        p.max_age = random.randint(5, 13)
+        p.max_age = random.randint(5, p.GLOW)
         p.alive = True
 
     def draw(p):
-        s = [255, 255, 204]
-        f = [230, 230, 0]
-        if p.age > p.GLOW:
-            color = f
-        else:
-            color = [
-                s[c] * (p.GLOW - p.age) / p.GLOW + f[c] * (p.age) / p.GLOW
-                for c in (0, 1, 2)
-            ]
-        filled_circle(color, (p.cx, p.cy), 4 - p.age // 6)
+        if p.age < p.GLOW:
+            color = p.SCALE(p.age)
+            filled_circle(color, (p.cx, p.cy), p.MAX_SIZE * (p.GLOW - p.age) / p.GLOW)
 
     def update(p):
         p.cx += p.vx
@@ -61,7 +57,7 @@ class Firework:
         self.x = x
         self.y = y
         self.height = height
-        self.particles = []
+        self.particles: List[Particle] = []
         self.cur_top = 0
         self.sleep = sleep
 
@@ -110,6 +106,7 @@ class Firework:
 
 firework1 = Firework(x=333, y=200, height=600, sleep=1)
 firework2 = Firework(x=666, y=400, height=500, sleep=2)
+
 while not firework1.is_burnt() or not firework2.is_burnt():
     firework1.update()
     firework2.update()
@@ -117,5 +114,7 @@ while not firework1.is_burnt() or not firework2.is_burnt():
     clear()
     firework1.draw()
     firework2.draw()
+    fps()
 
+sleep(1)
 quit()

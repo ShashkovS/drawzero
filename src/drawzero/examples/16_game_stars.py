@@ -2,6 +2,7 @@ from drawzero import *
 from random import randint
 from dataclasses import dataclass
 
+from time import perf_counter
 NUM_STARS = 300
 
 
@@ -55,10 +56,9 @@ def draw_stars(stars):
     stars.sort(key=lambda star: -star.y)
     for star in stars:
         y = star.y
-        # Координаты должны быть целыми, это — требование pygame
-        screen_x = int(500 + star.x / y)
-        screen_y = int(500 + star.z / y)
-        screen_r = int(star.r / y)
+        screen_x = 500 + star.x / y
+        screen_y = 500 + star.z / y
+        screen_r = star.r / y
         filled_circle(star.color, (screen_x, screen_y), screen_r)
     text('white', 'Press WASD or QE to move', (500, 5), 48, '.^')
 

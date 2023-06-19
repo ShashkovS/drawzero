@@ -13,7 +13,8 @@ points = [
     (Pt(randint(0, 1000), randint(0, 1000)), Pt(uniform(-MAX_SPEED, MAX_SPEED), uniform(-MAX_SPEED, MAX_SPEED)))
     for __ in range(NUM_POINTS)
 ]
-pallet = ['#88dfe7', '#70d2e6', '#5cc3e6', '#43afe5', '#2a97e5', '#177ade', '#1160d0', '#0c46bb', '#082fa6', '#051d94', '#020c7e', '#000066']
+scale = Gradient(['#5cc3e6', C.black], 0, MIN_DIST)
+
 for i in range(30 * 30):
     # First we make all calculations for the next frame
     for pt, v in points:
@@ -28,7 +29,8 @@ for i in range(30 * 30):
     for (pt1, v1), (pt2, v2) in combinations(points, r=2):
         dist = pt1.distance(pt2)
         if dist < MIN_DIST:
-            color = pallet[int(dist / MIN_DIST * (len(pallet) - 1) + 0.4999)]
+            color = scale(dist)
             line(color, pt1, pt2, line_width=1)
     for pt, v in points:
         filled_circle('blue', pt, 5)
+    fps()
