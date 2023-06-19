@@ -8,7 +8,7 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import pygame.locals
 
-from drawzero.utils.key_flags import key_flags
+from drawzero.utils.screen_size import set_real_size
 
 # Types
 Pt = Tuple[int, int]
@@ -243,6 +243,7 @@ def draw_image(path: str, pos: Pt, width: int = None, alpha: int = 255):
 def _resize(nw: int, nh: int):
     global _surface, surface_size
     surface_size = min(nw, nh)
+    set_real_size(surface_size, surface_size)
     scaled = pygame.transform.smoothscale(_surface, (surface_size, surface_size))
     _surface = pygame.display.set_mode((surface_size, surface_size), pygame.locals.RESIZABLE)
     _surface.blit(scaled, (0, 0))
@@ -356,6 +357,7 @@ def _init():
     info = pygame.display.Info()
     w, h = info.current_w, info.current_h
     surface_size = 4 * min(w, h) // 5
+    set_real_size(surface_size, surface_size)
     # set window position
     os.environ['SDL_VIDEO_WINDOW_POS'] = "{},{}".format((w - surface_size) // 2, (h - surface_size) // 2)
 

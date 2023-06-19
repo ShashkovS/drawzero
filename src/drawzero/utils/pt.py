@@ -1,5 +1,5 @@
 """
-A Pt class — is a 2 dimensional vector class with point-like interface.
+A Pt class — is a 2-dimensional vector class with point-like interface.
 Can be used as coordinates for all drawing functions
 """
 
@@ -698,6 +698,94 @@ class Pt:
 
     seth = setheading
 
+    def is_above(self, y):
+        """Check if point is above the given y coordinate
+
+        Argument:
+        y -- a number (integer or float)
+
+        Example (for a Point instance named point):
+        >>> point = Pt(0, 40)
+        >>> point.is_above(20)
+        False
+        >>> point.is_above(60)
+        True
+        """
+        return self.y < y
+
+    def is_below(self, y):
+        """Check if point is below the given y coordinate
+
+        Argument:
+        y -- a number (integer or float)
+
+        Example (for a Point instance named point):
+        >>> point = Pt(0, 40)
+        >>> point.is_below(20)
+        True
+        >>> point.is_below(60)
+        False
+        """
+        return self.y > y
+
+    def is_left_of(self, x):
+        """Check if point is left of the given x coordinate.
+
+        Argument:
+        x -- a number (integer or float)
+
+        Example (for a Point instance named point):
+        >>> point = Pt(40, 0)
+        >>> point.is_left_of(20)
+        False
+        >>> point.is_left_of(60)
+        True
+        """
+        return self.x < x
+
+    def is_right_of(self, x):
+        """Check if point is right of the given x coordinate.
+
+        Argument:
+        x -- a number (integer or float)
+
+        Example (for a Point instance named point):
+        >>> point = Pt(40, 0)
+        >>> point.is_right_of(20)
+        True
+        >>> point.is_right_of(60)
+        False
+        """
+        return self.x > x
+
+    def flip_vertically(self):
+        """Flip the heading vertically.
+
+        Example (for a Pt instance named point):
+        >>> point = Pt(40, 0, heading=45)
+        >>> point.flip_vertically()
+        >>> point.heading
+        135.0
+        """
+        self.heading = (180 - self.heading) % 360.0
+        self._heading_rad = self.heading / 180.0 * pi
+
+    def flip_horizontally(self):
+        """Flip the heading horizontally.
+
+        Example (for a Pt instance named point):
+        >>> point = Pt(40, 0, heading=45)
+        >>> point.flip_horizontally()
+        >>> point.heading
+        315.0
+        """
+        self.heading = -self.heading % 360.0
+        self._heading_rad = self.heading / 180.0 * pi
+
 
 _PT_LIKE = (list, tuple)
 _NUMERIC = (int, float)
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()

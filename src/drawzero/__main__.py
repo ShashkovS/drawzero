@@ -1,4 +1,10 @@
 from drawzero import *
 
-text('red', 'Привет, мир!', (200, 400), 48)
-line('red', (200, 548), (600, 948))
+if __name__ == '__main__':
+    copy_examples()
+
+    grid()
+    rect('red', (50, 150), 900, 700)
+    line('orange', (100, 500), (900, 500))
+    text('green', 'Hello world!', (500, 250), fontsize=72)
+    text('blue', 'Привет, мир!', (500, 750), fontsize=72)

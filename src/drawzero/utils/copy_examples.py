@@ -6,6 +6,8 @@ EXAMPLES_DIR = 'examples'
 
 
 def copy_examples():
+    """Create a pack of drawzero examples into current folder
+    """
     src = Path(__file__).parent.parent.resolve() / EXAMPLES_DIR
     dst = Path.cwd() / EXAMPLES_DIR
     print(f'Copying examples to {dst}...')

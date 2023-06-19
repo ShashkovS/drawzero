@@ -1,5 +1,8 @@
 from pathlib import Path
-from drawzero.utils.key_flags import key_flags
+from drawzero.utils.screen_size import set_real_size
+
+# TODO
+set_real_size(1000, 1000)
 
 
 def jsonize(parms, sep=','):
@@ -87,7 +90,6 @@ def draw_sleep(t=1):
 
 def draw_set_line_width(w):
     print('set_line_width({})'.format(w))
-    pass
 
 
 def draw_quit():
