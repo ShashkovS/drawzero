@@ -64,7 +64,7 @@ def circle(color='red', pos=(100, 100), radius=10, *args, alpha=255, line_width:
     use_color = _to_color(color, error)
     coords = _to_flat([pos, radius, args])
     use_pos = _to_pos(coords[:2], error)
-    use_radius = _to_scaled_int(*coords[2:3], error)
+    use_radius = _to_scaled_int(coords[2], error)
     use_alpha = _to_alpha(alpha, error)
     use_line_width = _to_line_width(line_width, error)
     if error.errors:
@@ -97,6 +97,9 @@ def rect(color='red', pos=(100, 100), width=500, height=200, *args, alpha=255, l
     use_rect = _to_rect(coords[:4], error)
     use_alpha = _to_alpha(alpha, error)
     use_line_width = _to_line_width(line_width, error)
+    if error.errors:
+        # TODO
+        raise error
     renderer.draw_rect(use_color, use_rect, use_alpha, use_line_width)
 
 
@@ -113,6 +116,9 @@ def ellipse(color='red', pos=(100, 100), width=500, height=200, *args, alpha=255
     use_rect = _to_rect(coords[:4], error)
     use_alpha = _to_alpha(alpha, error)
     use_line_width = _to_line_width(line_width, error)
+    if error.errors:
+        # TODO
+        raise error
     renderer.draw_ellipse(use_color, use_rect, use_alpha, use_line_width)
 
 
@@ -129,6 +135,9 @@ def arc(color='red', pos=(100, 100), width=500, height=200, start_angle=45, stop
     use_rect = _to_rect(coords[:4], error)
     use_alpha = _to_alpha(alpha, error)
     use_line_width = _to_line_width(line_width, error)
+    if error.errors:
+        # TODO
+        raise error
     renderer.draw_arc(use_color, use_rect, start_angle / 180 * pi, stop_angle / 180 * pi, use_alpha, use_line_width)
 
 
@@ -145,6 +154,9 @@ def rect_rotated(color='red', pos=(100, 100), width=500, height=200, angle=0, *a
         _to_pos([mid_x + w / 2 * d1 * cos(angle_rad) - h / 2 * d2 * sin(angle_rad), mid_y + w / 2 * d1 * sin(angle_rad) + h / 2 * d2 * cos(angle_rad)], error)
         for d1, d2 in [(+1, +1), (-1, +1), (-1, -1), (+1, -1)]
     ]
+    if error.errors:
+        # TODO
+        raise error
     renderer.draw_polygon(use_color, points, alpha, line_width)
 
 
@@ -160,6 +172,9 @@ def polygon(color='red', *points, alpha=255, line_width: int = None):
     use_points = _to_points_list(points, error)
     use_alpha = _to_alpha(alpha, error)
     use_line_width = _to_line_width(line_width, error)
+    if error.errors:
+        # TODO
+        raise error
     renderer.draw_polygon(use_color, use_points, use_alpha, use_line_width)
 
 
@@ -180,6 +195,9 @@ def text(color='red', text='Hello!', pos=(100, 100), fontsize=24, align='..'):
     if align not in _VALID_ALIGN:
         error.errors.append(I18N.bad_text_align.format(align))
         error.errors.append(I18N.use_text_align)
+    if error.errors:
+        # TODO
+        raise error
     renderer.draw_text(use_color, str(text), use_pos, use_fontsize, align)
 
 
@@ -193,6 +211,9 @@ def fill(color='red', alpha=255):
     error = BadDrawParmsError()
     use_color = _to_color(color, error)
     use_alpha = _to_alpha(alpha, error)
+    if error.errors:
+        # TODO
+        raise error
     renderer.draw_fill(use_color, use_alpha)
 
 
@@ -208,6 +229,9 @@ def image(image, pos, width: int = None, alpha=255):
     use_pos = _to_pos(pos, error)
     use_width = _to_scaled_int(width, error) if width is not None else None
     use_alpha = _to_alpha(alpha, error)
+    if error.errors:
+        # TODO
+        raise error
     renderer.draw_image(image, use_pos, use_width, use_alpha)
 
 

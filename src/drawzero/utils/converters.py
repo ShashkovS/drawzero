@@ -139,7 +139,7 @@ def _to_rect(rect: List, error: BadDrawParmsError) -> Optional[Tuple[int, int, i
     return to_canvas_x(x), to_canvas_y(y), to_canvas_x(w), to_canvas_y(h)
 
 
-def _to_points_list(points: list, error: BadDrawParmsError) -> Optional[List[Tuple[int, int]]]:
+def _to_points_list(points: Union[list, tuple], error: BadDrawParmsError) -> Optional[List[Tuple[int, int]]]:
     if not points:
         error.errors.append(I18N.use_polygon_list)
         return None

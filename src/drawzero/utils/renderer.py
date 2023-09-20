@@ -2,9 +2,9 @@ import atexit
 import sys
 import ctypes
 import os
-from typing import Tuple, List, Union
+from typing import Tuple, List, Union, Optional
 
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 import pygame
 import pygame.locals
 
@@ -22,7 +22,7 @@ _animation_not_detected = True
 
 if __name__ == '__main__':
     print("You shouldn't need run this module directly")
-    sys.exit(0)
+    sys.exit()
 
 
 def _create_surface():
@@ -254,6 +254,7 @@ def _display_update():
         pygame.display.update()
     except pygame.error:
         pygame.quit()
+        sys.stderr = None
         sys.exit()
 
 
@@ -263,6 +264,7 @@ def _display_update_if_no_animation():
             pygame.display.update()
         except pygame.error:
             pygame.quit()
+            sys.stderr = None
             sys.exit()
 
 
@@ -284,10 +286,12 @@ def draw_tick(r=1, *, display_update=True):
             events = pygame.event.get()
         except pygame.error:
             pygame.quit()
+            sys.stderr = None
             sys.exit()
         for event in events:
             if event.type == pygame.QUIT:
                 pygame.quit()
+                sys.stderr = None
                 sys.exit()
             elif event.type == pygame.VIDEORESIZE:
                 _resize(event.w, event.h)
@@ -362,7 +366,7 @@ def _init():
     os.environ['SDL_VIDEO_WINDOW_POS'] = "{},{}".format((w - surface_size) // 2, (h - surface_size) // 2)
 
 
-_surface = None
+_surface: Optional[pygame.Surface] = None
 surface_size = 0
 keysdown = []
 keysup = []

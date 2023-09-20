@@ -4,7 +4,6 @@ drawzero
 A zero-boilerplate canvas drawing framework for Python 3, based on Pygame.
 """
 
-from .__about__ import __author__, __copyright__, __version__
 from .utils.draw import *
 from .utils.pt import Pt
 from .utils.gradient import Gradient
@@ -13,6 +12,7 @@ from .utils.screen_size import set_virtual_size
 from .utils.i18n import set_lang
 from .utils.key_flags import K, KEY
 from .utils.colors import C, COLORS, THECOLORS, ALL_COLORS
+from .__about__ import __author__, __copyright__, __version__
 
 __all__ = [
     # spec
