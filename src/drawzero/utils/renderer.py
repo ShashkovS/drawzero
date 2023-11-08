@@ -281,7 +281,12 @@ def draw_tick(r=1, *, display_update=True):
         _display_update()
     for __ in range(r):
         # We need this hack to process close button clicks
-        _fps.tick(30)
+        try:
+            _fps.tick(30)
+        except KeyboardInterrupt:
+            pygame.quit()
+            sys.stderr = None
+            sys.exit()
         try:
             events = pygame.event.get()
         except pygame.error:

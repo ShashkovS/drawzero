@@ -10,7 +10,7 @@ _known_languages = {'en', 'ru'}
 def _get_best_lang():
     if os.getenv('LANG', 'None').startswith('ru'):
         return 'ru'
-    elif locale.getdefaultlocale() and locale.getdefaultlocale()[0].startswith('ru'):
+    elif locale.getdefaultlocale() and (locale.getdefaultlocale()[0] or '').startswith('ru'):
         return 'ru'
     elif hasattr(ctypes, 'windll'):
         try:
