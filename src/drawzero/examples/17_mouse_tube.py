@@ -2,7 +2,7 @@ from drawzero import *
 
 circles = []
 tick()
-scale = Gradient([C.gray10, C.white], 100, 500)
+scale = Gradient([C.gray10, C.blue, C.orange], 100, 500)
 while True:
     x, y = mouse_pos()
     circles.append([x, y, 100])
@@ -12,7 +12,7 @@ while True:
         if r > 1000:
             circles.pop(i)
         else:
-            circle(scale(r), (x, y), r, line_width=1)
+            circle(scale(r), (x, y), r, line_width=3)
             circles[i][2] += 10
     fps()
     tick()

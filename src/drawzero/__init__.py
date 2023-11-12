@@ -17,6 +17,8 @@ from .__about__ import __author__, __copyright__, __version__
 __all__ = [
     # spec
     '__author__', '__copyright__', '__version__',
+    #
+    'run',
     # simple shapes
     'line', 'arc', 'circle', 'rect', 'ellipse', 'rect_rotated', 'polygon',
     # filled shapes

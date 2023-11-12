@@ -59,7 +59,7 @@ def draw_stars(stars):
         screen_x = 500 + star.x / y
         screen_y = 500 + star.z / y
         screen_r = star.r / y
-        filled_circle(star.color, (screen_x, screen_y), screen_r)
+        filled_circle(star.color, (screen_x, screen_y), screen_r*2)
     text('white', 'Press WASD or QE to move', (500, 5), 48, '.^')
 
 

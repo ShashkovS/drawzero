@@ -66,6 +66,71 @@ while True:
 ```
 
 
+# Point class which acts like 2-d vector and Turtle both
+
+<img alt="transparent.png" src="https://raw.githubusercontent.com/ShashkovS/drawzero/master/docs/ex_05.png" width="50%">
+
+```python
+from drawzero import *
+
+# just coordinates
+A = Pt(100, 100)
+B = Pt(300, 150)
+line(C.red, A, B)
+
+# A point which acts as 2-d vector and as a Turtle
+# Pt(x=0.0, y=0.0, *, heading=0.0)
+#
+# Provides (for a, b — points, k number):
+#   * arithmetic
+#     a+b — vector addition
+#     a-b — vector subtraction
+#     k*a and a*k — multiplication with scalar
+#     abs  — absolute value of a
+#     +a, -a
+
+# arithmetic
+A = Pt(100, 200)
+dx = Pt(50, 5)
+for i in range(10):
+    filled_circle(C.blue, A + dx * i, radius=10)
+
+#   * turtle-style movement
+#     forward — Move the point forward by the specified distance.
+#     backward — Move the point backward by distance.
+#     right — Turn point right by angle degrees.
+#     left — Turn point left by angle degrees.
+#     goto — Move point to an absolute position.
+#     rotate_around — Rotate around given point by angle degrees.
+#     move_towards — Move towards the given point by the specified distance.
+#     reset, home — Move point to the origin - coordinates (0,0), set heading=0
+#     setx — Set the point's first coordinate to x
+#     sety — Set the point's second coordinate to y
+#     setheading — Set the point's heading
+
+A = Pt(100, 300)
+B = Pt(1000, 400)
+for i in range(10):
+    filled_circle(C.green2, A, radius=10)
+    A.move_towards(50, B)
+
+A = Pt(100, 400)
+for i in range(10):
+    filled_circle(C.magenta, A, radius=10)
+    A.left(10).forward(30)
+
+#   * information
+#     position — Return the point's current location (x,y), as a tuple.
+#     x, xcor — Return the point's x coordinate.
+#     y, ycor — Return the point's y coordinate
+#     heading — Return the point's heading
+#     distance — Return the distance between points
+#     towards — Return the angle towards point
+#   * deep copy
+#     copy — a clone of point
+```
+
+
 
 # Transparency
 
@@ -124,6 +189,31 @@ circle((0, 255, 0, 50), (100, 110), 50, line_width=10)  # <-- RGBA
 </details>
 
 
+# Color gradients
+
+<img alt="transparent.png" src="https://raw.githubusercontent.com/ShashkovS/drawzero/master/docs/ex_13.png" width="50%">
+
+```python
+from drawzero import *
+
+
+scale1 = Gradient([C.black, C.white], 0, 1000)
+for x in range(0, 1000, 10):
+    filled_rect(scale1(x), (x, 0), 10, 100)
+text(C.white, 'scale1 = Gradient([C.black, C.white], 0, 1000)', (50, 100), 48, '<^')
+
+scale2 = Gradient([C.green, C.yellow, C.magenta, C.red], 0, 1000)
+for x in range(0, 1000, 10):
+    filled_rect(scale2(x), (x, 200), 10, 100)
+text(C.white, 'scale2 = Gradient([C.green, C.yellow, C.magenta, C.red], 0, 1000)', (50, 300), 32, '<^')
+
+scale3 = Gradient([C.white, C.black, C.red, C.black, C.white], 200, 800)
+for x in range(0, 1000, 10):
+    filled_rect(scale3(x), (x, 400), 10, 100)
+text(C.white, 'scale3 = Gradient([C.white, C.black, C.red, C.black, C.white], 200, 800)', (50, 500), 32, '<^')
+```
+
+
 
 # Keyboard and mouse events
 
@@ -180,10 +270,10 @@ Or run the following program:
 ```python
 import os, sys
 python = sys.executable
-user = '--user' if 'venv' not in python else ''
+user = '--user' if 'venv' not in python and 'virtualenvs' not in python else ''
 cmd = f'"{python}" -m pip install drawzero --upgrade {user}'
-print(cmd)
 os.system(cmd)
+from drawzero import *
 ```
 
 # [Contributing](CONTRIBUTING.md) 
