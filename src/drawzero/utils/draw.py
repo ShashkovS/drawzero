@@ -280,6 +280,12 @@ def quit():
     renderer.draw_quit()
 
 
+def run():
+    while True:
+        renderer.draw_tick(1)
+        _update_events_coordinates()
+
+
 def fps(fontsize=24, *, prev=[time()]):
     cur = time()
     diff = cur - prev[0]

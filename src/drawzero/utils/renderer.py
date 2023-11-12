@@ -30,16 +30,18 @@ def _create_surface():
     We create surface only on first drawing call
     So without any drawing command new windows is not created nor opened
     """
-    global _surface
+    global _surface, _saved_surface
     if not _surface:
         _surface = pygame.display.set_mode((surface_size, surface_size), pygame.locals.RESIZABLE)
         _surface.fill((0, 0, 0))
         pygame.display.set_caption('Draw Zero')
+        _saved_surface = _surface.copy()
 
 
 def draw_resize(width: int, height: int):
-    global _surface
+    global _surface, _saved_surface
     _surface = pygame.display.set_mode([width, height])
+    _saved_surface = _surface.copy()
 
 
 def draw_line(color: Clr, start: Pt, end: Pt, alpha: int = 255, line_width: int = None):
@@ -241,17 +243,20 @@ def draw_image(path: str, pos: Pt, width: int = None, alpha: int = 255):
 
 
 def _resize(nw: int, nh: int):
-    global _surface, surface_size
+    global _surface, _saved_surface, surface_size
     surface_size = min(nw, nh)
     set_real_size(surface_size, surface_size)
-    scaled = pygame.transform.smoothscale(_surface, (surface_size, surface_size))
+    scaled = pygame.transform.smoothscale(_saved_surface, (surface_size, surface_size))
     _surface = pygame.display.set_mode((surface_size, surface_size), pygame.locals.RESIZABLE)
     _surface.blit(scaled, (0, 0))
+    _saved_surface = _surface.copy()
 
 
 def _display_update():
+    global _saved_surface
     try:
         pygame.display.update()
+        _saved_surface.blit(_surface, (0, 0))
     except pygame.error:
         pygame.quit()
         sys.stderr = None
@@ -259,9 +264,11 @@ def _display_update():
 
 
 def _display_update_if_no_animation():
+    global _saved_surface
     if _animation_not_detected:
         try:
             pygame.display.update()
+            _saved_surface.blit(_surface, (0, 0))
         except pygame.error:
             pygame.quit()
             sys.stderr = None
@@ -299,6 +306,7 @@ def draw_tick(r=1, *, display_update=True):
                 sys.stderr = None
                 sys.exit()
             elif event.type == pygame.VIDEORESIZE:
+                print('resize')
                 _resize(event.w, event.h)
             elif event.type == pygame.KEYDOWN:
                 keysdown.append(event)
@@ -372,6 +380,8 @@ def _init():
 
 
 _surface: Optional[pygame.Surface] = None
+_saved_surface: Optional[pygame.Surface] = None
+
 surface_size = 0
 keysdown = []
 keysup = []
