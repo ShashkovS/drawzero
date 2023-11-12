@@ -1,0 +1,50 @@
+site_name: DrawZero — zero boilerplate canvas drawing and animation
+site_url: https://drawzero.ru
+repo_url: https://github.com/ShashkovS/drawzero
+
+nav:
+  - DrawZero: index.md
+  - Installation: installation.md
+  - Examples: examples.md
+  - Animations: animation.md
+  - Code Reference:
+    - Pt: pt.md
+    - Gradient: gradient.md
+
+theme:
+  name: material
+  highlightjs: true
+  language: ru
+  features:
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.tracking
+    - navigation.expand
+    - navigation.path
+    - toc.follow
+    - navigation.top
+    - search.suggest
+    - search.highlight
+
+extra:
+  alternate:
+    - name: English
+      link: /en/
+  homepage: https://drawzero.ru
+
+plugins:
+  - search:
+      lang:
+        - ru
+        - en
+  - mkdocstrings:
+      default_handler: python
+
+markdown_extensions:
+  - pymdownx.snippets
+  - pymdownx.highlight:
+      use_pygments: true
+  - pymdownx.superfences
+
+watch:
+  - src
