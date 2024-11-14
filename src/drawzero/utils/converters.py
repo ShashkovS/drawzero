@@ -136,7 +136,13 @@ def _to_rect(rect: List, error: BadDrawParmsError) -> Optional[Tuple[int, int, i
         error.errors.append(I18N.use_rect_correct)
         return None
     x, y, w, h = rect
-    return to_canvas_x(x), to_canvas_y(y), to_canvas_x(w), to_canvas_y(h)
+    cx = to_canvas_x(x)
+    cy = to_canvas_y(y)
+    cxw = to_canvas_x(x+w)
+    cyh = to_canvas_y(y+h)
+    cw = cxw - cx
+    ch = cyh - cy
+    return cx, cy, cw, ch
 
 
 def _to_points_list(points: Union[list, tuple], error: BadDrawParmsError) -> Optional[List[Tuple[int, int]]]:
