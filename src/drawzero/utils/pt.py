@@ -349,9 +349,9 @@ class Pt:
         >>> point.heading
         22
         >>> point.right(45)
-        Pt(0,0,heading=337.0)
+        Pt(0,0,heading=67.0)
         """
-        self.heading = (self.heading - angle) % 360.0
+        self.heading = (self.heading + angle) % 360.0
         self._heading_rad = self.heading / 180.0 * pi
         return self
 
@@ -372,9 +372,9 @@ class Pt:
         >>> point.heading
         22
         >>> point.left(45)
-        Pt(0,0,heading=67.0)
+        Pt(0,0,heading=337.0)
         """
-        self.heading = (self.heading + angle) % 360.0
+        self.heading = (self.heading - angle) % 360.0
         self._heading_rad = self.heading / 180.0 * pi
         return self
 
@@ -403,7 +403,7 @@ class Pt:
 
         Example (for a Point instance named point):
         >>> point = Pt()
-        >>> point.left(60)
+        >>> point.right(60)
         Pt(0.0,0.0,heading=60.0)
         >>> point.forward(100)
         Pt(50.0,86.602540378444,heading=60.0)
@@ -419,7 +419,7 @@ class Pt:
 
         Example (for a Point instance named point):
         >>> point = Pt()
-        >>> point.left(60)
+        >>> point.right(60)
         Pt(0.0,0.0,heading=60.0)
         >>> point.forward(100)
         Pt(50.0,86.602540378444,heading=60.0)
@@ -476,13 +476,13 @@ class Pt:
         Example (for a Point instance named point):
         >>> tp = Pt(1, 0)
         >>> tp.rotate_around(90, (0, 0))
-        Pt(0.0,1.0,heading=0.0)
+        Pt(0.0,-1.0,heading=0.0)
         >>> tp.rotate_around(90, Pt(0, 0))
-        Pt(-1.0,0.0,heading=0.0)
+        Pt(-1.0,-0.0,heading=0.0)
         >>> tp.rotate_around(90, 0, 0)
-        Pt(-0.0,-1.0,heading=0.0)
+        Pt(-0.0,1.0,heading=0.0)
         >>> tp.rotate_around(180, [2, 3])
-        Pt(4.0,7.0,heading=0.0)
+        Pt(4.0,5.0,heading=0.0)
         """
         if isinstance(x, Pt):
             px = x.x
@@ -495,7 +495,7 @@ class Pt:
             py = y
         dx = self.x - px
         dy = self.y - py
-        angle_rad = angle * pi / 180.0
+        angle_rad = - angle * pi / 180.0
         c, s = cos(angle_rad), sin(angle_rad)
         ndx = dx * c + -dy * s
         ndy = dx * s + dy * c
