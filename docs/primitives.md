@@ -1,8 +1,8 @@
 # Drawing primitives
 
-This page shows how to use the most common drawing helpers in DrawZero.  
-The goal is to help you make nice sketches even if you are new to programming.  
-We will focus on color names, points, and shapes. We will talk about transparency (`alpha`) and line thickness (`line_width`) on another page.
+This page shows how to use the most common drawing helpers in DrawZero.
+The goal is to help you make nice sketches even if you are new to programming.
+We will focus on color names, points, and shapes. Read [Transparency (`alpha`) and line thickness (`line_width`)](transparency_and_line_width.md) when you want to control see-through effects or stroke sizes.
 
 Each example starts with the same import:
 
@@ -316,7 +316,7 @@ Calling `fill('white')` removes old drawings by painting the entire canvas white
 ## Ellipses, arcs, and rotated rectangles
 
 These helpers let you create stretched circles and tilted rectangles. They follow the same color rules you saw before: you can
-use color names, RGB triples, or values from `C`. We will talk about `alpha` and `line_width` in their own section later.
+use color names, RGB triples, or values from `C`. For transparency and stroke size tips, read [Transparency (`alpha`) and line thickness (`line_width`)](transparency_and_line_width.md).
 
 ### `ellipse(color='red', pos=(100, 100), width=500, height=200, *args, alpha=255, line_width: int = None)`
 
