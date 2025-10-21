@@ -8,6 +8,7 @@ nav:
   - Examples: examples.md
   - Animations: animation.md
   - Code Reference:
+    - Drawing primitives: primitives.md
     - Pt: pt.md
     - Gradient: gradient.md
 
