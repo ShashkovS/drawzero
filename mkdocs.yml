@@ -11,6 +11,8 @@ nav:
     - Drawing primitives: primitives.md
     - Pt: pt.md
     - Gradient: gradient.md
+    - Working with images: images.md
+    - Transparency and line width: transparency_and_line_width.md
 
 theme:
   name: material
