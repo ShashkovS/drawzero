@@ -312,3 +312,183 @@ line('black', (100, 100), (900, 900))
 ```
 
 Calling `fill('white')` removes old drawings by painting the entire canvas white before you start again.
+
+## Ellipses, arcs, and rotated rectangles
+
+These helpers let you create stretched circles and tilted rectangles. They follow the same color rules you saw before: you can
+use color names, RGB triples, or values from `C`. We will talk about `alpha` and `line_width` in their own section later.
+
+### `ellipse(color='red', pos=(100, 100), width=500, height=200, *args, alpha=255, line_width: int = None)`
+
+Draws the outline of an ellipse. The ellipse fits inside an invisible rectangle whose top-left corner is `pos`, whose `width`
+extends to the right, and whose `height` extends downward.
+
+**Tips**
+
+* Think of the ellipse as a squashed circle. When `width` equals `height` you get a perfect circle outline.
+* Placing the ellipse in the middle of the canvas is easy when you combine it with `grid()` from the previous section.
+
+**Example – planet orbit guide**
+
+```python
+from drawzero import *
+
+grid()
+ellipse('white', (200, 300), 600, 200)
+filled_circle('yellow', (500, 400), 40)
+filled_circle('dodgerblue', (750, 400), 20)
+```
+
+The ellipse marks the orbit, while the filled circles show the star and the planet.
+
+**Example – stage spotlight border**
+
+```python
+from drawzero import *
+
+fill((10, 10, 25))
+ellipse('gold', (250, 150), 500, 700)
+text('white', 'Talent Show', (500, 220), 48, '.^')
+```
+
+The tall ellipse surrounds the title like a glowing frame.
+
+### `filled_ellipse(color='red', pos=(100, 100), width=500, height=200, *args, alpha=255)`
+
+Fills the entire ellipse with color, using the same bounding box idea as `ellipse`.
+
+**Tips**
+
+* Layer multiple filled ellipses to build gradients or shadows.
+* Use them to fake soft shapes such as clouds, ponds, or stadium tracks.
+
+**Example – calm pond with reflection**
+
+```python
+from drawzero import *
+
+fill((120, 180, 255))
+filled_ellipse((70, 120, 200), (200, 650), 600, 220)
+filled_ellipse((150, 200, 255), (260, 690), 480, 140)
+```
+
+The second, smaller ellipse sits on top to suggest a highlight on the water.
+
+**Example – running track lanes**
+
+```python
+from drawzero import *
+
+fill((30, 120, 30))
+for offset in range(0, 80, 20):
+    filled_ellipse('sienna', (150 + offset, 200 + offset), 700 - 2 * offset, 400 - 2 * offset)
+```
+
+The loop paints four nested ellipses to imitate the rounded corners of a stadium track.
+
+### `arc(color='red', pos=(100, 100), width=500, height=200, start_angle=45, stop_angle=270, alpha=255, line_width: int = None)`
+
+Draws part of an ellipse outline between two angles. The angles are measured in degrees, where `0` points to the right and the
+values grow counterclockwise.
+
+**Tips**
+
+* Use a difference between `start_angle` and `stop_angle` smaller than `360` to create a curved slice.
+* Try combining `arc` with `filled_circle` eyes or gauges to add expressive details to your drawings.
+
+**Example – smiling mouth on a face**
+
+```python
+from drawzero import *
+
+fill((255, 224, 189))
+filled_circle('black', (420, 360), 15)
+filled_circle('black', (580, 360), 15)
+arc('brown', (360, 420), 280, 160, 200, 340)
+```
+
+Here the arc starts on the left side (near `200` degrees) and ends on the right side (near `340` degrees), leaving a curved smile
+on the bottom.
+
+**Example – progress gauge**
+
+```python
+from drawzero import *
+
+fill((20, 20, 30))
+ellipse('gray', (250, 250), 500, 500)
+arc('lime', (250, 250), 500, 500, 180, 360)
+text('white', '50%', (500, 520), 64, '.^')
+```
+
+The green arc begins on the left (`180` degrees) and ends on the right (`360` degrees), covering the lower half of the circle li
+ke a progress meter.
+
+### `rect_rotated(color='red', pos=(100, 100), width=500, height=200, angle=0, *args, alpha=255, line_width: int = None)`
+
+Draws the outline of a rectangle that has been rotated around its center. The unrotated rectangle would start at `pos` and
+would measure `width` by `height`. Positive angles turn the shape counterclockwise.
+
+**Tips**
+
+* Sketch the rectangle with `rect` first, then switch to `rect_rotated` when you know the right angle.
+* Small angles (like `15` or `20` degrees) are great for giving objects a sense of motion.
+
+**Example – tilted photo frame**
+
+```python
+from drawzero import *
+
+fill((240, 235, 220))
+rect_rotated('saddlebrown', (250, 200), 500, 350, -12)
+filled_rect('white', (270, 220), 460, 310)
+text('black', 'Family Trip', (500, 350), 36, '.^')
+```
+
+The thin negative angle makes the frame lean to the right.
+
+**Example – warning sign**
+
+```python
+from drawzero import *
+
+fill((40, 40, 40))
+rect_rotated('yellow', (350, 300), 300, 300, 45)
+text('black', '!', (500, 450), 180, '.^')
+```
+
+Rotating a square by `45` degrees turns it into a diamond-shaped outline.
+
+### `filled_rect_rotated(color='red', pos=(100, 100), width=500, height=200, angle=0, *args, alpha=255)`
+
+Fills the rotated rectangle using the same center and angle rules as `rect_rotated`.
+
+**Tips**
+
+* Combine `filled_rect_rotated` with `rect_rotated` of a different color to get borders.
+* Use several rotated rectangles together to build windmill blades or paper pinwheels.
+
+**Example – rotating propeller art**
+
+```python
+from drawzero import *
+
+fill((15, 15, 35))
+for blade in range(4):
+    filled_rect_rotated('deepskyblue', (460, 360), 80, 280, blade * 45)
+filled_circle('white', (500, 500), 60)
+```
+
+Each iteration draws one blade by rotating the same rectangle.
+
+**Example – cozy rug on the floor**
+
+```python
+from drawzero import *
+
+fill((120, 85, 60))
+filled_rect_rotated((200, 120, 70), (250, 250), 500, 320, 8)
+rect_rotated((120, 60, 30), (250, 250), 500, 320, 8)
+```
+
+The filled rectangle creates the fabric, and the outline adds a stitched border.
