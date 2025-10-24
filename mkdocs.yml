@@ -13,6 +13,7 @@ nav:
     - Gradient: gradient.md
     - Working with images: images.md
     - Transparency and line width: transparency_and_line_width.md
+    - Keyboard and mouse input: keyboard_and_mouse_input.md
 
 theme:
   name: material
