@@ -4,6 +4,9 @@ This page shows how to use the most common drawing helpers in DrawZero.
 The goal is to help you make nice sketches even if you are new to programming.
 We will focus on color names, points, and shapes. Read [Transparency (`alpha`) and line thickness (`line_width`)](transparency_and_line_width.md) when you want to control see-through effects or stroke sizes.
 
+If you want to move a point around with turtle-style steps, open the [Pt helper reference](pt.md).
+For smooth color transitions or animated trails, check the [Gradient helper reference](gradient.md).
+
 Once you feel comfortable drawing static shapes, jump to the [Animations guide](animation.md).
 It explains how to put your drawings inside the frame loop, control the speed with `tick()`, and even make motion trails.
 
