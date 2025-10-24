@@ -1,0 +1,1546 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://drawzero.ru/_color_table/">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>color table - DrawZero — zero boilerplate canvas drawing and animation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="https://drawzero.ru" title="DrawZero — zero boilerplate canvas drawing and animation" class="md-header__button md-logo" aria-label="DrawZero — zero boilerplate canvas drawing and animation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DrawZero — zero boilerplate canvas drawing and animation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+               color table
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Выберите язык">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/en/" hreflang="" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ShashkovS/drawzero" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://drawzero.ru" title="DrawZero — zero boilerplate canvas drawing and animation" class="md-nav__button md-logo" aria-label="DrawZero — zero boilerplate canvas drawing and animation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DrawZero — zero boilerplate canvas drawing and animation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ShashkovS/drawzero" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DrawZero
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Animations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Code Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Code Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../primitives/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Drawing primitives
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pt
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gradient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gradient
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../images/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Working with images
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transparency_and_line_width/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transparency and line width
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../keyboard_and_mouse_input/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Keyboard and mouse input
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1> color table</h1>
+
+<table>
+<thead>
+<tr>
+<th>Column 1</th>
+<th>Column 2</th>
+<th>Column 3</th>
+<th>Column 4</th>
+<th>Column 5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>aliceblue</td>
+<td>firebrick</td>
+<td>grey4</td>
+<td>lemonchiffon3</td>
+<td>palevioletred4</td>
+</tr>
+<tr>
+<td>antiquewhite</td>
+<td>firebrick1</td>
+<td>grey5</td>
+<td>lemonchiffon4</td>
+<td>papayawhip</td>
+</tr>
+<tr>
+<td>antiquewhite1</td>
+<td>firebrick2</td>
+<td>grey6</td>
+<td>lightblue</td>
+<td>peachpuff</td>
+</tr>
+<tr>
+<td>antiquewhite2</td>
+<td>firebrick3</td>
+<td>grey7</td>
+<td>lightblue1</td>
+<td>peachpuff1</td>
+</tr>
+<tr>
+<td>antiquewhite3</td>
+<td>firebrick4</td>
+<td>grey8</td>
+<td>lightblue2</td>
+<td>peachpuff2</td>
+</tr>
+<tr>
+<td>antiquewhite4</td>
+<td>floralwhite</td>
+<td>grey9</td>
+<td>lightblue3</td>
+<td>peachpuff3</td>
+</tr>
+<tr>
+<td>aqua</td>
+<td>forestgreen</td>
+<td>grey10</td>
+<td>lightblue4</td>
+<td>peachpuff4</td>
+</tr>
+<tr>
+<td>aquamarine</td>
+<td>fuchsia</td>
+<td>grey11</td>
+<td>lightcoral</td>
+<td>peru</td>
+</tr>
+<tr>
+<td>aquamarine1</td>
+<td>gainsboro</td>
+<td>grey12</td>
+<td>lightcyan</td>
+<td>pink</td>
+</tr>
+<tr>
+<td>aquamarine2</td>
+<td>ghostwhite</td>
+<td>grey13</td>
+<td>lightcyan1</td>
+<td>pink1</td>
+</tr>
+<tr>
+<td>aquamarine3</td>
+<td>gold</td>
+<td>grey14</td>
+<td>lightcyan2</td>
+<td>pink2</td>
+</tr>
+<tr>
+<td>aquamarine4</td>
+<td>gold1</td>
+<td>grey15</td>
+<td>lightcyan3</td>
+<td>pink3</td>
+</tr>
+<tr>
+<td>azure</td>
+<td>gold2</td>
+<td>grey16</td>
+<td>lightcyan4</td>
+<td>pink4</td>
+</tr>
+<tr>
+<td>azure1</td>
+<td>gold3</td>
+<td>grey17</td>
+<td>lightgoldenrod</td>
+<td>plum</td>
+</tr>
+<tr>
+<td>azure3</td>
+<td>gold4</td>
+<td>grey18</td>
+<td>lightgoldenrod1</td>
+<td>plum1</td>
+</tr>
+<tr>
+<td>azure2</td>
+<td>goldenrod</td>
+<td>grey19</td>
+<td>lightgoldenrod2</td>
+<td>plum2</td>
+</tr>
+<tr>
+<td>azure4</td>
+<td>goldenrod1</td>
+<td>grey20</td>
+<td>lightgoldenrod3</td>
+<td>plum3</td>
+</tr>
+<tr>
+<td>beige</td>
+<td>goldenrod2</td>
+<td>grey21</td>
+<td>lightgoldenrod4</td>
+<td>plum4</td>
+</tr>
+<tr>
+<td>bisque</td>
+<td>goldenrod3</td>
+<td>grey22</td>
+<td>lightgoldenrodyellow</td>
+<td>powderblue</td>
+</tr>
+<tr>
+<td>bisque1</td>
+<td>goldenrod4</td>
+<td>grey23</td>
+<td>lightgray</td>
+<td>purple</td>
+</tr>
+<tr>
+<td>bisque2</td>
+<td>gray</td>
+<td>grey24</td>
+<td>lightgreen</td>
+<td>purple1</td>
+</tr>
+<tr>
+<td>bisque3</td>
+<td>gray0</td>
+<td>grey25</td>
+<td>lightgrey</td>
+<td>purple2</td>
+</tr>
+<tr>
+<td>bisque4</td>
+<td>gray1</td>
+<td>grey26</td>
+<td>lightpink</td>
+<td>purple3</td>
+</tr>
+<tr>
+<td>black</td>
+<td>gray2</td>
+<td>grey27</td>
+<td>lightpink1</td>
+<td>purple4</td>
+</tr>
+<tr>
+<td>blanchedalmond</td>
+<td>gray3</td>
+<td>grey28</td>
+<td>lightpink2</td>
+<td>red</td>
+</tr>
+<tr>
+<td>blue</td>
+<td>gray4</td>
+<td>grey29</td>
+<td>lightpink3</td>
+<td>red1</td>
+</tr>
+<tr>
+<td>blue1</td>
+<td>gray5</td>
+<td>grey30</td>
+<td>lightpink4</td>
+<td>red2</td>
+</tr>
+<tr>
+<td>blue2</td>
+<td>gray6</td>
+<td>grey31</td>
+<td>lightsalmon</td>
+<td>red3</td>
+</tr>
+<tr>
+<td>blue3</td>
+<td>gray7</td>
+<td>grey32</td>
+<td>lightsalmon1</td>
+<td>red4</td>
+</tr>
+<tr>
+<td>blue4</td>
+<td>gray8</td>
+<td>grey33</td>
+<td>lightsalmon2</td>
+<td>rosybrown</td>
+</tr>
+<tr>
+<td>blueviolet</td>
+<td>gray9</td>
+<td>grey34</td>
+<td>lightsalmon3</td>
+<td>rosybrown1</td>
+</tr>
+<tr>
+<td>brown</td>
+<td>gray10</td>
+<td>grey35</td>
+<td>lightsalmon4</td>
+<td>rosybrown2</td>
+</tr>
+<tr>
+<td>brown1</td>
+<td>gray11</td>
+<td>grey36</td>
+<td>lightseagreen</td>
+<td>rosybrown3</td>
+</tr>
+<tr>
+<td>brown2</td>
+<td>gray12</td>
+<td>grey37</td>
+<td>lightskyblue</td>
+<td>rosybrown4</td>
+</tr>
+<tr>
+<td>brown3</td>
+<td>gray13</td>
+<td>grey38</td>
+<td>lightskyblue1</td>
+<td>royalblue</td>
+</tr>
+<tr>
+<td>brown4</td>
+<td>gray14</td>
+<td>grey39</td>
+<td>lightskyblue2</td>
+<td>royalblue1</td>
+</tr>
+<tr>
+<td>burlywood</td>
+<td>gray15</td>
+<td>grey40</td>
+<td>lightskyblue3</td>
+<td>royalblue2</td>
+</tr>
+<tr>
+<td>burlywood1</td>
+<td>gray16</td>
+<td>grey41</td>
+<td>lightskyblue4</td>
+<td>royalblue3</td>
+</tr>
+<tr>
+<td>burlywood2</td>
+<td>gray17</td>
+<td>grey42</td>
+<td>lightslateblue</td>
+<td>royalblue4</td>
+</tr>
+<tr>
+<td>burlywood3</td>
+<td>gray18</td>
+<td>grey43</td>
+<td>lightslategray</td>
+<td>salmon</td>
+</tr>
+<tr>
+<td>burlywood4</td>
+<td>gray19</td>
+<td>grey44</td>
+<td>lightslategrey</td>
+<td>salmon1</td>
+</tr>
+<tr>
+<td>cadetblue</td>
+<td>gray20</td>
+<td>grey45</td>
+<td>lightsteelblue</td>
+<td>salmon2</td>
+</tr>
+<tr>
+<td>cadetblue1</td>
+<td>gray21</td>
+<td>grey46</td>
+<td>lightsteelblue1</td>
+<td>salmon3</td>
+</tr>
+<tr>
+<td>cadetblue2</td>
+<td>gray22</td>
+<td>grey47</td>
+<td>lightsteelblue2</td>
+<td>salmon4</td>
+</tr>
+<tr>
+<td>cadetblue3</td>
+<td>gray23</td>
+<td>grey48</td>
+<td>lightsteelblue3</td>
+<td>saddlebrown</td>
+</tr>
+<tr>
+<td>cadetblue4</td>
+<td>gray24</td>
+<td>grey49</td>
+<td>lightsteelblue4</td>
+<td>sandybrown</td>
+</tr>
+<tr>
+<td>chartreuse</td>
+<td>gray25</td>
+<td>grey50</td>
+<td>lightyellow</td>
+<td>seagreen</td>
+</tr>
+<tr>
+<td>chartreuse1</td>
+<td>gray26</td>
+<td>grey51</td>
+<td>lightyellow1</td>
+<td>seagreen1</td>
+</tr>
+<tr>
+<td>chartreuse2</td>
+<td>gray27</td>
+<td>grey52</td>
+<td>lightyellow2</td>
+<td>seagreen2</td>
+</tr>
+<tr>
+<td>chartreuse3</td>
+<td>gray28</td>
+<td>grey53</td>
+<td>lightyellow3</td>
+<td>seagreen3</td>
+</tr>
+<tr>
+<td>chartreuse4</td>
+<td>gray29</td>
+<td>grey54</td>
+<td>lightyellow4</td>
+<td>seagreen4</td>
+</tr>
+<tr>
+<td>chocolate</td>
+<td>gray30</td>
+<td>grey55</td>
+<td>linen</td>
+<td>seashell</td>
+</tr>
+<tr>
+<td>chocolate1</td>
+<td>gray31</td>
+<td>grey56</td>
+<td>lime</td>
+<td>seashell1</td>
+</tr>
+<tr>
+<td>chocolate2</td>
+<td>gray32</td>
+<td>grey57</td>
+<td>limegreen</td>
+<td>seashell2</td>
+</tr>
+<tr>
+<td>chocolate3</td>
+<td>gray33</td>
+<td>grey58</td>
+<td>magenta</td>
+<td>seashell3</td>
+</tr>
+<tr>
+<td>chocolate4</td>
+<td>gray34</td>
+<td>grey59</td>
+<td>magenta1</td>
+<td>seashell4</td>
+</tr>
+<tr>
+<td>coral</td>
+<td>gray35</td>
+<td>grey60</td>
+<td>magenta2</td>
+<td>sienna</td>
+</tr>
+<tr>
+<td>coral1</td>
+<td>gray36</td>
+<td>grey61</td>
+<td>magenta3</td>
+<td>sienna1</td>
+</tr>
+<tr>
+<td>coral2</td>
+<td>gray37</td>
+<td>grey62</td>
+<td>magenta4</td>
+<td>sienna2</td>
+</tr>
+<tr>
+<td>coral3</td>
+<td>gray38</td>
+<td>grey63</td>
+<td>maroon</td>
+<td>sienna3</td>
+</tr>
+<tr>
+<td>coral4</td>
+<td>gray39</td>
+<td>grey64</td>
+<td>maroon1</td>
+<td>sienna4</td>
+</tr>
+<tr>
+<td>cornflowerblue</td>
+<td>gray40</td>
+<td>grey65</td>
+<td>maroon2</td>
+<td>silver</td>
+</tr>
+<tr>
+<td>cornsilk</td>
+<td>gray41</td>
+<td>grey66</td>
+<td>maroon3</td>
+<td>skyblue</td>
+</tr>
+<tr>
+<td>cornsilk1</td>
+<td>gray42</td>
+<td>grey67</td>
+<td>maroon4</td>
+<td>skyblue1</td>
+</tr>
+<tr>
+<td>cornsilk2</td>
+<td>gray43</td>
+<td>grey68</td>
+<td>mediumaquamarine</td>
+<td>skyblue2</td>
+</tr>
+<tr>
+<td>cornsilk3</td>
+<td>gray44</td>
+<td>grey69</td>
+<td>mediumblue</td>
+<td>skyblue3</td>
+</tr>
+<tr>
+<td>cornsilk4</td>
+<td>gray45</td>
+<td>grey70</td>
+<td>mediumorchid</td>
+<td>skyblue4</td>
+</tr>
+<tr>
+<td>crimson</td>
+<td>gray46</td>
+<td>grey71</td>
+<td>mediumorchid1</td>
+<td>slateblue</td>
+</tr>
+<tr>
+<td>cyan</td>
+<td>gray47</td>
+<td>grey72</td>
+<td>mediumorchid2</td>
+<td>slateblue1</td>
+</tr>
+<tr>
+<td>cyan1</td>
+<td>gray48</td>
+<td>grey73</td>
+<td>mediumorchid3</td>
+<td>slateblue2</td>
+</tr>
+<tr>
+<td>cyan2</td>
+<td>gray49</td>
+<td>grey74</td>
+<td>mediumorchid4</td>
+<td>slateblue3</td>
+</tr>
+<tr>
+<td>cyan3</td>
+<td>gray50</td>
+<td>grey75</td>
+<td>mediumpurple</td>
+<td>slateblue4</td>
+</tr>
+<tr>
+<td>cyan4</td>
+<td>gray51</td>
+<td>grey76</td>
+<td>mediumpurple1</td>
+<td>slategray</td>
+</tr>
+<tr>
+<td>darkblue</td>
+<td>gray52</td>
+<td>grey77</td>
+<td>mediumpurple2</td>
+<td>slategray1</td>
+</tr>
+<tr>
+<td>darkcyan</td>
+<td>gray53</td>
+<td>grey78</td>
+<td>mediumpurple3</td>
+<td>slategray2</td>
+</tr>
+<tr>
+<td>darkgoldenrod</td>
+<td>gray54</td>
+<td>grey79</td>
+<td>mediumpurple4</td>
+<td>slategray3</td>
+</tr>
+<tr>
+<td>darkgoldenrod1</td>
+<td>gray55</td>
+<td>grey80</td>
+<td>mediumseagreen</td>
+<td>slategray4</td>
+</tr>
+<tr>
+<td>darkgoldenrod2</td>
+<td>gray56</td>
+<td>grey81</td>
+<td>mediumslateblue</td>
+<td>slategrey</td>
+</tr>
+<tr>
+<td>darkgoldenrod3</td>
+<td>gray57</td>
+<td>grey82</td>
+<td>mediumspringgreen</td>
+<td>snow</td>
+</tr>
+<tr>
+<td>darkgoldenrod4</td>
+<td>gray58</td>
+<td>grey83</td>
+<td>mediumturquoise</td>
+<td>snow1</td>
+</tr>
+<tr>
+<td>darkgray</td>
+<td>gray59</td>
+<td>grey84</td>
+<td>mediumvioletred</td>
+<td>snow2</td>
+</tr>
+<tr>
+<td>darkgreen</td>
+<td>gray60</td>
+<td>grey85</td>
+<td>midnightblue</td>
+<td>snow3</td>
+</tr>
+<tr>
+<td>darkgrey</td>
+<td>gray61</td>
+<td>grey86</td>
+<td>mintcream</td>
+<td>snow4</td>
+</tr>
+<tr>
+<td>darkkhaki</td>
+<td>gray62</td>
+<td>grey87</td>
+<td>mistyrose</td>
+<td>springgreen</td>
+</tr>
+<tr>
+<td>darkmagenta</td>
+<td>gray63</td>
+<td>grey88</td>
+<td>mistyrose1</td>
+<td>springgreen1</td>
+</tr>
+<tr>
+<td>darkolivegreen</td>
+<td>gray64</td>
+<td>grey89</td>
+<td>mistyrose2</td>
+<td>springgreen2</td>
+</tr>
+<tr>
+<td>darkolivegreen1</td>
+<td>gray65</td>
+<td>grey90</td>
+<td>mistyrose3</td>
+<td>springgreen3</td>
+</tr>
+<tr>
+<td>darkolivegreen2</td>
+<td>gray66</td>
+<td>grey91</td>
+<td>mistyrose4</td>
+<td>springgreen4</td>
+</tr>
+<tr>
+<td>darkolivegreen3</td>
+<td>gray67</td>
+<td>grey92</td>
+<td>moccasin</td>
+<td>steelblue</td>
+</tr>
+<tr>
+<td>darkolivegreen4</td>
+<td>gray68</td>
+<td>grey93</td>
+<td>navajowhite</td>
+<td>steelblue1</td>
+</tr>
+<tr>
+<td>darkorange</td>
+<td>gray69</td>
+<td>grey94</td>
+<td>navajowhite1</td>
+<td>steelblue2</td>
+</tr>
+<tr>
+<td>darkorange1</td>
+<td>gray70</td>
+<td>grey95</td>
+<td>navajowhite2</td>
+<td>steelblue3</td>
+</tr>
+<tr>
+<td>darkorange2</td>
+<td>gray71</td>
+<td>grey96</td>
+<td>navajowhite3</td>
+<td>steelblue4</td>
+</tr>
+<tr>
+<td>darkorange3</td>
+<td>gray72</td>
+<td>grey97</td>
+<td>navajowhite4</td>
+<td>tan</td>
+</tr>
+<tr>
+<td>darkorange4</td>
+<td>gray73</td>
+<td>grey98</td>
+<td>navy</td>
+<td>tan1</td>
+</tr>
+<tr>
+<td>darkorchid</td>
+<td>gray74</td>
+<td>grey99</td>
+<td>navyblue</td>
+<td>tan2</td>
+</tr>
+<tr>
+<td>darkorchid1</td>
+<td>gray75</td>
+<td>grey100</td>
+<td>oldlace</td>
+<td>tan3</td>
+</tr>
+<tr>
+<td>darkorchid2</td>
+<td>gray76</td>
+<td>honeydew</td>
+<td>olive</td>
+<td>tan4</td>
+</tr>
+<tr>
+<td>darkorchid3</td>
+<td>gray77</td>
+<td>honeydew1</td>
+<td>olivedrab</td>
+<td>teal</td>
+</tr>
+<tr>
+<td>darkorchid4</td>
+<td>gray78</td>
+<td>honeydew2</td>
+<td>olivedrab1</td>
+<td>thistle</td>
+</tr>
+<tr>
+<td>darkred</td>
+<td>gray79</td>
+<td>honeydew3</td>
+<td>olivedrab2</td>
+<td>thistle1</td>
+</tr>
+<tr>
+<td>darksalmon</td>
+<td>gray80</td>
+<td>honeydew4</td>
+<td>olivedrab3</td>
+<td>thistle2</td>
+</tr>
+<tr>
+<td>darkseagreen</td>
+<td>gray81</td>
+<td>hotpink</td>
+<td>olivedrab4</td>
+<td>thistle3</td>
+</tr>
+<tr>
+<td>darkseagreen1</td>
+<td>gray82</td>
+<td>hotpink1</td>
+<td>orange</td>
+<td>thistle4</td>
+</tr>
+<tr>
+<td>darkseagreen2</td>
+<td>gray83</td>
+<td>hotpink2</td>
+<td>orange1</td>
+<td>tomato</td>
+</tr>
+<tr>
+<td>darkseagreen3</td>
+<td>gray84</td>
+<td>hotpink3</td>
+<td>orange2</td>
+<td>tomato1</td>
+</tr>
+<tr>
+<td>darkseagreen4</td>
+<td>gray85</td>
+<td>hotpink4</td>
+<td>orange3</td>
+<td>tomato2</td>
+</tr>
+<tr>
+<td>darkslateblue</td>
+<td>gray86</td>
+<td>indianred</td>
+<td>orange4</td>
+<td>tomato3</td>
+</tr>
+<tr>
+<td>darkslategray</td>
+<td>gray87</td>
+<td>indianred1</td>
+<td>orangered</td>
+<td>tomato4</td>
+</tr>
+<tr>
+<td>darkslategray1</td>
+<td>gray88</td>
+<td>indianred2</td>
+<td>orangered1</td>
+<td>turquoise</td>
+</tr>
+<tr>
+<td>darkslategray2</td>
+<td>gray89</td>
+<td>indianred3</td>
+<td>orangered2</td>
+<td>turquoise1</td>
+</tr>
+<tr>
+<td>darkslategray3</td>
+<td>gray90</td>
+<td>indianred4</td>
+<td>orangered3</td>
+<td>turquoise2</td>
+</tr>
+<tr>
+<td>darkslategray4</td>
+<td>gray91</td>
+<td>indigo</td>
+<td>orangered4</td>
+<td>turquoise3</td>
+</tr>
+<tr>
+<td>darkslategrey</td>
+<td>gray92</td>
+<td>ivory</td>
+<td>orchid</td>
+<td>turquoise4</td>
+</tr>
+<tr>
+<td>darkturquoise</td>
+<td>gray93</td>
+<td>ivory1</td>
+<td>orchid1</td>
+<td>violet</td>
+</tr>
+<tr>
+<td>darkviolet</td>
+<td>gray94</td>
+<td>ivory2</td>
+<td>orchid2</td>
+<td>violetred</td>
+</tr>
+<tr>
+<td>deeppink</td>
+<td>gray95</td>
+<td>ivory3</td>
+<td>orchid3</td>
+<td>violetred1</td>
+</tr>
+<tr>
+<td>deeppink1</td>
+<td>gray96</td>
+<td>ivory4</td>
+<td>orchid4</td>
+<td>violetred2</td>
+</tr>
+<tr>
+<td>deeppink2</td>
+<td>gray97</td>
+<td>khaki</td>
+<td>palegreen</td>
+<td>violetred3</td>
+</tr>
+<tr>
+<td>deeppink3</td>
+<td>gray98</td>
+<td>khaki1</td>
+<td>palegreen1</td>
+<td>violetred4</td>
+</tr>
+<tr>
+<td>deeppink4</td>
+<td>gray99</td>
+<td>khaki2</td>
+<td>palegreen2</td>
+<td>wheat</td>
+</tr>
+<tr>
+<td>deepskyblue</td>
+<td>gray100</td>
+<td>khaki3</td>
+<td>palegreen3</td>
+<td>wheat1</td>
+</tr>
+<tr>
+<td>deepskyblue1</td>
+<td>green</td>
+<td>khaki4</td>
+<td>palegreen4</td>
+<td>wheat2</td>
+</tr>
+<tr>
+<td>deepskyblue2</td>
+<td>green1</td>
+<td>lavender</td>
+<td>palegoldenrod</td>
+<td>wheat3</td>
+</tr>
+<tr>
+<td>deepskyblue3</td>
+<td>green2</td>
+<td>lavenderblush</td>
+<td>paleturquoise</td>
+<td>wheat4</td>
+</tr>
+<tr>
+<td>deepskyblue4</td>
+<td>green3</td>
+<td>lavenderblush1</td>
+<td>paleturquoise1</td>
+<td>white</td>
+</tr>
+<tr>
+<td>dimgray</td>
+<td>green4</td>
+<td>lavenderblush2</td>
+<td>paleturquoise2</td>
+<td>whitesmoke</td>
+</tr>
+<tr>
+<td>dimgrey</td>
+<td>greenyellow</td>
+<td>lavenderblush3</td>
+<td>paleturquoise3</td>
+<td>yellow</td>
+</tr>
+<tr>
+<td>dodgerblue</td>
+<td>grey</td>
+<td>lavenderblush4</td>
+<td>paleturquoise4</td>
+<td>yellow1</td>
+</tr>
+<tr>
+<td>dodgerblue1</td>
+<td>grey0</td>
+<td>lawngreen</td>
+<td>palevioletred</td>
+<td>yellow2</td>
+</tr>
+<tr>
+<td>dodgerblue2</td>
+<td>grey1</td>
+<td>lemonchiffon</td>
+<td>palevioletred1</td>
+<td>yellow3</td>
+</tr>
+<tr>
+<td>dodgerblue3</td>
+<td>grey2</td>
+<td>lemonchiffon1</td>
+<td>palevioletred2</td>
+<td>yellow4</td>
+</tr>
+<tr>
+<td>dodgerblue4</td>
+<td>grey3</td>
+<td>lemonchiffon2</td>
+<td>palevioletred3</td>
+<td>yellowgreen</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "navigation.expand", "navigation.path", "toc.follow", "navigation.top", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

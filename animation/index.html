@@ -1,0 +1,1117 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://drawzero.ru/animation/">
+      
+      
+        <link rel="prev" href="../examples/">
+      
+      
+        <link rel="next" href="../primitives/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Animations - DrawZero — zero boilerplate canvas drawing and animation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#drawzero-animations" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="https://drawzero.ru" title="DrawZero — zero boilerplate canvas drawing and animation" class="md-header__button md-logo" aria-label="DrawZero — zero boilerplate canvas drawing and animation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DrawZero — zero boilerplate canvas drawing and animation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Animations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Выберите язык">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/en/" hreflang="" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ShashkovS/drawzero" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://drawzero.ru" title="DrawZero — zero boilerplate canvas drawing and animation" class="md-nav__button md-logo" aria-label="DrawZero — zero boilerplate canvas drawing and animation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DrawZero — zero boilerplate canvas drawing and animation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ShashkovS/drawzero" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DrawZero
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Animations
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Animations
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-animation-event-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      The animation event loop
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The animation event loop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-the-order-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why the order matters
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-complete-first-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      A complete first example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#function-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Function reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Function reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clear" class="md-nav__link">
+    <span class="md-ellipsis">
+      clear()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fillcolorred-alpha255" class="md-nav__link">
+    <span class="md-ellipsis">
+      fill(color='red', alpha=255)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tickr1" class="md-nav__link">
+    <span class="md-ellipsis">
+      tick(r=1)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sleept1" class="md-nav__link">
+    <span class="md-ellipsis">
+      sleep(t=1)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fpsfontsize24" class="md-nav__link">
+    <span class="md-ellipsis">
+      fps(fontsize=24)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-frame-based-motion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Working with frame-based motion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-trails-with-transparent-fills" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding trails with transparent fills
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structuring-larger-animations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structuring larger animations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-practice-ideas" class="md-nav__link">
+    <span class="md-ellipsis">
+      More practice ideas
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Code Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Code Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../primitives/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Drawing primitives
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pt
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gradient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gradient
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../images/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Working with images
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transparency_and_line_width/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transparency and line width
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../keyboard_and_mouse_input/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Keyboard and mouse input
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-animation-event-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      The animation event loop
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The animation event loop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-the-order-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why the order matters
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-complete-first-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      A complete first example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#function-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Function reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Function reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clear" class="md-nav__link">
+    <span class="md-ellipsis">
+      clear()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fillcolorred-alpha255" class="md-nav__link">
+    <span class="md-ellipsis">
+      fill(color='red', alpha=255)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tickr1" class="md-nav__link">
+    <span class="md-ellipsis">
+      tick(r=1)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sleept1" class="md-nav__link">
+    <span class="md-ellipsis">
+      sleep(t=1)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fpsfontsize24" class="md-nav__link">
+    <span class="md-ellipsis">
+      fps(fontsize=24)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-frame-based-motion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Working with frame-based motion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-trails-with-transparent-fills" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding trails with transparent fills
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structuring-larger-animations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structuring larger animations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-practice-ideas" class="md-nav__link">
+    <span class="md-ellipsis">
+      More practice ideas
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="drawzero-animations">DrawZero animations</h1>
+<h2 id="introduction">Introduction</h2>
+<p>This page explains how to build smooth animations in DrawZero. We use very
+simple English and many examples, so even middle school students who are not
+native speakers can follow along. By the end, you will know how to control the
+animation loop, how to draw every frame, how to keep a stable frame rate, and
+how to add extra visual effects like motion trails.</p>
+<h2 id="the-animation-event-loop">The animation event loop</h2>
+<p>All DrawZero animations follow the same rhythm. A typical loop looks like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">tick</span><span class="p">()</span>
+    <span class="n">clear</span><span class="p">()</span>
+    <span class="c1"># draw something here</span>
+</code></pre></div>
+<p>Let us look at each step in the loop.</p>
+<ol>
+<li><code>tick()</code> waits so that we keep a constant frame rate and collects new input
+   events from the keyboard and the mouse.</li>
+<li><code>clear()</code> resets the screen before we draw the next frame. You can replace it
+   with other tricks (for example, transparent fills) when you want a motion
+   trail.</li>
+<li>After that you draw shapes, text, or images for this frame.</li>
+</ol>
+<p>When the loop reaches the end, it starts again. This repeats many times every
+second, which creates the animation.</p>
+<h3 id="why-the-order-matters">Why the order matters</h3>
+<p>Always call <code>tick()</code> before drawing. The function updates the internal timer and
+processes window events. If you skip it, the window can freeze and the close
+button might stop working. Clearing the screen after <code>tick()</code> but before
+drawing makes sure the new frame does not mix with the previous one (unless you
+want that on purpose for a trail effect).</p>
+<h2 id="a-complete-first-example">A complete first example</h2>
+<p>Here is a tiny program that moves a circle from left to right:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">drawzero</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">speed</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">tick</span><span class="p">()</span>            <span class="c1"># keep 30 frames per second and read events</span>
+    <span class="n">clear</span><span class="p">()</span>           <span class="c1"># erase the previous frame</span>
+
+    <span class="n">circle</span><span class="p">(</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span> <span class="mi">40</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">filled_circle</span><span class="p">(</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span> <span class="mi">32</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">+=</span> <span class="n">speed</span>        <span class="c1"># change the position for the next frame</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">1100</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="mi">50</span>
+</code></pre></div>
+<p>Run it and you will see the circle travel across the screen. Try changing the
+speed or the size to experiment.</p>
+<h2 id="function-reference">Function reference</h2>
+<h3 id="clear"><code>clear()</code></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reset the screen to black.&quot;&quot;&quot;</span>
+</code></pre></div>
+<p><code>clear()</code> wipes the canvas to solid black. You usually call it once per frame to
+start with a clean surface. This is the quickest way to remove everything drawn
+in the previous frame.</p>
+<p><em>Tip:</em> if you prefer a different background color, you can draw a filled
+rectangle that covers the full window right after <code>clear()</code>.</p>
+<h3 id="fillcolorred-alpha255"><code>fill(color='red', alpha=255)</code></h3>
+<p><code>fill()</code> covers the screen with a color. The <code>alpha</code> parameter controls
+transparency. When <code>alpha</code> is less than <code>255</code>, the new color is semi-transparent.
+You can use this trick instead of <code>clear()</code> to keep motion trails:</p>
+<div class="highlight"><pre><span></span><code><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">tick</span><span class="p">()</span>
+    <span class="n">fill</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>  <span class="c1"># almost clear, but keep a soft trail</span>
+    <span class="c1"># draw moving objects here</span>
+</code></pre></div>
+<p>A low alpha value (for example <code>30</code>) gives a long trail, because the old drawing
+fades slowly. A higher alpha (for example <code>200</code>) erases the frame almost like a
+full <code>clear()</code>.</p>
+<h3 id="tickr1"><code>tick(r=1)</code></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tick</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sleep for 1/30 of a second.</span>
+<span class="sd">    If tick functions is called in a loop, then sleep time is reduced so</span>
+<span class="sd">    takes 1/30 second between calls. For example if calculations between tick() calls take 1/60s,</span>
+<span class="sd">    then tick sleeps for 1/60s. So while calculations takes less then 1/30s tick()</span>
+<span class="sd">    we get 30 frames per second.&quot;&quot;&quot;</span>
+</code></pre></div>
+<p>Calling <code>tick()</code> keeps the animation running at 30 frames per second (FPS). This
+only works when your own drawing and calculations are fast enough. If one loop
+iteration takes less than 1/30 of a second, <code>tick()</code> sleeps for the remaining
+fraction so that the total time between frames is almost exactly 1/30 second. As
+long as you stay under this limit, the animation is smooth and stable.</p>
+<p>The optional parameter <code>r</code> lets you advance several ticks at once. DrawZero will
+run the internal frame update <code>r</code> times back-to-back. This is helpful when you
+want to fast-forward your simulation without redrawing in between. Most programs
+keep the default value <code>1</code>.</p>
+<p>Besides the timing, <code>tick()</code> empties the window event queue. It collects all new
+mouse moves, button clicks, and key presses so you can read them from the global
+lists in <code>drawzero.utils.events</code>. If you skip <code>tick()</code>, you will not see user
+input and the window may stop responding.</p>
+<h3 id="sleept1"><code>sleep(t=1)</code></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">sleep</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sleep for t seconds</span>
+
+<span class="sd">    :param t: Number of seconds to sleep</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div>
+<p><code>sleep()</code> pauses the program for a longer time. Internally it is just a loop of
+<code>t * 30</code> calls to <code>tick()</code>, so the window continues to process events. Use this
+when you need a break between animation phases. Example: show a text for two
+seconds before you start moving objects.</p>
+<div class="highlight"><pre><span></span><code><span class="n">clear</span><span class="p">()</span>
+<span class="n">text</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="s1">&#39;Ready...&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">320</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">48</span><span class="p">)</span>
+<span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="fpsfontsize24"><code>fps(fontsize=24)</code></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fps</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">prev</span><span class="o">=</span><span class="p">[</span><span class="n">time</span><span class="p">()]):</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">cur</span> <span class="o">-</span> <span class="n">prev</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">prev</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur</span>
+    <span class="n">rate</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">diff</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">text</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">rate</span><span class="si">}</span><span class="s1"> FPS&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">000</span><span class="p">),</span> <span class="n">fontsize</span><span class="p">,</span> <span class="s1">&#39;&gt;^&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>Call <code>fps()</code> once per frame to draw a small counter in the upper-right corner.
+It measures the time between the current call and the previous call, converts it
+into frames per second, and writes the number on screen. Change <code>fontsize</code> if
+you need bigger or smaller text.</p>
+<p>If the number drops far below 30, your animation code is too slow. Try reducing
+the amount of work you do each frame, or draw fewer very complex shapes.</p>
+<h2 id="working-with-frame-based-motion">Working with frame-based motion</h2>
+<p>Because <code>tick()</code> keeps the loop at 30 FPS, you can describe motion in "pixels per
+frame". For example, adding <code>5</code> to the x position each frame means the object
+moves 150 pixels every second (<code>30 * 5</code>). If you want movement that stays the
+same even when the frame rate changes, measure the actual time difference. You
+can store the timestamp at the end of each loop using the <code>time()</code> function and
+scale your motion by that delta.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">time</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">speed_per_second</span> <span class="o">=</span> <span class="mi">200</span>  <span class="c1"># pixels each second</span>
+<span class="n">prev_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">tick</span><span class="p">()</span>
+    <span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">now</span> <span class="o">-</span> <span class="n">prev_time</span>
+    <span class="n">prev_time</span> <span class="o">=</span> <span class="n">now</span>
+
+    <span class="n">clear</span><span class="p">()</span>
+    <span class="n">x</span> <span class="o">+=</span> <span class="n">speed_per_second</span> <span class="o">*</span> <span class="n">dt</span>
+    <span class="n">filled_circle</span><span class="p">(</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span> <span class="mi">30</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="adding-trails-with-transparent-fills">Adding trails with transparent fills</h2>
+<p>To create comet-like trails, replace <code>clear()</code> with a dark transparent fill. The
+old drawing will fade slowly, and the new drawing will appear on top.</p>
+<div class="highlight"><pre><span></span><code><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">tick</span><span class="p">()</span>
+    <span class="n">fill</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>      <span class="c1"># low alpha = long trail</span>
+    <span class="n">filled_circle</span><span class="p">(</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+</code></pre></div>
+<p>You can also mix both methods: call <code>clear()</code> every few frames to reset the
+screen, and use <code>fill()</code> with <code>alpha</code> in between to keep a shorter trail.</p>
+<h2 id="structuring-larger-animations">Structuring larger animations</h2>
+<p>Here are some tips when your animation grows:</p>
+<ul>
+<li>Wrap your drawing code in functions to keep the <code>while True</code> loop small and
+  easy to read.</li>
+<li>Keep calculations outside of the drawing commands. Update positions first,
+  then draw everything.</li>
+<li>Use <code>tick()</code> only once per frame. If you call it several times, your animation
+  will slow down because the function may wait after each call.</li>
+<li>Remember that <code>sleep()</code> also calls <code>tick()</code> internally. This means the window
+  stays responsive even during pauses.</li>
+<li>Monitor the FPS counter during development. A steady value around 30 means
+  your loop is healthy.</li>
+</ul>
+<h2 id="more-practice-ideas">More practice ideas</h2>
+<ol>
+<li>Make a bouncing ball that changes direction when it hits the window edge.</li>
+<li>Draw a snake-like trail using <code>fill('black', alpha=10)</code> and a moving circle.</li>
+<li>Create a night sky with moving stars. Use different speeds for each star and
+   call <code>fps()</code> to make sure the loop stays fast.</li>
+</ol>
+<p>Experiment with the examples above, combine the functions, and you will quickly
+feel how the DrawZero animation loop works. Have fun creating your own animated
+stories!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "navigation.expand", "navigation.path", "toc.follow", "navigation.top", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

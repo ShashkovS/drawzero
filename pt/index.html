@@ -1,0 +1,1188 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://drawzero.ru/pt/">
+      
+      
+        <link rel="prev" href="../primitives/">
+      
+      
+        <link rel="next" href="../gradient/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Pt - DrawZero — zero boilerplate canvas drawing and animation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pt-helper-reference" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="https://drawzero.ru" title="DrawZero — zero boilerplate canvas drawing and animation" class="md-header__button md-logo" aria-label="DrawZero — zero boilerplate canvas drawing and animation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DrawZero — zero boilerplate canvas drawing and animation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Pt
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Выберите язык">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/en/" hreflang="" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ShashkovS/drawzero" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://drawzero.ru" title="DrawZero — zero boilerplate canvas drawing and animation" class="md-nav__button md-logo" aria-label="DrawZero — zero boilerplate canvas drawing and animation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DrawZero — zero boilerplate canvas drawing and animation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ShashkovS/drawzero" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DrawZero
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Animations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Code Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Code Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../primitives/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Drawing primitives
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Pt
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pt
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-import-and-first-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick import and first steps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-and-reading-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating and reading points
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating and reading points">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constructors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-the-stored-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting the stored values
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vector-style-arithmetic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vector-style arithmetic
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vector-style arithmetic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copying-and-unpacking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copying and unpacking
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#turtle-style-movement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Turtle-style movement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Turtle-style movement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-regular-polygon-helper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example – regular polygon helper
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#absolute-moves-and-rotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Absolute moves and rotations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distance-and-angle-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distance and angle helpers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-drawing-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Working with drawing helpers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-pt-inside-loops-and-animations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Pt inside loops and animations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting tips
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-go-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where to go next
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gradient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gradient
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../images/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Working with images
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transparency_and_line_width/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transparency and line width
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../keyboard_and_mouse_input/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Keyboard and mouse input
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-import-and-first-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick import and first steps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-and-reading-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating and reading points
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating and reading points">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constructors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-the-stored-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting the stored values
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vector-style-arithmetic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vector-style arithmetic
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vector-style arithmetic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copying-and-unpacking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copying and unpacking
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#turtle-style-movement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Turtle-style movement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Turtle-style movement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-regular-polygon-helper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example – regular polygon helper
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#absolute-moves-and-rotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Absolute moves and rotations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distance-and-angle-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distance and angle helpers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-drawing-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Working with drawing helpers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-pt-inside-loops-and-animations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Pt inside loops and animations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting tips
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-go-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where to go next
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="pt-helper-reference">Pt helper reference</h1>
+<p>The <code>Pt</code> class is a small helper that acts both like a 2D point and like a very light turtle.<br />
+It lives in <a href="../src/drawzero/utils/pt.py"><code>drawzero.utils.pt</code></a> and is imported for you when you write <code>from drawzero import *</code>.
+Use <code>Pt</code> whenever you want to store a position, move it around, and pass it into the drawing helpers from
+<a href="../primitives/">Drawing primitives</a> or <a href="../animation/">Animations</a>.</p>
+<p>This page explains the full <code>Pt</code> API in simple language, with many short examples that you can copy into
+an interactive shell or one of the example scripts.  It replaces the auto-generated snippet that used to be here.</p>
+<h2 id="quick-import-and-first-steps">Quick import and first steps</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">drawzero</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">point</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">()</span>          <span class="c1"># (0, 0) facing east (heading = 0°)</span>
+<span class="n">other</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>  <span class="c1"># x=200, y=150</span>
+</code></pre></div>
+<p><code>Pt</code> stores three values:</p>
+<ul>
+<li><code>x</code> – horizontal coordinate (0 is the left edge of the canvas).</li>
+<li><code>y</code> – vertical coordinate (0 is the top edge).</li>
+<li><code>heading</code> – direction in degrees. <code>0</code> means “pointing right”, <code>90</code> means “pointing up”.</li>
+</ul>
+<p>All drawing helpers accept a <code>Pt</code> object anywhere they expect a coordinate pair. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">drawzero</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">center</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="n">point</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+<span class="n">filled_circle</span><span class="p">(</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+<span class="n">line</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">center</span><span class="p">)</span>  <span class="c1"># `line` reads the `(x, y)` from each Pt</span>
+</code></pre></div>
+<h2 id="creating-and-reading-points">Creating and reading points</h2>
+<h3 id="constructors">Constructors</h3>
+<div class="highlight"><pre><span></span><code><span class="n">Pt</span><span class="p">()</span>
+<span class="n">Pt</span><span class="p">(</span><span class="n">x_value</span><span class="p">,</span> <span class="n">y_value</span><span class="p">)</span>
+<span class="n">Pt</span><span class="p">(</span><span class="n">x_value</span><span class="p">,</span> <span class="n">y_value</span><span class="p">,</span> <span class="n">heading</span><span class="o">=</span><span class="n">degrees</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>All numbers can be integers or floats.</li>
+<li>If you leave <code>heading</code> out, DrawZero assumes <code>0</code> degrees.</li>
+</ul>
+<h3 id="getting-the-stored-values">Getting the stored values</h3>
+<div class="highlight"><pre><span></span><code><span class="n">point</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">345</span><span class="p">,</span> <span class="n">heading</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="n">point</span><span class="o">.</span><span class="n">x</span>        <span class="c1"># 120</span>
+<span class="n">point</span><span class="o">.</span><span class="n">y</span>        <span class="c1"># 345</span>
+<span class="n">point</span><span class="o">.</span><span class="n">heading</span>  <span class="c1"># 30</span>
+
+<span class="n">point</span><span class="o">.</span><span class="n">pos</span><span class="p">()</span>       <span class="c1"># (120.0, 345.0)</span>
+<span class="n">point</span><span class="o">.</span><span class="n">position</span><span class="p">()</span>  <span class="c1"># same as pos()</span>
+<span class="n">point</span><span class="o">.</span><span class="n">xcor</span><span class="p">()</span>      <span class="c1"># 120.0</span>
+<span class="n">point</span><span class="o">.</span><span class="n">ycor</span><span class="p">()</span>      <span class="c1"># 345.0</span>
+</code></pre></div>
+<p>The <code>xcor</code>/<code>ycor</code> helpers round the values to 10 decimal places so the output stays tidy in the console.</p>
+<h2 id="vector-style-arithmetic">Vector-style arithmetic</h2>
+<p><code>Pt</code> behaves like a mutable 2D vector. You can add, subtract, and scale points without writing your own loops.
+Each operation creates a new <code>Pt</code> unless it ends with <code>=</code> (like <code>+=</code>).</p>
+<div class="highlight"><pre><span></span><code><span class="n">start</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">offset</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">offset</span>   <span class="c1"># Pt(60, 15, heading=0.0)</span>
+<span class="n">start</span> <span class="o">+=</span> <span class="n">offset</span>           <span class="c1"># start is now Pt(60, 15, heading=0.0)</span>
+<span class="n">mirror</span> <span class="o">=</span> <span class="o">-</span><span class="n">offset</span>          <span class="c1"># Pt(-10, 5, heading=0.0)</span>
+</code></pre></div>
+<p>Scaling works with plain numbers:</p>
+<div class="highlight"><pre><span></span><code><span class="n">point</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">point</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>     <span class="c1"># Pt(15, 24, heading=0.0)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">point</span><span class="p">)</span>     <span class="c1"># Pt(10, 16, heading=0.0)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">point</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>     <span class="c1"># Pt(2.5, 4.0, heading=0.0)</span>
+</code></pre></div>
+<p>When you need only the length of the vector, call <code>abs(point)</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">hyp</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">hyp</span><span class="p">))</span>  <span class="c1"># 5.0</span>
+</code></pre></div>
+<h3 id="copying-and-unpacking">Copying and unpacking</h3>
+<p>Use <code>.copy()</code> to duplicate the point while keeping the original intact.</p>
+<div class="highlight"><pre><span></span><code><span class="n">head</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">shadow</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">head</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="c1"># `shadow` still remembers the old coordinates</span>
+</code></pre></div>
+<p><code>Pt</code> also supports unpacking and indexing:</p>
+<div class="highlight"><pre><span></span><code><span class="n">p</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">p</span>        <span class="c1"># iterates over x then y</span>
+<span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>            <span class="c1"># 7</span>
+<span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>            <span class="c1"># 9</span>
+<span class="n">p</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>           <span class="c1"># [7, 9]</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>          <span class="c1"># always 2</span>
+</code></pre></div>
+<h2 id="turtle-style-movement">Turtle-style movement</h2>
+<p><code>Pt</code> keeps a heading angle and can move in that direction. This is perfect for drawing polygons or animation paths.</p>
+<div class="highlight"><pre><span></span><code><span class="n">walker</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">()</span>
+<span class="n">walker</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>   <span class="c1"># moves along heading (initially east)</span>
+<span class="n">walker</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">walker</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">walker</span><span class="o">.</span><span class="n">pos</span><span class="p">())</span>   <span class="c1"># (100.0, 50.0)</span>
+</code></pre></div>
+<p>Key methods and their aliases:</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Preferred name</th>
+<th>Aliases</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Move forward</td>
+<td><code>forward(distance)</code></td>
+<td><code>fd(distance)</code></td>
+</tr>
+<tr>
+<td>Move backward</td>
+<td><code>backward(distance)</code></td>
+<td><code>back(distance)</code>, <code>bk(distance)</code></td>
+</tr>
+<tr>
+<td>Turn right</td>
+<td><code>right(angle)</code></td>
+<td><code>rt(angle)</code></td>
+</tr>
+<tr>
+<td>Turn left</td>
+<td><code>left(angle)</code></td>
+<td><code>lt(angle)</code></td>
+</tr>
+<tr>
+<td>Set heading directly</td>
+<td><code>setheading(angle)</code></td>
+<td><code>seth(angle)</code></td>
+</tr>
+<tr>
+<td>Reset to origin</td>
+<td><code>reset()</code> or <code>home()</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Headings always wrap to the range <code>[0, 360)</code>.</p>
+<h3 id="example-regular-polygon-helper">Example – regular polygon helper</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">drawzero</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">pi</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">regular_polygon</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">sides</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
+    <span class="n">corner</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="n">center</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">center</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">radius</span><span class="p">)</span>
+    <span class="n">corner</span><span class="o">.</span><span class="n">setheading</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="mi">360</span> <span class="o">/</span> <span class="n">sides</span>
+    <span class="n">vertices</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sides</span><span class="p">):</span>
+        <span class="n">vertices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">corner</span><span class="o">.</span><span class="n">pos</span><span class="p">())</span>
+        <span class="n">corner</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+        <span class="n">corner</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">sin</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="n">sides</span><span class="p">))</span>
+    <span class="n">polygon</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">vertices</span><span class="p">)</span>
+
+<span class="n">regular_polygon</span><span class="p">(</span><span class="n">Pt</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span> <span class="n">sides</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+</code></pre></div>
+<p><code>polygon</code> comes from <a href="../primitives/">Drawing primitives</a>. <code>Pt</code> supplies the vertex coordinates.</p>
+<h2 id="absolute-moves-and-rotations">Absolute moves and rotations</h2>
+<p>Sometimes you need to jump to a location or rotate around another point.</p>
+<ul>
+<li><code>goto(x, y)</code> / <code>setpos(...)</code> / <code>setposition(...)</code> – move to exact coordinates without changing heading.</li>
+<li><code>rotate_around(angle, pivot)</code> – spin around another <code>Pt</code>, tuple, or list.</li>
+<li><code>move_towards(distance, target)</code> – move a fixed distance in the direction of another point.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">p</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>           <span class="c1"># -&gt; Pt(400, 200, heading=0.0)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">rotate_around</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>  <span class="c1"># pivot around absolute point</span>
+<span class="n">p</span><span class="o">.</span><span class="n">move_towards</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">500</span><span class="p">))</span>
+</code></pre></div>
+<p><code>rotate_around</code> rotates counter-clockwise when the angle is positive. If you need the shortest path towards a target, <code>move_towards</code>
+combines the direction and step size for you.</p>
+<h2 id="distance-and-angle-helpers">Distance and angle helpers</h2>
+<div class="highlight"><pre><span></span><code><span class="n">p</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>      <span class="c1"># 50.0</span>
+<span class="n">p</span><span class="o">.</span><span class="n">towards</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>       <span class="c1"># 53.1301023542 degrees</span>
+<span class="n">p</span><span class="o">.</span><span class="n">is_left_of</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>   <span class="c1"># True because 0 &lt; 10</span>
+<span class="n">p</span><span class="o">.</span><span class="n">is_right_of</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># True because 0 &gt; -5</span>
+</code></pre></div>
+<p>Comparison helpers use the canvas axes:</p>
+<ul>
+<li><code>is_above(y_value)</code> returns <code>True</code> if the point is higher on the screen (smaller <code>y</code>).</li>
+<li><code>is_below(y_value)</code> returns <code>True</code> if the point is lower on the screen (larger <code>y</code>).</li>
+<li><code>is_left_of(x_value)</code> returns <code>True</code> if <code>x</code> is smaller.</li>
+<li><code>is_right_of(x_value)</code> returns <code>True</code> if <code>x</code> is larger.</li>
+</ul>
+<p>Use them to keep sprites within bounds:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ball</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="n">heading</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">ball</span><span class="o">.</span><span class="n">is_above</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">ball</span><span class="o">.</span><span class="n">flip_vertically</span><span class="p">()</span>  <span class="c1"># bounce from the top edge</span>
+</code></pre></div>
+<p><code>flip_vertically()</code> and <code>flip_horizontally()</code> mirror the heading without changing the position. This is handy for collision logic in small games.</p>
+<h2 id="working-with-drawing-helpers">Working with drawing helpers</h2>
+<p>Most drawing helpers accept <code>Pt</code> objects directly. You can mix plain tuples and points in the same call.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">drawzero</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+
+<span class="n">line</span><span class="p">(</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+<span class="n">rect</span><span class="p">(</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span>
+<span class="n">filled_circle</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+</code></pre></div>
+<p>For shapes that expect a list of vertices (like <code>polygon</code> or <code>filled_polygon</code>), call <code>.pos()</code> on each <code>Pt</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">triangle</span> <span class="o">=</span> <span class="p">[</span><span class="n">Pt</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">450</span><span class="p">),</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">450</span><span class="p">)]</span>
+<span class="n">polygon</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">pos</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">triangle</span><span class="p">])</span>
+</code></pre></div>
+<p>To connect the dots with animation, combine this page with <a href="../animation/">Animations</a> and the
+<code>tick()</code> call shown there.</p>
+<h2 id="using-pt-inside-loops-and-animations">Using Pt inside loops and animations</h2>
+<p><code>Pt</code> shines when you update positions every frame. The example below creates a simple orbit.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">drawzero</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">center</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">planet</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">650</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">planet</span><span class="o">.</span><span class="n">setheading</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="n">tick</span><span class="p">():</span>
+    <span class="n">clear</span><span class="p">()</span>
+    <span class="n">filled_circle</span><span class="p">(</span><span class="s1">&#39;navy&#39;</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+    <span class="n">filled_circle</span><span class="p">(</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">planet</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="n">planet</span><span class="o">.</span><span class="n">rotate_around</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">center</span><span class="p">)</span>
+</code></pre></div>
+<p>Read <a href="../examples_overview/">Examples overview</a> and open <code>05_points.py</code> or <code>09_animation_rectangles.py</code> to see longer scripts that use these methods together.</p>
+<h2 id="troubleshooting-tips">Troubleshooting tips</h2>
+<ul>
+<li><strong>Movement looks wrong?</strong> Remember that the screen origin <code>(0, 0)</code> is the top-left corner. Moving “up” means decreasing <code>y</code>.</li>
+<li><strong>Heading jumps unexpectedly?</strong> Check if you used <code>backward()</code> or <code>forward()</code> with negative numbers. Both change the point but keep the heading.</li>
+<li><strong><code>distance</code> returns a float with many decimals.</strong> That is normal. Use <code>round(value, 2)</code> when printing if you want fewer digits.</li>
+<li><strong>Need to reset everything?</strong> Call <code>reset()</code> or <code>home()</code> to set <code>(x, y)</code> to <code>(0, 0)</code> and <code>heading</code> to <code>0</code>.</li>
+</ul>
+<h2 id="where-to-go-next">Where to go next</h2>
+<ul>
+<li><a href="../primitives/">Drawing primitives</a> – shapes and text helpers that happily accept <code>Pt</code> objects.</li>
+<li><a href="../animation/">Animations</a> – how to redraw every frame and schedule updates with <code>tick()</code>.</li>
+<li><a href="../gradient/">Gradient helper</a> – smooth color transitions that go well with moving points.</li>
+<li><a href="../examples_overview/">Examples overview</a> – table of scripts, including the ones that focus on <code>Pt</code>.</li>
+</ul>
+<p>Experiment with the snippets above, then mix <code>Pt</code> with the other utilities to build your own scenes.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "navigation.expand", "navigation.path", "toc.follow", "navigation.top", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
