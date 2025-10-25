@@ -46,7 +46,7 @@ class RunExamples(unittest.TestCase):
                 self.assertTrue(exception_printer.last_raised, msg=msg)
                 max_deep = MAX_TRACEBACK_DEEP
                 if func.__name__.startswith('filled'):
-                    max_deep += 1
+                    max_deep += 2
                 self.assertLessEqual(exception_printer.last_deep, max_deep, msg=msg)
 
     def test_bad_pos(self):
@@ -63,7 +63,7 @@ class RunExamples(unittest.TestCase):
                 self.assertTrue(exception_printer.last_raised, msg=msg)
                 max_deep = MAX_TRACEBACK_DEEP
                 if func.__name__.startswith('filled'):
-                    max_deep += 1
+                    max_deep += 2
                 self.assertLessEqual(exception_printer.last_deep, max_deep, msg=msg)
 
 

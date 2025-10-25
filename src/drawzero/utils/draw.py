@@ -1,4 +1,6 @@
 import os
+from typing import Type, Literal
+
 from math import sin, cos, pi
 from time import time
 
@@ -260,10 +262,11 @@ def filled_polygon(color='red', *points, alpha=255):
 
 
 
-_VALID_ALIGN = {x + y for x in '<.>' for y in '^.v'}
+_VALID_ALIGN = {'<.', '.<', '>.', '^>', 'v>', '.^', 'v.', '>^', 'v<', '<v', '..', '.v', '>v', '.>', '^<', '^.', '<^'}
+TAlign: Type = Literal['<.', '.<', '>.', '^>', 'v>', '.^', 'v.', '>^', 'v<', '<v', '..', '.v', '>v', '.>', '^<', '^.', '<^']
 
 
-def text(color='red', text='Hello!', pos=(100, 100), fontsize=24, align='..'):
+def text(color='red', text='Hello!', pos=(100, 100), fontsize=24, align: TAlign = '..'):
     """Draw text to the screen."""
     error = BadDrawParmsError()
     use_color = _to_color(color, error)
@@ -272,6 +275,9 @@ def text(color='red', text='Hello!', pos=(100, 100), fontsize=24, align='..'):
     if align not in _VALID_ALIGN:
         error.errors.append(I18N.bad_text_align.format(align))
         error.errors.append(I18N.use_text_align)
+    if isinstance(align, str) and len(align) == 2:
+        if align[0] in '^v':
+            align = align[::-1]
     if error.errors:
         error.call_string = f'text({color!r}, {text!r}, {pos!r}, {fontsize!r}, {align!r})'
         error.example = f"text({color if use_color else 'red'!r}, {text!r}, {use_pos or (100, 100)!r}, {use_fontsize or 24!r}, {align if align in _VALID_ALIGN else '..'!r})"

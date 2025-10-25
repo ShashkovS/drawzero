@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "drawzero"
-version = "0.5.1"
+version = "0.5.2"
 authors = [
   { name="Sergey Shashkov", email="sh57@yandex.ru" },
 ]
@@ -44,6 +44,7 @@ Documentation = "https://drawzero.org/"
 [project.optional-dependencies]
 dev = [
     "setuptools",
+    "build",
     "mkdocs-material",
     "mkdocs-static-i18n[material]",
     "pymdown-extensions",
