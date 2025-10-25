@@ -121,8 +121,9 @@ keep the default value `1`.
 
 Besides the timing, `tick()` empties the window event queue. It collects all new
 mouse moves, button clicks, and key presses so you can read them from the global
-lists in `drawzero.utils.events`. If you skip `tick()`, you will not see user
-input and the window may stop responding.
+lists such as `keysdown`, `keysup`, `mousemotions`, and `mousebuttonsdown`
+that appear after `from drawzero import *`. If you skip `tick()`, you will not
+see user input and the window may stop responding.
 
 ### `sleep(t=1)`
 
