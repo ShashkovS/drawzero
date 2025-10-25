@@ -5,6 +5,9 @@ import os
 from typing import Tuple, List, Union, Optional
 
 import warnings
+
+from drawzero.utils.key_flags import KEY
+
 warnings.filterwarnings(
     "ignore",
     message=r"pkg_resources is deprecated.*",
@@ -360,8 +363,32 @@ def get_mouse_pressed():
     return pygame.mouse.get_pressed(3)
 
 
+class KeysPressed:
+    def __init__(self, raw_pressed):
+        self._raw = raw_pressed
+        self._pressed_names = None
+
+    def __getitem__(self, key):
+        if isinstance(key, int):
+            return self._raw[key]
+
+        if isinstance(key, str):
+            return self._raw[KEY.__getattribute__(key)]
+
+        return False
+
+    def __contains__(self, key):
+        if isinstance(key, int):
+            return self._raw[key]
+
+        if isinstance(key, str):
+            return self._raw[KEY.__getattribute__(key)]
+
+        return False
+
+
 def get_keys_pressed():
-    return pygame.key.get_pressed()
+    return KeysPressed(pygame.key.get_pressed())
 
 
 def keys_mods_pressed():
