@@ -94,18 +94,32 @@ def rect(color='red', pos=(100, 100), width=500, height=200, *args, alpha=255, l
     error = BadDrawParmsError()
     use_color = _to_color(color, error)
     coords = _to_flat([pos, width, height, args])
-    use_rect = _to_rect(coords[:4], error)
+    use_rect = _to_rect(coords, error)
     use_alpha = _to_alpha(alpha, error)
     use_line_width = _to_line_width(line_width, error)
     if error.errors:
-        # TODO
+        use_args = ', ' + ', '.join(map(repr, args)) if args else ''
+        use_alpha = f', {alpha=}' if alpha != 255 else ''
+        use_line_width = f', {line_width=}' if line_width is not None else ''
+        error.call_string = f'rect({color!r}, {pos!r}, {width!r}, {height!r}{use_args}{use_alpha}{use_line_width})'
+        if use_rect:
+            error.example = f"rect({(color if use_color else 'red')!r}, {use_rect[:2]!r}, {use_rect[2]!r}, {use_rect[3]!r}{use_alpha}{use_line_width})"
+        else:
+            # Cannot construct a good example if rect is broken
+            error.example = f"rect('red', (100, 100), 500, 200{use_alpha}{use_line_width})"
+        error.finish()
         raise error
     renderer.draw_rect(use_color, use_rect, use_alpha, use_line_width)
 
 
 def filled_rect(color='red', pos=(100, 100), width=500, height=200, *args, alpha=255):
     """Draw a filled rectangle."""
-    rect(color, pos, width, height, *args, alpha=alpha, line_width=0)
+    try:
+        rect(color, pos, width, height, *args, alpha=alpha, line_width=0)
+    except BadDrawParmsError as error:
+        error.call_string = error.call_string.replace(', line_width=0', '').replace('rect', 'filled_rect')
+        error.example = error.example.replace(', line_width=0', '').replace('rect', 'filled_rect')
+        raise error
 
 
 def ellipse(color='red', pos=(100, 100), width=500, height=200, *args, alpha=255, line_width: int = None):
@@ -113,18 +127,31 @@ def ellipse(color='red', pos=(100, 100), width=500, height=200, *args, alpha=255
     error = BadDrawParmsError()
     use_color = _to_color(color, error)
     coords = _to_flat([pos, width, height, args])
-    use_rect = _to_rect(coords[:4], error)
+    use_rect = _to_rect(coords, error)
     use_alpha = _to_alpha(alpha, error)
     use_line_width = _to_line_width(line_width, error)
     if error.errors:
-        # TODO
+        use_args = ', ' + ', '.join(map(repr, args)) if args else ''
+        use_alpha = f', {alpha=}' if alpha != 255 else ''
+        use_line_width = f', {line_width=}' if line_width is not None else ''
+        error.call_string = f'ellipse({color!r}, {pos!r}, {width!r}, {height!r}{use_args}{use_alpha}{use_line_width})'
+        if use_rect:
+            error.example = f"ellipse({(color if use_color else 'red')!r}, {use_rect[:2]!r}, {use_rect[2]!r}, {use_rect[3]!r}{use_alpha}{use_line_width})"
+        else:
+            error.example = f"ellipse('red', (100, 100), 500, 200{use_alpha}{use_line_width})"
+        error.finish()
         raise error
     renderer.draw_ellipse(use_color, use_rect, use_alpha, use_line_width)
 
 
 def filled_ellipse(color='red', pos=(100, 100), width=500, height=200, *args, alpha=255):
     """Draw a filled ellipse."""
-    ellipse(color, pos, width, height, *args, alpha=alpha, line_width=0)
+    try:
+        ellipse(color, pos, width, height, *args, alpha=alpha, line_width=0)
+    except BadDrawParmsError as error:
+        error.call_string = error.call_string.replace(', line_width=0', '').replace('ellipse', 'filled_ellipse')
+        error.example = error.example.replace(', line_width=0', '').replace('ellipse', 'filled_ellipse')
+        raise error
 
 
 def arc(color='red', pos=(100, 100), width=500, height=200, start_angle=45, stop_angle=270, alpha=255, line_width: int = None):
@@ -132,11 +159,19 @@ def arc(color='red', pos=(100, 100), width=500, height=200, start_angle=45, stop
     error = BadDrawParmsError()
     use_color = _to_color(color, error)
     coords = _to_flat([pos, width, height])
-    use_rect = _to_rect(coords[:4], error)
+    use_rect = _to_rect(coords, error)
     use_alpha = _to_alpha(alpha, error)
     use_line_width = _to_line_width(line_width, error)
+    # TODO: check start_angle and stop_angle
     if error.errors:
-        # TODO
+        use_alpha = f', {alpha=}' if alpha != 255 else ''
+        use_line_width = f', {line_width=}' if line_width is not None else ''
+        error.call_string = f'arc({color!r}, {pos!r}, {width!r}, {height!r}, {start_angle!r}, {stop_angle!r}{use_alpha}{use_line_width})'
+        if use_rect:
+            error.example = f"arc({(color if use_color else 'red')!r}, {use_rect[:2]!r}, {use_rect[2]!r}, {use_rect[3]!r}, {start_angle!r}, {stop_angle!r}{use_alpha}{use_line_width})"
+        else:
+            error.example = f"arc('red', (100, 100), 500, 200, 45, 270{use_alpha}{use_line_width})"
+        error.finish()
         raise error
     renderer.draw_arc(use_color, use_rect, start_angle / 180 * pi, stop_angle / 180 * pi, use_alpha, use_line_width)
 
@@ -146,23 +181,41 @@ def rect_rotated(color='red', pos=(100, 100), width=500, height=200, angle=0, *a
     error = BadDrawParmsError()
     use_color = _to_color(color, error)
     coords = _to_flat([pos, width, height, args])
-    x, y, w, h = coords[:4]
+    use_rect = _to_rect(coords, error)
+    use_alpha = _to_alpha(alpha, error)
+    use_line_width = _to_line_width(line_width, error)
+    # TODO: check angle
+    if error.errors:
+        use_args = ', ' + ', '.join(map(repr, args)) if args else ''
+        use_alpha = f', {alpha=}' if alpha != 255 else ''
+        use_line_width = f', {line_width=}' if line_width is not None else ''
+        error.call_string = f'rect_rotated({color!r}, {pos!r}, {width!r}, {height!r}, {angle!r}{use_args}{use_alpha}{use_line_width})'
+        if use_rect:
+            error.example = f"rect_rotated({(color if use_color else 'red')!r}, {use_rect[:2]!r}, {use_rect[2]!r}, {use_rect[3]!r}, {angle!r}{use_alpha}{use_line_width})"
+        else:
+            error.example = f"rect_rotated('red', (100, 100), 500, 200, 45{use_alpha}{use_line_width})"
+        error.finish()
+        raise error
+
+    x, y, w, h = use_rect
     mid_x = x + w / 2
     mid_y = y + h / 2
     angle_rad = angle / 180 * pi
     points = [
-        _to_pos([mid_x + w / 2 * d1 * cos(angle_rad) - h / 2 * d2 * sin(angle_rad), mid_y + w / 2 * d1 * sin(angle_rad) + h / 2 * d2 * cos(angle_rad)], error)
+        (mid_x + w / 2 * d1 * cos(angle_rad) - h / 2 * d2 * sin(angle_rad), mid_y + w / 2 * d1 * sin(angle_rad) + h / 2 * d2 * cos(angle_rad))
         for d1, d2 in [(+1, +1), (-1, +1), (-1, -1), (+1, -1)]
     ]
-    if error.errors:
-        # TODO
-        raise error
-    renderer.draw_polygon(use_color, points, alpha, line_width)
+    renderer.draw_polygon(use_color, points, use_alpha, use_line_width)
 
 
 def filled_rect_rotated(color='red', pos=(100, 100), width=500, height=200, angle=0, *args, alpha=255):
     """Draw a filled rotated rectangle."""
-    rect_rotated(color, pos, width, height, angle, *args, alpha=alpha, line_width=0)
+    try:
+        rect_rotated(color, pos, width, height, angle, *args, alpha=alpha, line_width=0)
+    except BadDrawParmsError as error:
+        error.call_string = error.call_string.replace(', line_width=0', '').replace('rect_rotated', 'filled_rect_rotated')
+        error.example = error.example.replace(', line_width=0', '').replace('rect_rotated', 'filled_rect_rotated')
+        raise error
 
 
 def polygon(color='red', *points, alpha=255, line_width: int = None):
@@ -173,14 +226,28 @@ def polygon(color='red', *points, alpha=255, line_width: int = None):
     use_alpha = _to_alpha(alpha, error)
     use_line_width = _to_line_width(line_width, error)
     if error.errors:
-        # TODO
+        use_alpha = f', {alpha=}' if alpha != 255 else ''
+        use_line_width = f', {line_width=}' if line_width is not None else ''
+        points_repr = ', '.join(map(repr, points))
+        error.call_string = f'polygon({color!r}, {points_repr}{use_alpha}{use_line_width})'
+        if use_points:
+            points_repr = ', '.join(map(repr, use_points))
+            error.example = f"polygon({(color if use_color else 'red')!r}, {points_repr}{use_alpha}{use_line_width})"
+        else:
+            error.example = f"polygon('red', (100, 100), (200, 200), (150, 200){use_alpha}{use_line_width})"
+        error.finish()
         raise error
     renderer.draw_polygon(use_color, use_points, use_alpha, use_line_width)
 
 
 def filled_polygon(color='red', *points, alpha=255):
     """Draw a filled polygon."""
-    polygon(color, *points, alpha=alpha, line_width=0)
+    try:
+        polygon(color, *points, alpha=alpha, line_width=0)
+    except BadDrawParmsError as error:
+        error.call_string = error.call_string.replace(', line_width=0', '').replace('polygon', 'filled_polygon')
+        error.example = error.example.replace(', line_width=0', '').replace('polygon', 'filled_polygon')
+        raise error
 
 
 _VALID_ALIGN = {x + y for x in '<.>' for y in '^.v'}
@@ -196,7 +263,9 @@ def text(color='red', text='Hello!', pos=(100, 100), fontsize=24, align='..'):
         error.errors.append(I18N.bad_text_align.format(align))
         error.errors.append(I18N.use_text_align)
     if error.errors:
-        # TODO
+        error.call_string = f'text({color!r}, {text!r}, {pos!r}, {fontsize!r}, {align!r})'
+        error.example = f"text({color if use_color else 'red'!r}, {text!r}, {use_pos or (100, 100)!r}, {use_fontsize or 24!r}, {align if align in _VALID_ALIGN else '..'!r})"
+        error.finish()
         raise error
     renderer.draw_text(use_color, str(text), use_pos, use_fontsize, align)
 
@@ -212,7 +281,10 @@ def fill(color='red', alpha=255):
     use_color = _to_color(color, error)
     use_alpha = _to_alpha(alpha, error)
     if error.errors:
-        # TODO
+        use_alpha_str = f', {alpha=}' if alpha != 255 else ''
+        error.call_string = f'fill({color!r}{use_alpha_str})'
+        error.example = f"fill({(color if use_color else 'red')!r}{use_alpha_str})"
+        error.finish()
         raise error
     renderer.draw_fill(use_color, use_alpha)
 
@@ -230,7 +302,11 @@ def image(image, pos, width: int = None, alpha=255):
     use_width = _to_scaled_int(width, error) if width is not None else None
     use_alpha = _to_alpha(alpha, error)
     if error.errors:
-        # TODO
+        use_width_str = f', {width=}' if width is not None else ''
+        use_alpha_str = f', {alpha=}' if alpha != 255 else ''
+        error.call_string = f'image({image!r}, {pos!r}{use_width_str}{use_alpha_str})'
+        error.example = f"image({image!r}, {use_pos if use_pos else (100,100)!r}{f', width={use_width}' if use_width is not None else ''}{use_alpha_str})"
+        error.finish()
         raise error
     renderer.draw_image(image, use_pos, use_width, use_alpha)
 
