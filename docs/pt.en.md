@@ -1,7 +1,7 @@
 # Pt helper reference
 
-The `Pt` class is a small helper that acts both like a 2D point and like a very light turtle.  
-It lives in [`drawzero.utils.pt`](https://github.com/ShashkovS/drawzero/blob/master/src/drawzero/utils/pt.py) and is imported for you when you write `from drawzero import *`.
+The `Pt` class is a small helper that acts both like a 2D point and like a very light turtle.
+It is imported for you when you write `from drawzero import *`.
 Use `Pt` whenever you want to store a position, move it around, and pass it into the drawing helpers from
 [Drawing primitives](primitives.md) or [Animations](animation.md).
 
