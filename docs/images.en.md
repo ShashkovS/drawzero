@@ -5,10 +5,12 @@ This guide shows how to draw pictures on the canvas with the `image()` helper. I
 ## Function signature at a glance
 
 ```python
-from drawzero import image
+from drawzero import *
 
 image(image, pos, width: int = None, alpha=255)
 ```
+
+All examples below follow the same import pattern so that `image()` is available without extra steps.
 
 The four parameters control what file is loaded, where it appears, how wide it becomes, and how transparent it looks.
 
