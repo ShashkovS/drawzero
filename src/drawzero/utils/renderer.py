@@ -6,8 +6,6 @@ from typing import Tuple, List, Union, Optional
 
 import warnings
 
-from drawzero.utils.key_flags import KEY
-
 warnings.filterwarnings(
     "ignore",
     message=r"pkg_resources is deprecated.*",
@@ -16,6 +14,7 @@ warnings.filterwarnings(
 )
 
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
+from drawzero.utils.key_flags import KEY
 import pygame
 import pygame.locals
 
