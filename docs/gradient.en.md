@@ -1,7 +1,7 @@
 # Gradient helper reference
 
 `Gradient` is a class that turns a number into a color.  
-It lives in [`drawzero.utils.gradient`](../src/drawzero/utils/gradient.py) and is available after `from drawzero import *`.
+It lives in [`drawzero.utils.gradient`](https://github.com/ShashkovS/drawzero/blob/master/src/drawzero/utils/gradient.py) and is available after `from drawzero import *`.
 Use it when you need smooth color transitions for temperature maps, progress bars, particle systems, or animated trails.
 
 This guide also shows how to combine gradients with shapes from [Drawing primitives](primitives.md), transparency tips from
@@ -28,7 +28,7 @@ print(heat(1.0))   # (255, 0, 0) - last color
 * **Animated effects** – change particle colors as they age.
 * **Status bars** – map progress (0–100) to a palette.
 
-Open the example [`13_gradients.py`](../src/drawzero/examples/13_gradients.py) after reading this page. The file is also listed in the [Examples overview](examples_overview.md).
+Open the example [`13_gradients.py`](https://github.com/ShashkovS/drawzero/blob/master/src/drawzero/examples/13_gradients.py) after reading this page. The file is also listed in the [Examples overview](examples_overview.md).
 
 ## Constructing a gradient
 

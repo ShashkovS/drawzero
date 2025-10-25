@@ -33,6 +33,7 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
 ]
 dependencies = [
+  "mkdocs-static-i18n[material]>=1.3.0",
   "pygame>=2.0.1",
 ]
 
@@ -43,6 +44,7 @@ Homepage = "https://github.com/ShashkovS/drawzero"
 dev = [
     "setuptools",
     "mkdocs-material",
+    "mkdocs-static-i18n[material]",
     "pymdown-extensions",
     "mkdocstrings-python",
     "pytest",

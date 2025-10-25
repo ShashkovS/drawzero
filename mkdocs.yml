@@ -5,6 +5,7 @@ repo_url: https://github.com/ShashkovS/drawzero
 nav:
   - DrawZero: index.md
   - Installation: installation.md
+  - Examples Overview: examples_overview.md
   - Examples: examples.md
   - Animations: animation.md
   - Code Reference:
@@ -14,14 +15,13 @@ nav:
     - Working with images: images.md
     - Transparency and line width: transparency_and_line_width.md
     - Keyboard and mouse input: keyboard_and_mouse_input.md
+    - Architecture: architecture.md
+    - Color Table: _color_table.md
 
 theme:
-  name: readthedocs
+  name: material
   highlightjs: true
-  language: ru
   features:
-    - navigation.instant
-    - navigation.instant.prefetch
     - navigation.tracking
     - navigation.expand
     - navigation.path
@@ -30,12 +30,6 @@ theme:
     - search.suggest
     - search.highlight
 
-extra:
-  alternate:
-    - name: English
-      link: /en/
-  homepage: https://drawzero.ru
-
 plugins:
   - search:
       lang:
@@ -43,6 +37,14 @@ plugins:
         - en
   - mkdocstrings:
       default_handler: python
+  - i18n:
+      docs_structure: suffix
+      languages:
+        - locale: en
+          name: English
+          default: true
+        - locale: ru
+          name: Русский
 
 markdown_extensions:
   - pymdownx.snippets
