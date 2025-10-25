@@ -240,12 +240,7 @@ def draw_image(path: str, pos: Pt, width: int = None, alpha: int = 255):
         height = int(h * width / w + 0.5)
         image = pygame.transform.smoothscale(image, (width, height))
     if alpha != 255:
-        temp = pygame.Surface((image.get_width(), image.get_height())).convert()  # Create a temporary image OPAQUE the size of the image
-        temp.blit(_surface, (-pos[0], -pos[1]))  # Blit the OPAQUE BACKGROUND onto this temporary image.
-        temp.blit(image, (0, 0))  # Blit the per-pixel transparency image onto the temporary image.
-        # The temporary image is completely opaque and has the transparent image on it above the background.
-        temp.set_alpha(alpha)
-        image = temp
+        image.set_alpha(alpha)
     _surface.blit(image, pos)
     _display_update_if_no_animation()
 
