@@ -1,6 +1,6 @@
 # DrawZero Architecture Overview
 
-This document summarizes the internal layout of the DrawZero project so that contributors (and code-generation agents) can quickly orient themselves in the codebase.
+This document summarizes the internal layout of the DrawZero project so that contributors can quickly orient themselves in the codebase.
 
 ## Package layout
 

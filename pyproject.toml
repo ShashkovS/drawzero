@@ -42,7 +42,6 @@ Homepage = "https://github.com/ShashkovS/drawzero"
 [project.optional-dependencies]
 dev = [
     "setuptools",
-    "mkdocs",
     "mkdocs-material",
     "pymdown-extensions",
     "mkdocstrings-python",

@@ -6,7 +6,7 @@ Use `Pt` whenever you want to store a position, move it around, and pass it into
 [Drawing primitives](primitives.md) or [Animations](animation.md).
 
 This page explains the full `Pt` API in simple language, with many short examples that you can copy into
-an interactive shell or one of the example scripts.  It replaces the auto-generated snippet that used to be here.
+an interactive shell or one of the example scripts.
 
 ## Quick import and first steps
 

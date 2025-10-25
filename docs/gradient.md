@@ -4,8 +4,7 @@
 It lives in [`drawzero.utils.gradient`](../src/drawzero/utils/gradient.py) and is available after `from drawzero import *`.
 Use it when you need smooth color transitions for temperature maps, progress bars, particle systems, or animated trails.
 
-This guide replaces the bare auto-doc block and explains the helper step by step.  
-It also shows how to combine gradients with shapes from [Drawing primitives](primitives.md), transparency tips from
+This guide also shows how to combine gradients with shapes from [Drawing primitives](primitives.md), transparency tips from
 [Transparency and line width](transparency_and_line_width.md), and animated loops from [Animations](animation.md).
 
 ## Quick start
