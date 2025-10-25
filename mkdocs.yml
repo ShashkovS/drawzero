@@ -1,5 +1,5 @@
 site_name: DrawZero — zero boilerplate canvas drawing and animation
-site_url: https://drawzero.ru
+site_url: https://drawzero.org
 repo_url: https://github.com/ShashkovS/drawzero
 
 nav:
@@ -51,6 +51,7 @@ markdown_extensions:
   - pymdownx.highlight:
       use_pygments: true
   - pymdownx.superfences
+  - attr_list
 
 watch:
   - src

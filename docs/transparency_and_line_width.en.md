@@ -18,7 +18,7 @@ Together, these parameters let you build depth, focus, and style in your sketche
 
 > 💡 Filled helpers (`filled_circle`, `filled_rect`, and so on) already set `line_width=0` internally, so you usually do not need to pass it yourself.
 
-## Understanding `alpha`
+## Understanding `alpha` {#understanding-alpha}
 
 `alpha` measures opacity on a scale from `0` (fully transparent) to `255` (fully opaque). DrawZero rounds the value to an integer, so pass whole numbers.
 
