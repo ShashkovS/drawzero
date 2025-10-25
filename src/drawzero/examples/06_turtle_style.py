@@ -6,7 +6,7 @@ colors = [C.darkslategrey, C.dimgrey, C.slateblue, C.darkblue, C.yellowgreen, C.
 # Drawing regular polygons for n from 3 to 10
 # Рисуем правильные треугольник (n=3), четырёхугольник и т.д. до десятиугольник
 for n in range(3, 11):
-    cur = Pt(600, 200)
+    cur = Pt(600, 800)
     # Drawing n lines for regular polygon
     # Каждую сторону рисуем отдельно
     for i in range(n):
