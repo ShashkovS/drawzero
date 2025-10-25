@@ -39,6 +39,7 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/ShashkovS/drawzero"
+Documentation = "https://drawzero.org/"
 
 [project.optional-dependencies]
 dev = [
