@@ -40,7 +40,7 @@ style you picked (see [Architecture overview](architecture.md)).
 
 ### Snapshot helpers
 
-#### `get_keys_pressed = renderer.get_keys_pressed`
+#### `get_keys_pressed`
 
 Returns a **set of strings** with the names of all keys that are currently held
 down. Use it when you only care whether a key is down, not how many times it was
@@ -60,7 +60,7 @@ if "SPACE" in pressed:
 `tick()`. It uses the same key names that appear in the event queues described
 below.
 
-#### `keys_mods_pressed = renderer.keys_mods_pressed`
+#### `keys_mods_pressed`
 
 Returns a **set of modifier names** like `"SHIFT"`, `"CTRL"`, or `"ALT"`. This
 is useful when you want to support shortcuts such as `Ctrl+S`.
@@ -73,7 +73,7 @@ if "CTRL" in keys_mods_pressed() and "S" in get_keys_pressed():
 Modifiers are separated from regular keys so you can check them quickly without
 searching inside the full key set.
 
-#### `get_mouse_pressed = renderer.get_mouse_pressed`
+#### `get_mouse_pressed`
 
 Returns a **set of mouse button names** such as `"LEFT"`, `"MIDDLE"`, and
 `"RIGHT"`. Combine it with the current mouse position from your canvas helpers
@@ -96,7 +96,7 @@ Each item inside the queue is a small object (usually a `namedtuple` or a
 simple class) with fields like `key`, `mod`, `button`, `pos`, or `rel`. You can
 inspect them with `print(event)` to learn the exact structure.
 
-#### `keysdown = renderer.keysdown`
+#### `keysdown`
 
 Contains a **list of key-down events**. Each event fires when a key changes from
 "up" to "down". Use it for single presses.
@@ -109,7 +109,7 @@ for event in keysdown:
 
 This queue is empty when no new key press happened in the current frame.
 
-#### `keysup = renderer.keysup`
+#### `keysup`
 
 Contains a **list of key-up events**. These events fire when a key is released.
 They are useful for toggles or for stopping an action exactly when the player
@@ -121,7 +121,7 @@ for event in keysup:
         stop_moving()
 ```
 
-#### `mousemotions = renderer.mousemotions`
+#### `mousemotions`
 
 Contains a **list of mouse motion events**. Every event has at least a `pos`
 attribute with the current cursor position in logical (virtual) coordinates, and
@@ -135,7 +135,7 @@ for event in mousemotions:
 Read [Images and coordinate systems](images.md) to learn how logical positions
 map to your canvas.
 
-#### `mousebuttonsdown = renderer.mousebuttonsdown`
+#### `mousebuttonsdown`
 
 Contains a **list of mouse button down events**. They fire when the user presses
 any mouse button. Events include the button name and the mouse position.
@@ -146,7 +146,7 @@ for event in mousebuttonsdown:
         start_drag(event.pos)
 ```
 
-#### `mousebuttonsup = renderer.mousebuttonsup`
+#### `mousebuttonsup`
 
 Contains a **list of mouse button up events**. They fire when the user releases
 any mouse button. Use them to finish actions like drawing a line or confirming a
