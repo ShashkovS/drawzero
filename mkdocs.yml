@@ -16,7 +16,7 @@ nav:
     - Keyboard and mouse input: keyboard_and_mouse_input.md
 
 theme:
-  name: material
+  name: readthedocs
   highlightjs: true
   language: ru
   features:
