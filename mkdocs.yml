@@ -39,6 +39,7 @@ plugins:
       default_handler: python
   - i18n:
       docs_structure: suffix
+      fallback_to_default: true
       languages:
         - locale: en
           name: English

@@ -2,9 +2,9 @@ name: Build & Deploy MkDocs to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master, main ]
   pull_request:
-    branches: [ main ]
+    branches: [ master, main ]
   workflow_dispatch:
 
 permissions:
@@ -70,8 +70,7 @@ jobs:
 
       - name: Add CNAMEs for custom domains
         run: |
-          printf "drawzero.org\ndrawzero.ru\n" > site/CNAME
-          test -f site/CNAME && cat site/CNAME
+          printf "drawzero.org\n" > site/CNAME
 
       - name: Upload artifact to Pages
         uses: actions/upload-pages-artifact@v3
