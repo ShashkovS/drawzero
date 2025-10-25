@@ -1,6 +1,0 @@
-pytest
-coverage
-wheel
-twine
-mkdocs-material
-mkdocstrings-python
