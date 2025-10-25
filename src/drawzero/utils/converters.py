@@ -131,7 +131,12 @@ def _to_rect(rect: List, error: BadDrawParmsError) -> Optional[Tuple[int, int, i
         error.errors.append(I18N.bad_rect.format(rect))
         error.errors.append(I18N.use_rect_ints)
         return None
-    if len(rect) != 4:
+    if len(rect) == 6 and rect[-1] == 200 and rect[-2] == 500:  # default width and length attached
+        rect.pop()
+        rect.pop()
+    elif len(rect) == 5 and rect[-1] in (200, 500):
+        rect.pop()
+    elif len(rect) != 4:
         error.errors.append(I18N.bad_rect.format(rect))
         error.errors.append(I18N.use_rect_correct)
         return None

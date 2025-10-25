@@ -6,9 +6,10 @@ os.environ['EJUDGE_MODE'] = 'true'
 
 from drawzero import *
 
-filled_circle('boo')
+# filled_circle('boo')
 # line('nocolor', (100, 100), ('asdf',))
-circle('red', (100, 100), 'asd', line_width=0)
+# circle('red', (100, 100), 'asd', line_width=0)
+# filled_rect('yellow', (250, 350, 50, 100))  # tuple[x,y,w,h] is also OK
 
 
 class ExceptionPrinter:

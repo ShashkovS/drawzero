@@ -14,7 +14,3 @@ line('orange', (100, 500), (900, 500))
 # Центрированный текст
 text('green', 'Hello world!', (500, 250), fontsize=72)
 text('blue', 'Привет, мир!', (500, 750), fontsize=72)
-
-# Run loop
-# Запуск
-run()

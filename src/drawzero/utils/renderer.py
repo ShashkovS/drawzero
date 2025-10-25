@@ -4,6 +4,14 @@ import ctypes
 import os
 from typing import Tuple, List, Union, Optional
 
+import warnings
+warnings.filterwarnings(
+    "ignore",
+    message=r"pkg_resources is deprecated.*",
+    category=UserWarning,
+    module=r"pygame\.pkgdata",
+)
+
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 import pygame
 import pygame.locals

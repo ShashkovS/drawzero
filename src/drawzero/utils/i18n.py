@@ -7,20 +7,36 @@ __all__ = ['I18N', 'set_lang']
 _known_languages = {'en', 'ru'}
 
 
-def _get_best_lang():
-    if os.getenv('LANG', 'None').startswith('ru'):
-        return 'ru'
-    elif locale.getdefaultlocale() and (locale.getdefaultlocale()[0] or '').startswith('ru'):
-        return 'ru'
-    elif hasattr(ctypes, 'windll'):
-        try:
-            windll = ctypes.windll.kernel32
-            lang_code = windll.GetUserDefaultUILanguage()
-            if locale.windows_locale[lang_code].startswith('ru'):
-                return 'ru'
-        except:
-            pass
-    return 'en'
+def _get_best_lang() -> str:
+    for var in ("LANGUAGE", "LC_ALL", "LC_MESSAGES", "LANG"):
+        val = os.getenv(var)
+        if val and val.lower().startswith("ru"):
+            return "ru"
+
+    try:
+        loc_str = locale.setlocale(locale.LC_CTYPE, None)  # e.g. "ru_RU.UTF-8"
+        if isinstance(loc_str, str) and loc_str.lower().startswith("ru"):
+            return "ru"
+    except Exception:
+        pass
+
+    try:
+        lang_tuple = locale.getlocale(locale.LC_CTYPE)  # e.g. ("ru_RU", "UTF-8")
+        if lang_tuple and lang_tuple[0] and lang_tuple[0].lower().startswith("ru"):
+            return "ru"
+    except Exception:
+        pass
+
+    try:
+        if hasattr(ctypes, "windll"):
+            lang_code = ctypes.windll.kernel32.GetUserDefaultUILanguage()
+            lang_name = locale.windows_locale.get(int(lang_code), "")
+            if isinstance(lang_name, str) and lang_name.lower().startswith("ru"):
+                return "ru"
+    except Exception:
+        pass
+
+    return "en"
 
 
 class I18N:

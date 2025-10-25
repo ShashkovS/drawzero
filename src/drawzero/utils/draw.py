@@ -87,6 +87,8 @@ def filled_circle(color='red', pos=(100, 100), radius=10, *args, alpha=255):
     except BadDrawParmsError as error:
         error.call_string = error.call_string.replace(', line_width=0', '').replace('circle', 'filled_circle')
         error.example = error.example.replace(', line_width=0', '').replace('circle', 'filled_circle')
+        error.__traceback__ = None
+        raise error from None
 
 
 def rect(color='red', pos=(100, 100), width=500, height=200, *args, alpha=255, line_width: int = None):
@@ -117,9 +119,11 @@ def filled_rect(color='red', pos=(100, 100), width=500, height=200, *args, alpha
     try:
         rect(color, pos, width, height, *args, alpha=alpha, line_width=0)
     except BadDrawParmsError as error:
-        error.call_string = error.call_string.replace(', line_width=0', '').replace('rect', 'filled_rect')
-        error.example = error.example.replace(', line_width=0', '').replace('rect', 'filled_rect')
-        raise error
+        error.call_string = error.call_string.replace(', line_width=0', '').replace('rect', 'filled_rect', 1)
+        error.example = error.example.replace(', line_width=0', '').replace('rect', 'filled_rect', 1)
+        error.__traceback__ = None
+        raise error from None
+
 
 
 def ellipse(color='red', pos=(100, 100), width=500, height=200, *args, alpha=255, line_width: int = None):
@@ -151,7 +155,9 @@ def filled_ellipse(color='red', pos=(100, 100), width=500, height=200, *args, al
     except BadDrawParmsError as error:
         error.call_string = error.call_string.replace(', line_width=0', '').replace('ellipse', 'filled_ellipse')
         error.example = error.example.replace(', line_width=0', '').replace('ellipse', 'filled_ellipse')
-        raise error
+        error.__traceback__ = None
+        raise error from None
+
 
 
 def arc(color='red', pos=(100, 100), width=500, height=200, start_angle=45, stop_angle=270, alpha=255, line_width: int = None):
@@ -215,7 +221,9 @@ def filled_rect_rotated(color='red', pos=(100, 100), width=500, height=200, angl
     except BadDrawParmsError as error:
         error.call_string = error.call_string.replace(', line_width=0', '').replace('rect_rotated', 'filled_rect_rotated')
         error.example = error.example.replace(', line_width=0', '').replace('rect_rotated', 'filled_rect_rotated')
-        raise error
+        error.__traceback__ = None
+        raise error from None
+
 
 
 def polygon(color='red', *points, alpha=255, line_width: int = None):
@@ -247,7 +255,9 @@ def filled_polygon(color='red', *points, alpha=255):
     except BadDrawParmsError as error:
         error.call_string = error.call_string.replace(', line_width=0', '').replace('polygon', 'filled_polygon')
         error.example = error.example.replace(', line_width=0', '').replace('polygon', 'filled_polygon')
-        raise error
+        error.__traceback__ = None
+        raise error from None
+
 
 
 _VALID_ALIGN = {x + y for x in '<.>' for y in '^.v'}

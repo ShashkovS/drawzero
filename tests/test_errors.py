@@ -39,7 +39,7 @@ class RunExamples(unittest.TestCase):
         exception_printer = ExceptionPrinter()
         for bad_color in 'foo', '#zzz', 123, (1, 1), (1, 1, 1, 1, 1), []:
             # TODO filled_circle
-            for func in fill, text, line, circle, rect, filled_rect, filled_rect_rotated, rect_rotated, filled_polygon, polygon, ellipse, filled_ellipse, arc:
+            for func in fill, text, line, circle, filled_circle, rect, filled_rect, filled_rect_rotated, rect_rotated, filled_polygon, polygon, ellipse, filled_ellipse, arc:
                 with exception_printer:
                     func(bad_color)
                 msg = f'func={func.__name__}, {bad_color=}'
@@ -53,7 +53,7 @@ class RunExamples(unittest.TestCase):
         exception_printer = ExceptionPrinter()
         for bad_coords in 'xxx', ['xxx'], ['xxx', 'yyy'], [1], [None], [1, 'xx']:
             # TODO filled_circle
-            for func in text, line, circle, rect, filled_rect, filled_rect_rotated, rect_rotated, filled_polygon, polygon, ellipse, filled_ellipse, arc:
+            for func in text, line, circle, filled_circle, rect, filled_rect, filled_rect_rotated, rect_rotated, filled_polygon, polygon, ellipse, filled_ellipse, arc:
                 with exception_printer:
                     if func is text:
                         text('red', 'text', bad_coords)
