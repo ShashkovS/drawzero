@@ -162,8 +162,9 @@ rect((139, 69, 19), (200, 200), 400, 300)
 from drawzero import *
 
 filled_rect((30, 30, 30), (50, 50), 300, 150)
-text('white', 'Счет: 1200', (70, 90))
+text('white', 'Score: 1200', (50 + 300/2, 50 + 150/2))
 ```
+![prim09](imgs/prim09.png)
 
 **Пример – плитка шахматной доски**
 
@@ -172,9 +173,15 @@ from drawzero import *
 
 for row in range(4):
     for col in range(4):
-        color = (255, 255, 255) if (row + col) % 2 == 0 else (0, 0, 0)
+        if (row + col) % 2 == 0:
+            color = C.white
+        else:
+            color = C.black
         filled_rect(color, (100 + col * 60, 100 + row * 60), 60, 60)
+
 ```
+![prim10](imgs/prim10.png)
+
 
 Этот цикл проходит по 16 квадратам и выбирает белый или черный цвет с помощью RGB-кортежей.
 
@@ -218,6 +225,7 @@ from drawzero import *
 
 grid()
 ```
+![prim11](imgs/prim11.png)
 
 Вы можете рисовать другие фигуры поверх сетки, а затем удалить вызов `grid()`, когда закончите планирование.
 
@@ -232,6 +240,7 @@ from drawzero import *
 
 polygon('orange', (200, 800), (500, 400), (800, 800))
 ```
+![prim12](imgs/prim12.png)
 
 **Пример – контур звезды**
 
@@ -250,8 +259,10 @@ points = [
     (260, 380),
     (440, 380),
 ]
-polygon('gold', *points)
+polygon('gold', points)
 ```
+![prim13](imgs/prim13.png)
+
 
 ### `filled_polygon(color='red', *points)`
 
@@ -266,6 +277,8 @@ shape = [(500, 200), (700, 400), (500, 800), (300, 400)]
 filled_polygon('lightblue', *shape)
 polygon('navy', *shape)
 ```
+![prim14](imgs/prim14.png)
+
 
 **Пример – силуэты гор**
 
@@ -274,9 +287,11 @@ from drawzero import *
 
 mountain1 = [(0, 800), (200, 400), (400, 800)]
 mountain2 = [(300, 800), (550, 300), (800, 800)]
-filled_polygon((70, 90, 110), *mountain1)
-filled_polygon((50, 70, 90), *mountain2)
+filled_polygon((70, 90, 110), mountain1)
+filled_polygon((50, 70, 90), mountain2)
 ```
+![prim15](imgs/prim15.png)
+
 
 Второй многоугольник использует RGB-кортежи для более темного оттенка.
 
@@ -294,7 +309,7 @@ filled_polygon((50, 70, 90), *mountain2)
 ```python
 from drawzero import *
 
-text('white', 'Уровень пройден!', (500, 120), 48, '.^')
+text('white', 'Level Complete!', (500, 120), 48, '.^')
 ```
 
 **Пример – метки рядом с фигурами**
@@ -303,9 +318,10 @@ text('white', 'Уровень пройден!', (500, 120), 48, '.^')
 from drawzero import *
 
 rect('white', (150, 700), 200, 120)
-text('white', 'База игрока', (150, 700), 24, '<^')
-text('yellow', 'Опасная зона', (250, 760), 24, '..')
+text('white', 'Player base', (150, 700), 24, '<^')
+text('yellow', 'Danger zone', (250, 760), 24, '..')
 ```
+![prim16](imgs/prim16.png)
 
 ### `fill(color='red')`
 

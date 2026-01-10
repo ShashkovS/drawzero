@@ -158,8 +158,9 @@ Draws a solid rectangle.
 from drawzero import *
 
 filled_rect((30, 30, 30), (50, 50), 300, 150)
-text('white', 'Score: 1200', (70, 90))
+text('white', 'Score: 1200', (50 + 300/2, 50 + 150/2))
 ```
+![prim09](imgs/prim09.png)
 
 **Example – checkerboard tile**
 
@@ -168,9 +169,14 @@ from drawzero import *
 
 for row in range(4):
     for col in range(4):
-        color = (255, 255, 255) if (row + col) % 2 == 0 else (0, 0, 0)
+        if (row + col) % 2 == 0:
+            color = C.white
+        else:
+            color = C.black
         filled_rect(color, (100 + col * 60, 100 + row * 60), 60, 60)
 ```
+![prim10](imgs/prim10.png)
+
 
 This loops over 16 squares and chooses white or black using the RGB tuples.
 
@@ -214,6 +220,7 @@ from drawzero import *
 
 grid()
 ```
+![prim11](imgs/prim11.png)
 
 You can draw other shapes on top of the grid and then remove the `grid()` call once you finish planning.
 
@@ -228,6 +235,7 @@ from drawzero import *
 
 polygon('orange', (200, 800), (500, 400), (800, 800))
 ```
+![prim12](imgs/prim12.png)
 
 **Example – star outline**
 
@@ -246,8 +254,10 @@ points = [
     (260, 380),
     (440, 380),
 ]
-polygon('gold', *points)
+polygon('gold', points)
 ```
+![prim13](imgs/prim13.png)
+
 
 ### `filled_polygon(color='red', *points)`
 
@@ -262,6 +272,8 @@ shape = [(500, 200), (700, 400), (500, 800), (300, 400)]
 filled_polygon('lightblue', *shape)
 polygon('navy', *shape)
 ```
+![prim14](imgs/prim14.png)
+
 
 **Example – mountain silhouettes**
 
@@ -270,9 +282,11 @@ from drawzero import *
 
 mountain1 = [(0, 800), (200, 400), (400, 800)]
 mountain2 = [(300, 800), (550, 300), (800, 800)]
-filled_polygon((70, 90, 110), *mountain1)
-filled_polygon((50, 70, 90), *mountain2)
+filled_polygon((70, 90, 110), mountain1)
+filled_polygon((50, 70, 90), mountain2)
 ```
+![prim15](imgs/prim15.png)
+
 
 The second polygon uses RGB tuples for a darker shade.
 
@@ -302,6 +316,8 @@ rect('white', (150, 700), 200, 120)
 text('white', 'Player base', (150, 700), 24, '<^')
 text('yellow', 'Danger zone', (250, 760), 24, '..')
 ```
+![prim16](imgs/prim16.png)
+
 
 ### `fill(color='red')`
 
