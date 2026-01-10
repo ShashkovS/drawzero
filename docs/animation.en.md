@@ -60,6 +60,7 @@ while True:
     if x > 1100:
         x = 50
 ```
+![anim01](imgs/anim01.gif)
 
 Run it and you will see the circle travel across the screen. Try changing the
 speed or the size to experiment.
@@ -175,6 +176,7 @@ can store the timestamp at the end of each loop using the `time()` function and
 scale your motion by that delta.
 
 ```python
+from drawzero import *
 from time import time
 
 x = 100

@@ -59,6 +59,7 @@ while True:
     if x > 1100:
         x = 50
 ```
+![anim01](imgs/anim01.gif)
 
 Запустите ее, и вы увидите, как круг движется по экрану. Попробуйте изменить
 скорость или размер, чтобы поэкспериментировать.
@@ -177,6 +178,7 @@ def fps(fontsize=24, *, prev=[time()]):
 эту дельту.
 
 ```python
+from drawzero import *
 from time import time
 
 x = 100

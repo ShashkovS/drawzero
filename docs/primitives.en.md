@@ -38,6 +38,7 @@ from drawzero import *
 
 line('white', (0, 0), (1000, 1000))
 ```
+![prim01](imgs/prim01.png)
 
 This draws a thin white line from the top-left corner to the bottom-right corner.
 
@@ -49,6 +50,7 @@ from drawzero import *
 line('cyan', (500, 0), (500, 1000))
 line('cyan', (0, 500), (1000, 500))
 ```
+![prim02](imgs/prim02.png)
 
 The two calls create a vertical and a horizontal line that meet at the center.
 
@@ -68,6 +70,7 @@ from drawzero import *
 
 circle('blue', (300, 300), 80)
 ```
+![prim03](imgs/prim03.png)
 
 **Example – three concentric circles**
 
@@ -79,6 +82,7 @@ circle('orange', center, 40)
 circle('white', center, 80)
 circle('green', center, 120)
 ```
+![prim04](imgs/prim04.png)
 
 ### `filled_circle(color='red', pos=(100, 100), radius=10, *args)`
 
@@ -94,6 +98,8 @@ filled_circle('red', (x, 200), 60)
 filled_circle('yellow', (x, 400), 60)
 filled_circle('green', (x, 600), 60)
 ```
+![prim05](imgs/prim05.png)
+
 
 **Example – sun with a face**
 
@@ -105,6 +111,7 @@ filled_circle('black', (760, 170), 10)
 filled_circle('black', (840, 170), 10)
 line('black', (760, 240), (840, 240))
 ```
+![prim06](imgs/prim06.png)
 
 The last `line` reuses the knowledge from the previous section to draw a simple smile.
 
@@ -127,6 +134,7 @@ from drawzero import *
 
 rect((0, 128, 128), (100, 100), 300, 200)
 ```
+![prim07](imgs/prim07.png)
 
 **Example – picture frame around a filled area**
 
@@ -136,6 +144,7 @@ from drawzero import *
 filled_rect((240, 230, 140), (200, 200), 400, 300)
 rect((139, 69, 19), (200, 200), 400, 300)
 ```
+![prim08](imgs/prim08.png)
 
 The first call paints the background. The second call, using `rect`, keeps only the outline.
 
@@ -167,19 +176,19 @@ This loops over 16 squares and chooses white or black using the RGB tuples.
 
 ## Color helper constant `C`
 
-You can also import the special object `C` that contains every named color as an attribute.  
+The special object `C` contains every named color as an attribute and is available after `from drawzero import *`.
 This works great in modern IDEs: typing `C.` shows a dropdown list of color names, and the IDE can warn you when the name is wrong.
 
 ```python
-from drawzero import C, line
+from drawzero import *
 
 line(C.lightskyblue, (100, 500), (900, 500))
 ```
 
-If you prefer, you can import both styles together:
+Another example with `C`:
 
 ```python
-from drawzero import *, C
+from drawzero import *
 filled_circle(C.magenta, (500, 500), 120)
 ```
 
