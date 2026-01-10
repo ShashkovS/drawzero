@@ -83,10 +83,11 @@ from drawzero import *
 
 glow = Gradient([C.black, C.blue, C.cyan, C.white])
 
-for index in range(10):
+for index in range(9,  -1, -1):
     color = glow(index / 9)   # 0.0 .. 1.0
     filled_circle(color, (500, 500), 40 + index * 15)
 ```
+![grad01](imgs/grad01.png)
 
 Combine this with alpha values from [Transparency and line width](transparency_and_line_width.md) to create soft halos.
 
@@ -105,6 +106,7 @@ for row in range(5):
         filled_rect(color, (100 + col * cell_size, 100 + row * cell_size), cell_size, cell_size)
         text('white', f"{value}", (110 + col * cell_size, 110 + row * cell_size))
 ```
+![grad02](imgs/grad02.png)
 
 The helper clamps any number above `30` to the last color (`C.orangered`).
 
@@ -118,7 +120,8 @@ from drawzero import *
 trail = Gradient([C.white, C.skyblue, C.blue, C.navy])
 ball = Pt(200, 500, heading=0)
 
-while tick():
+while True:
+    tick()
     clear()
     for tail in range(20):
         color = trail(tail / 19)
@@ -127,6 +130,7 @@ while tick():
     if ball.x > 1000:
         ball.goto(0, ball.y)
 ```
+![grad03](imgs/grad03.png)
 
 The gradient gives darker colors for older trail segments while the point keeps moving.
 
