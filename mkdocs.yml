@@ -5,7 +5,6 @@ repo_url: https://github.com/ShashkovS/drawzero
 nav:
   - DrawZero: index.md
   - Installation: installation.md
-  - Examples Overview: examples_overview.md
   - Examples: examples.md
   - Animations: animation.md
   - Code Reference:

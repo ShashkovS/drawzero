@@ -28,7 +28,7 @@ print(heat(1.0))   # (255, 0, 0) - last color
 * **Animated effects** – change particle colors as they age.
 * **Status bars** – map progress (0–100) to a palette.
 
-Open the example [`13_gradients.py`](https://github.com/ShashkovS/drawzero/blob/master/src/drawzero/examples/13_gradients.py) after reading this page. The file is also listed in the [Examples overview](examples_overview.md).
+Open the example [`13_gradients.py`](https://github.com/ShashkovS/drawzero/blob/master/src/drawzero/examples/13_gradients.py) after reading this page. The file is also listed in [Examples](examples.md).
 
 ## Constructing a gradient
 
@@ -159,7 +159,7 @@ print(heat)
 
 * [Drawing primitives](primitives.md) – shows every function that accepts colors.
 * [Pt helper](pt.md) – use moving points together with gradients for animated trails.
-* [Examples overview](examples_overview.md) – find `13_gradients.py` plus other scripts that mix gradients with motion.
+* [Examples](examples.md) – find `13_gradients.py` plus other scripts that mix gradients with motion.
 * [Architecture notes](architecture.md) – quick summary of how utility helpers (including `Gradient`) fit into the project.
 
 Try creating your own palette, then feed its colors into shapes, particle effects, or HUD elements. Small experiments make the gradient rules stick quickly.

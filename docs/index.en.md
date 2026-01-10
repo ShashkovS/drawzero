@@ -12,5 +12,5 @@ straight to the topic you need.
   text helper.
 - [Animations](animation.md) – understand the frame loop, `tick()`, and motion
   trails for moving sketches.
-- [Examples overview](examples_overview.md) – browse runnable demo scripts that
+- [Examples](examples.md) – browse runnable demo scripts that
   combine the primitives and animation helpers.

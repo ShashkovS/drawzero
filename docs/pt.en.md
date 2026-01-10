@@ -255,7 +255,7 @@ while tick():
     planet.rotate_around(3, center)
 ```
 
-Read [Examples overview](examples_overview.md) and open `05_points.py` or `09_animation_rectangles.py` to see longer scripts that use these methods together.
+Read [Examples](examples.md) and open `05_points.py` or `09_animation_rectangles.py` to see longer scripts that use these methods together.
 
 ## Troubleshooting tips
 
@@ -269,6 +269,6 @@ Read [Examples overview](examples_overview.md) and open `05_points.py` or `09_an
 * [Drawing primitives](primitives.md) – shapes and text helpers that happily accept `Pt` objects.
 * [Animations](animation.md) – how to redraw every frame and schedule updates with `tick()`.
 * [Gradient helper](gradient.md) – smooth color transitions that go well with moving points.
-* [Examples overview](examples_overview.md) – table of scripts, including the ones that focus on `Pt`.
+* [Examples](examples.md) – table of scripts, including the ones that focus on `Pt`.
 
 Experiment with the snippets above, then mix `Pt` with the other utilities to build your own scenes.

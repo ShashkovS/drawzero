@@ -38,3 +38,6 @@ while True:
     filled_rect(C.red, x, y, SIZE, SIZE)
     filled_circle(C.yellow, mouse_pos(), 3)
     tick()
+
+
+
