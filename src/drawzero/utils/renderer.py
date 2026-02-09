@@ -255,6 +255,7 @@ def _resize(nw: int, nh: int):
     _surface = pygame.display.set_mode((surface_size, surface_size), pygame.locals.RESIZABLE)
     _surface.blit(scaled, (0, 0))
     _saved_surface = _surface.copy()
+    _display_update()
 
 
 def _display_update():
@@ -337,10 +338,9 @@ def draw_set_line_width(w):
 
 
 def _draw_go():
-    _display_update()
     while True:
-        # We need this hack to process close button clicks
-        draw_tick(display_update=False)
+        # Keep the window responsive and ensure the last frame is flushed.
+        draw_tick()
 
 
 def draw_quit():
