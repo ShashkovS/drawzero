@@ -17,31 +17,34 @@ A zero-boilerplate canvas drawing framework for Python 3, based on Pygame.
 
 Here's some neat stuff you can do:
 
-``` python
-# import all
+```python
+# Just import everything
+# Импортируем всё
 from drawzero import *
 
-# simple shapes
-fill('#12bbae')
-line('red', (400, 400), (800, 800))
-circle('yellow', (500, 560), 200)
-filled_circle('brown', (500, 500), 20)
-text('red', 'Hello, world!', (300, 200), 72)
-rect('blue', (200, 600), 100, 100)
-filled_rect('orange', (400, 600), 100, 100)
-polygon('white', [(20, 200), (100, 240), (40, 160)])
-filled_polygon('burlywood', 200, 400, 130, 304, 20, 342, 20, 458, 130, 496, )
+# Red rectangle with upper left corner at (50, 150) and width = 900, height = 700
+# Красный прямоугольник с левым верхнем углом в точке(50, 150), шириной 900 и высотой 700
+rect('red', (50, 150), 900, 700)
+
+# Straight orange line from (100, 500) to (900, 500)
+# Оранжевая прямая линия из точки (100, 500) в точку (900, 500)
+line('orange', (100, 500), (900, 500))
+
+# Centered text
+# Центрированный текст
+text('green', 'Hello world!', (500, 250), fontsize=72)
+text('blue', 'Привет, мир!', (500, 750), fontsize=72)
 ```
 
-<img alt="hello world" src="https://raw.githubusercontent.com/ShashkovS/drawzero/master/docs/hello_world.png" width="75%">
+<img alt="Hello world example" src="docs/hello_world.png" width="75%">
 
 # Animation
 
 Animations are also straightforward:
 
-<img alt="planet_animation" src="https://raw.githubusercontent.com/ShashkovS/drawzero/master/docs/planet_animation.gif" width="50%">
+<img alt="Planets animation" src="docs/planet_animation.gif" width="50%">
 
-``` python
+```python
 from drawzero import *
 from math import sin, cos, pi
 
@@ -52,25 +55,27 @@ moon_orbit = 100
 moon_radius = 10
 moon_rot_step = 2 * pi / 60
 
-i = 0
-while True:
-    i += 1
+for i in range(360 * 2):
+    # First we make all calculations for the next frame
     e_x = 500 + earth_orbit * cos(earth_rot_step * i)
     e_y = 500 + earth_orbit * sin(earth_rot_step * i)
     m_x = e_x + moon_orbit * cos(moon_rot_step * i)
     m_y = e_y + moon_orbit * sin(moon_rot_step * i)
 
+    # Sleep 1/30 second
+    tick()
+    # No we clear the canvas and draw the next frame
     clear()
+
     filled_circle(C.red, (500, 500), 100)
     filled_circle(C.blue, (e_x, e_y), earth_radius)
     filled_circle(C.yellow, (m_x, m_y), moon_radius)
-    tick()
 ```
 
 
 # Point class which acts like 2-d vector and Turtle both
 
-<img alt="transparent.png" src="https://raw.githubusercontent.com/ShashkovS/drawzero/master/docs/ex_05.png" width="50%">
+<img alt="Point example" src="docs/imgs/ex_05.png" width="50%">
 
 ```python
 from drawzero import *
@@ -138,62 +143,54 @@ for i in range(10):
 
 Transparency is also straightforward via alpha parameter or RGBA color:
 
-<img alt="transparent.png" src="https://raw.githubusercontent.com/ShashkovS/drawzero/master/docs/transparent.png" width="50%">
+<img alt="Transparency example" src="docs/transparent.png" width="50%">
 
 ```python
 from drawzero import *
 
-clear()
-fill(C.black)
-
 filled_circle('red', (100, 100), 20)
-filled_circle('blue', (100, 110), 22, alpha=100)  # <-- alpha
+# Set line_width to change line_width
 circle('red', (100, 100), 50, line_width=10)
-circle((0, 255, 0, 50), (100, 110), 50, line_width=10)  # <-- RGBA
-...
+# Set alpha from 0 to 255 to use transparency
+filled_circle('blue', (100, 110), 22, alpha=100)
+# Or user RGBA for color (RGBA stands for red green blue alpha)
+circle((0, 255, 0, 50), (100, 110), 50, line_width=10)
+
+filled_rect(C.aquamarine, (200, 100), 100, 40)
+filled_rect(C.darkmagenta, (210, 110), 100, 40, alpha=80)
+rect(C.darkgoldenrod, (180, 90), 200, 80, line_width=10)
+rect(C.hotpink, (190, 90), 200, 90, alpha=180, line_width=10)
+
+line('red', 600, 400, 600, 990)
+
+polygon('yellow', [(20, 300), (100, 340), (40, 260)], line_width=20)
+polygon((0, 0, 255, 200), [(20, 300), (100, 340), (40, 260)], line_width=15)
+polygon('red', [(20, 300), (100, 340), (40, 260)])
+
+filled_polygon('burlywood', 200, 600, 130, 504, 20, 542, 20, 658, 130, 696)
+filled_polygon(C.hotpink, 200, 700, 130, 604, 20, 642, 20, 758, 130, 796, alpha=100)
+
+line(C.green, (700, 100), (800, 200))
+line(C.green, (710, 100), (810, 200), line_width=5)
+line(C.red, (820, 100), (720, 200), line_width=10, alpha=50)
+line(C.blue, (830, 100), (730, 200), line_width=10, alpha=128)
+
+# Alpha channel is straightforward
+rect('yellow', (500, 100), 100, 700, line_width=30, alpha=255)  # via alpha
+rect('#00FFFF', (520, 120), 100, 700, line_width=30, alpha=100)  # via alpha
+filled_rect((0, 255, 0, 50), (100, 500), 700, 100)  # via rgba
+
+ellipse('grey', (100, 850), 200, 100, alpha=100)
+filled_ellipse('red', (100 + 50, 850 + 25), 100, 50, alpha=100)
+arc('blue', (200, 850), 200, 100, start_angle=45, stop_angle=270, alpha=100, line_width=10)
+
+fill(C.magenta, alpha=30)
 ```
-
-<details>
-  <summary>Full code for transparency and line width example</summary>
-
-  ``` python
-  from drawzero import *
-
-  clear()
-  fill(C.black)
-
-  filled_circle('red', (100, 100), 20)
-  filled_circle('blue', (100, 110), 22, alpha=100)
-  circle('red', (100, 100), 50, line_width=10)
-  circle((0, 255, 0, 50), (100, 110), 50, line_width=10)
-  filled_rect(C.aquamarine, (200, 100), 100, 40)
-  filled_rect(C.darkmagenta, (210, 110), 100, 40, alpha=80)
-  rect(C.darkgoldenrod, (180, 90), 200, 80, line_width=10)
-  rect(C.hotpink, (190, 90), 200, 90, alpha=180, line_width=10)
-    
-  line('red', 600, 400, 600, 990)
-  image('cat.png', (500, 500))
-  image('cat.png', (500, 800), width=200, alpha=128)
-  image('cat.png', (550, 850), width=200, alpha=128)
-    
-  polygon('yellow', [(20, 300), (100, 340), (40, 260)], line_width=20)
-  polygon((0, 0, 255, 200), [(20, 300), (100, 340), (40, 260)], line_width=15)
-  polygon('red', [(20, 300), (100, 340), (40, 260)])
-    
-  filled_polygon('burlywood', 200, 600, 130, 504, 20, 542, 20, 658, 130, 696)
-  filled_polygon(C.hotpink, 200, 700, 130, 604, 20, 642, 20, 758, 130, 796, alpha=100)
-    
-  line(C.green, (700, 100), (800, 200))
-  line(C.green, (710, 100), (810, 200), line_width=5)
-  line(C.red, (820, 100), (720, 200), line_width=10, alpha=50)
-  line(C.blue, (830, 100), (730, 200), line_width=10, alpha=128)
-  ```
-</details>
 
 
 # Color gradients
 
-<img alt="transparent.png" src="https://raw.githubusercontent.com/ShashkovS/drawzero/master/docs/ex_13.png" width="50%">
+<img alt="Gradient example" src="docs/imgs/ex_13.png" width="50%">
 
 ```python
 from drawzero import *
@@ -221,10 +218,10 @@ text(C.white, 'scale3 = Gradient([C.white, C.black, C.red, C.black, C.white], 20
 
 Process keyboard events in two ways: check if key is pressed via `get_keys_pressed()` or run throw `keysdown` or `keysup` events:
 
-``` python
+```python
 from drawzero import *
 
-upper_text = 'Typed: '
+typed_letters = 'Typed: '
 SIZE = 20
 x = y = 500 - SIZE // 2
 
@@ -234,28 +231,37 @@ while True:
         x, y = mousebuttonsdown[0].pos
     # Keys which are still pressed
     keys = get_keys_pressed()
-    if keys[K.UP] or keys[K.w]:
-        y -= 5
-    if keys[K.DOWN] or keys[K.s]:
-        y += 5
+    dx = dy = 0
     if keys[K.LEFT] or keys[K.a]:
-        x -= 5
+        dx = -5
     if keys[K.RIGHT] or keys[K.d]:
-        x += 5
+        dx = +5
+    if keys[K.UP] or keys[K.w]:
+        dy = -5
+    if keys[K.DOWN] or keys[K.s]:
+        dy = +5
+    if keys[K.MOD_SHIFT] or keys[K.MOD_CTRL]:
+        dx *= 4
+        dy *= 4
+    x += dx
+    y += dy
     # Keyboard events
     for ev in keysdown:
         if ev.unicode:
-            upper_text += ev.unicode
+            typed_letters += ev.unicode
 
     # Redraw everything
     clear()
+    text(C.white, 'Press arrows to move square', (500, 70), 48)
+    text(C.white, 'Press letters to type them', (500, 130), 48)
+    text(C.white, 'Click mouse to move square', (500, 190), 48)
+    text(C.green, typed_letters, (100, 250), 48, align='<.')
     filled_rect(C.red, x, y, SIZE, SIZE)
-    text(C.white, upper_text, (100, 5))
     filled_circle(C.yellow, mouse_pos(), 3)
     tick()
 ```
 
-<img alt="keyboard_and_mouse_events.gif" src="https://raw.githubusercontent.com/ShashkovS/drawzero/master/docs/keyboard_and_mouse_events.gif" width="50%">
+<img alt="Keyboard and mouse events" src="docs/keyboard_and_mouse_events.gif" width="50%">
 
 
 
