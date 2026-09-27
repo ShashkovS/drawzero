@@ -14,3 +14,5 @@ straight to the topic you need.
   trails for moving sketches.
 - [Examples](examples.md) – browse runnable demo scripts that
   combine the primitives and animation helpers.
+
+Read [keyboard and mouse input](keyboard_and_mouse_input.md) for continuous controls, one-shot actions, ordered text, and precise drawing.

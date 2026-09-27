@@ -4,7 +4,7 @@ circles = []
 tick()
 scale = Gradient([C.gray10, C.blue, C.orange], 100, 500)
 while True:
-    x, y = mouse.pos
+    x, y = mouse_pos()
     circles.append([x, y, 100])
     clear()
     for i in range(len(circles) - 1, -1, -1):

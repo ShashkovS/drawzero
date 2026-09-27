@@ -160,6 +160,12 @@ class I18N:
         'en': 'Incorrect number of points for the input data: there should be either 2, or exactly as many as there are colors, that is, {}.',
     }
 
+    input_invalid = {'en': 'Invalid key or mouse button: {!r}.', 'ru': 'Некорректная клавиша или кнопка мыши: {!r}.'}
+    input_suggestion = {'en': ' Did you mean {!r}?', 'ru': ' Возможно, вы имели в виду {!r}?'}
+    input_mask = {'en': 'MOD is a modifier mask; query a key or "ctrl", "shift", "alt", "meta".', 'ru': 'MOD — маска модификаторов; укажите клавишу или "ctrl", "shift", "alt", "meta".'}
+    input_group = {'en': 'An axis group must be a nonempty flat tuple/list of keys.', 'ru': 'Группа оси должна быть непустым плоским кортежем/списком клавиш.'}
+    input_fps = {'en': 'fps must be a finite nonnegative number.', 'ru': 'fps должен быть конечным неотрицательным числом.'}
+
     @classmethod
     def set_lang(cls, lang):
         if lang not in _known_languages:

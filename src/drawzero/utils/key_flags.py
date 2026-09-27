@@ -1,7 +1,6 @@
 """
 Great pack of pygame keyboard events constansts packed into object.
 """
-import os
 
 __all__ = ['key_flags', 'K', 'KEY']
 
@@ -32,16 +31,6 @@ _pygame_constants = {
     'KMOD_LCTRL': 64, 'KMOD_LGUI': 1024, 'KMOD_LMETA': 1024, 'KMOD_LSHIFT': 1, 'KMOD_META': 3072, 'KMOD_MODE': 16384, 'KMOD_NONE': 0,
     'KMOD_NUM': 4096, 'KMOD_RALT': 512, 'KMOD_RCTRL': 128, 'KMOD_RGUI': 2048, 'KMOD_RMETA': 2048, 'KMOD_RSHIFT': 2, 'KMOD_SHIFT': 3,
 }
-
-# TODO Check if GUI is possible
-if not bool(os.environ.get('EJUDGE_MODE', False)):
-    try:
-        import pygame.constants
-        _pygame_constants.update({getattr(pygame.constants, name) for name in dir(pygame.constants)})
-    except Exception as e:
-        # In console mode pygame is not needed. So we use just some constants, actually taken from pygame.constants
-        pass
-
 
 class KeyFlags:
     MOD_ALT = _pygame_constants['KMOD_ALT']
@@ -254,7 +243,7 @@ class KeyFlags:
     Z = _pygame_constants['K_z']
 
     def __str__(self):
-        print([f'K.{c}' for c in dir(self) if not c.startswith('__')])
+        return ', '.join(f'K.{c}' for c in dir(self) if not c.startswith('_'))
 
 
 K = KEY = key_flags = KeyFlags()

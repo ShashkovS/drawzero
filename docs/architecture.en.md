@@ -14,7 +14,7 @@ The call exposes:
 
 * Drawing helpers such as `line`, `circle`, `rect`, `polygon`, `text`, `image`, and their filled variants.
 * Animation and timing helpers: `run`, `tick`, `sleep`, `fps`, and `quit`.
-* Input helpers for reading the keyboard and mouse: `get_keys_pressed`, `keys_mods_pressed`, `get_mouse_pressed`, plus the shared lists `keysdown`, `keysup`, `mousemotions`, `mousebuttonsdown`, and `mousebuttonsup`.
+* Input: `keyboard`, `mouse`, `events()`, and the `K`, `M`, `MOD`, `E` namespaces.
 * Utility objects: the `screen` shim used by Pygame Zero style scripts, the `Pt` vector/turtle hybrid, the `Gradient` color ramp builder, localization via `set_lang`, the color namespaces (`C`, `COLORS`, `THECOLORS`, `ALL_COLORS`), keyboard constants (`K`, `KEY`), and `copy_examples()` for scaffolding tutorials.
 * Canvas configuration helpers such as `set_virtual_size()`.
 
@@ -50,3 +50,7 @@ The package includes bilingual example scripts that demonstrate primitives, anim
 ## Test suite
 
 Automated tests cover the drawing helpers, gradients, localization messages, point arithmetic, and example imports. Continuous integration runs them in both graphical mode and text mode (with `EJUDGE_MODE=true`) to ensure the public API behaves the same in either environment.
+
+## Input frames
+
+A renderer poll feeds one backend-independent reducer. A public `tick()` or `sleep()` publishes once, after all internal polls. Queries read this stable snapshot. Event payloads capture their coordinate scale at ingestion; read-only typed event tuples are materialized and cached on demand. Logical keys and physical scancodes are tracked separately. Focus regain reconciles final held state without creating edges. See the [input guide](keyboard_and_mouse_input.md).

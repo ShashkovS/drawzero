@@ -43,9 +43,7 @@ while True:
     elif cur_status == 3:
         text('red', 'Mismatch?', (500, 800), 48)
     # Ignore clicks for half a second after color change
-    for ev in mouse.events:
-        if ev.type != E.MOUSE_DOWN:
-            continue
+    for ev in mousebuttonsdown:
         if cur_ts - last_status_ts > 0.3:
             if ev.button == cur_status:
                 # User confirmed

@@ -22,8 +22,8 @@ Use the index below to jump to a specific script.
 | [`13_gradients.py`](#13_gradientspy) | [Gradient helper](gradient.md) | Builds several `Gradient` scales and visualizes them through stacked rectangles. |
 | [`14_animation_close_vertex.py`](#14_animation_close_vertexpy) | Proximity graph animation | Moves random `Pt` nodes with wrap-around motion, draws lines between nearby pairs, and uses FPS overlay. |
 | [`15_animation_firework.py`](#15_animation_fireworkpy) | Particle system | Implements `Particle` and `Firework` classes with physics updates, gradient-based glow, and clean-up logic. |
-| [`16_keyboard_and_mouse.py`](#16_keyboard_and_mousepy) | Input handling | Reads key state arrays and event queues to move a square, track typed characters, and follow the mouse. |
-| [`17_mouse_tube.py`](#17_mouse_tubepy) | Mouse trail effect | Captures `mouse_pos()` each frame, grows concentric circles with a gradient as they age. |
+| [`16_keyboard_and_mouse.py`](#16_keyboard_and_mousepy) | Input handling | Uses axes, grouped modifiers, one-shot actions, and event-time click positions. |
+| [`17_mouse_tube.py`](#17_mouse_tubepy) | Mouse trail effect | Captures `mouse.pos` each frame, grows concentric circles with a gradient as they age. |
 | [`18_game_stars.py`](#18_game_starspy) | 3D starfield mini-game | Uses dataclasses, random stars, and WASD/QE controls to navigate through a pseudo-3D field. |
 | [`19_game_colors.py`](#19_game_colorspy) | Reaction game | Displays color words versus actual colors, handles mouse button choices with time penalties. |
 | [`20_game_racing.py`](#20_game_racingpy) | Multiplayer mini-game | Assigns distinct key bindings per car, scrolls a precomputed road, and keeps per-player scores. |
@@ -167,7 +167,7 @@ Make your creations interactive by responding to keyboard and mouse input.
 
 ### 16_keyboard_and_mouse.py
 
-![16_keyboard_and_mouse](imgs/ex_16.webp)
+![16_keyboard_and_mouse](imgs/input-controls.png)
 ``` title="16_keyboard_and_mouse.py"
 --8<-- "src/drawzero/examples/16_keyboard_and_mouse.py"
 ```
@@ -202,4 +202,26 @@ Build simple games using the DrawZero library.
 ![20_game_racing](imgs/ex_20.webp)
 ``` title="20_game_racing.py"
 --8<-- "src/drawzero/examples/20_game_racing.py"
+```
+
+### 21_precise_drawing.py
+
+![Precise drawing from ordered pointer events](imgs/input-drawing.png)
+
+```python
+--8<-- "src/drawzero/examples/21_precise_drawing.py"
+```
+
+### 22_text_and_scroll.py
+
+![Ordered text and two-dimensional scrolling](imgs/input-text-scroll.png)
+
+```python
+--8<-- "src/drawzero/examples/22_text_and_scroll.py"
+```
+
+### 99_errors.py
+
+```python
+--8<-- "src/drawzero/examples/99_errors.py"
 ```

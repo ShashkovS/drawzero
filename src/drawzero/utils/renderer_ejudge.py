@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from .input import _input, _validate_fps
 
 from drawzero.utils.screen_size import set_real_size
 
@@ -41,10 +42,15 @@ def draw_clear():
 def draw_image(path, pos, width, alpha):
     print(json.dumps({"figure": "image", "path": path, "pos": pos, "width": width, "alpha": alpha}, cls=PathEncoder))
 
-def draw_tick(r=1):
+def draw_tick(r=1, *, fps=30):
+    _validate_fps(fps)
+    _input.begin()
+    _input.publish()
     print(json.dumps({"cmd": "tick", "r": r}))
 
 def draw_sleep(t=1):
+    _input.begin()
+    _input.publish()
     print(json.dumps({"cmd": "sleep", "t": t}))
 
 def draw_set_line_width(w):
@@ -56,9 +62,19 @@ def draw_quit():
 surface_size = 1000
 key_flags = None
 
-get_keys_pressed = lambda: []
-keys_mods_pressed = lambda: []
-get_mouse_pressed = lambda: []
+class _NeutralKeys:
+    def __getitem__(self, key):
+        return False
+
+    def __contains__(self, key):
+        return False
+
+
+_neutral_keys = _NeutralKeys()
+get_keys_pressed = lambda: _neutral_keys
+keys_mods_pressed = lambda: 0
+get_mouse_pressed = lambda: (False, False, False)
+mouse_pos = lambda: (0, 0)
 keysdown = []
 keysup = []
 mousemotions = []

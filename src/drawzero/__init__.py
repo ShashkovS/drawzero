@@ -5,6 +5,7 @@ A zero-boilerplate canvas drawing framework for Python 3, based on Pygame.
 """
 
 from .utils.draw import *
+from .utils.input import keyboard, mouse, events, M, MOD, E
 from .utils.pt import Pt
 from .utils.gradient import Gradient
 from .utils.copy_examples import copy_examples
@@ -15,6 +16,7 @@ from .utils.colors import C, COLORS, THECOLORS, ALL_COLORS
 from .__about__ import __author__, __copyright__, __version__
 
 __all__ = [
+    'keyboard', 'mouse', 'events', 'M', 'MOD', 'E',
     # spec
     '__author__', '__copyright__', '__version__',
     #

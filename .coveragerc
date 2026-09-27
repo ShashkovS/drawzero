@@ -1,0 +1,8 @@
+[run]
+branch = True
+patch = subprocess
+source = drawzero
+parallel = True
+
+[report]
+show_missing = True

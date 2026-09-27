@@ -348,13 +348,13 @@ def _update_events_coordinates():
         ev.rel = (from_canvas_x(x), from_canvas_y(y))
 
 
-def tick(r=1):
-    """Sleep for 1/30 of a second.
-    If tick functions is called in a loop, then sleep time is reduced so
-    takes 1/30 second between calls. For example if calculations between tick() calls take 1/60s,
-    then tick sleeps for 1/60s. So while calculations takes less then 1/30s tick()
-    we get 30 frames per second."""
-    renderer.draw_tick(r)
+def tick(r=1, *, fps=30):
+    """Present drawing and publish one input frame after r polls.
+
+    fps limits each poll interval (30 by default; zero is uncapped).
+    Positional r remains a poll count, not a frame rate.
+    """
+    renderer.draw_tick(r, fps=fps)
     _update_events_coordinates()
 
 

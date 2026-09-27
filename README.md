@@ -219,40 +219,23 @@ text(C.white, 'scale3 = Gradient([C.white, C.black, C.red, C.black, C.white], 20
 
 # Keyboard and mouse events
 
-Process keyboard events in two ways: check if key is pressed via `get_keys_pressed()` or run throw `keysdown` or `keysup` events:
+Use `keyboard`, `mouse`, and ordered `events()` snapshots prepared by `tick()`.
+See the complete [English input guide](https://drawzero.org/keyboard_and_mouse_input/)
+and [Russian input guide](https://drawzero.org/ru/keyboard_and_mouse_input/).
 
-``` python
+```python
 from drawzero import *
 
-upper_text = 'Typed: '
-SIZE = 20
-x = y = 500 - SIZE // 2
-
+x = y = 500
 while True:
-    # Mouse buttons events
-    if mousebuttonsdown:
-        x, y = mousebuttonsdown[0].pos
-    # Keys which are still pressed
-    keys = get_keys_pressed()
-    if keys[K.UP] or keys[K.w]:
-        y -= 5
-    if keys[K.DOWN] or keys[K.s]:
-        y += 5
-    if keys[K.LEFT] or keys[K.a]:
-        x -= 5
-    if keys[K.RIGHT] or keys[K.d]:
-        x += 5
-    # Keyboard events
-    for ev in keysdown:
-        if ev.unicode:
-            upper_text += ev.unicode
-
-    # Redraw everything
+    x += 4 * keyboard.axis(('left', 'a'), ('right', 'd'))
+    y += 4 * keyboard.axis(('up', 'w'), ('down', 's'))
+    if keyboard.just_pressed('space'):
+        x = y = 500
     clear()
-    filled_rect(C.red, x, y, SIZE, SIZE)
-    text(C.white, upper_text, (100, 5))
-    filled_circle(C.yellow, mouse_pos(), 3)
-    tick()
+    filled_circle(C.red, (x, y), 20)
+    filled_circle(C.yellow, mouse.pos, 3)
+    tick(fps=60)
 ```
 
 <img alt="keyboard_and_mouse_events.gif" src="https://raw.githubusercontent.com/ShashkovS/drawzero/master/docs/keyboard_and_mouse_events.gif" width="50%">

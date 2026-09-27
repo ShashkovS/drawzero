@@ -63,20 +63,20 @@ def draw_stars(stars):
     text('white', 'Press WASD or QE to move', (500, 5), 48, '.^')
 
 
-def process_keys(speed):
+def process_keys(pressed_keys, speed):
     '''Обрабатываем нажатия клавиш
     Используем WASD для вверх/вниз/влево/вправо и QE для вперёд/назад'''
-    if keyboard.pressed(K.UP) or keyboard.pressed(K.w):
+    if pressed_keys[K.UP] or pressed_keys[K.w]:
         speed[2] += 100
-    if keyboard.pressed(K.DOWN) or keyboard.pressed(K.s):
+    if pressed_keys[K.DOWN] or pressed_keys[K.s]:
         speed[2] -= 100
-    if keyboard.pressed(K.LEFT) or keyboard.pressed(K.a):
+    if pressed_keys[K.LEFT] or pressed_keys[K.a]:
         speed[0] += 100
-    if keyboard.pressed(K.RIGHT) or keyboard.pressed(K.d):
+    if pressed_keys[K.RIGHT] or pressed_keys[K.d]:
         speed[0] -= 100
-    if keyboard.pressed(K.q):
+    if pressed_keys[K.q]:
         speed[1] -= 1
-    if keyboard.pressed(K.e):
+    if pressed_keys[K.e]:
         speed[1] += 1
 
 
@@ -88,10 +88,10 @@ while True:
     # Заливаем всё чёрным
     fill((0, 0, 0))
     # Обрабатываем нажатия клавиш
-    process_keys(speed)
+    process_keys(get_keys_pressed(), speed)
     # Двигаем звёзды
     move_stars(stars, speed)
     # Рисуем звёзды
     draw_stars(stars)
-    # Ждём 1/30 секунды
+    # Ждём 1/60 секунды
     tick()

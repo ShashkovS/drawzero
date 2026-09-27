@@ -39,3 +39,18 @@ def from_canvas_x(x):
 
 def from_canvas_y(y):
     return VIRTUAL_HEIGHT / REAL_HEIGHT * y
+
+
+_input_geometry = None
+_input_factors = (1.0, 1.0)
+
+
+def _input_scale():
+    """Cached, safe input transform; does not change legacy conversions."""
+    global _input_geometry, _input_factors
+    geometry = (REAL_WIDTH, REAL_HEIGHT, VIRTUAL_WIDTH, VIRTUAL_HEIGHT)
+    if geometry != _input_geometry:
+        _input_geometry = geometry
+        _input_factors = (VIRTUAL_WIDTH / REAL_WIDTH if REAL_WIDTH > 0 else 1.0,
+                          VIRTUAL_HEIGHT / REAL_HEIGHT if REAL_HEIGHT > 0 else 1.0)
+    return _input_factors

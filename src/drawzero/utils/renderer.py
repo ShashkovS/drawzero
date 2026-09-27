@@ -18,7 +18,9 @@ from drawzero.utils.key_flags import KEY
 import pygame
 import pygame.locals
 
-from drawzero.utils.screen_size import set_real_size
+from drawzero.utils.screen_size import set_real_size, _input_scale
+from .input import _input, _validate_fps
+from .input_pygame import ingest, reconcile_focus
 
 # Types
 Pt = Tuple[int, int]
@@ -29,6 +31,7 @@ _fps = pygame.time.Clock()
 _fonts = {}
 _dft_wid = 4
 _animation_not_detected = True
+_closed = False
 
 if __name__ == '__main__':
     print("You shouldn't need run this module directly")
@@ -41,6 +44,8 @@ def _create_surface():
     So without any drawing command new windows is not created nor opened
     """
     global _surface, _saved_surface
+    if _closed:
+        raise RuntimeError("DrawZero window has been closed")
     if not _surface:
         _surface = pygame.display.set_mode((surface_size, surface_size), pygame.locals.RESIZABLE)
         _surface.fill((0, 0, 0))
@@ -195,7 +200,9 @@ def draw_polygon(color: Clr, points: List[Pt], alpha: int = 255, line_width: int
 def draw_text(color: Clr, text: str, pos: Pt, fontsize: int, align: str):
     """Draw text."""
     _create_surface()
-    use_font = _fonts.get(fontsize, pygame.font.Font(None, fontsize))
+    use_font = _fonts.get(fontsize)
+    if use_font is None:
+        use_font = _fonts[fontsize] = pygame.font.Font(None, fontsize)
     temp_surf = use_font.render(text, True, color)
     t_width, t_height = temp_surf.get_size()
     x, y = pos
@@ -264,9 +271,8 @@ def _display_update():
         pygame.display.update()
         _saved_surface.blit(_surface, (0, 0))
     except pygame.error:
-        pygame.quit()
-        sys.stderr = None
-        sys.exit()
+        draw_quit()
+        raise SystemExit
 
 
 def _display_update_if_no_animation():
@@ -276,15 +282,16 @@ def _display_update_if_no_animation():
             pygame.display.update()
             _saved_surface.blit(_surface, (0, 0))
         except pygame.error:
-            pygame.quit()
-            sys.stderr = None
-            sys.exit()
+            draw_quit()
+            raise SystemExit
 
 
-def draw_tick(r=1, *, display_update=True):
+def draw_tick(r=1, *, display_update=True, fps=30, wait=True):
     global keysdown, keysup, mousemotions, mousebuttonsdown, mousebuttonsup, _animation_not_detected
+    _validate_fps(fps)
     _create_surface()
     _animation_not_detected = False
+    _input.begin()
     keysdown.clear()
     keysup.clear()
     mousemotions.clear()
@@ -295,25 +302,27 @@ def draw_tick(r=1, *, display_update=True):
     for __ in range(r):
         # We need this hack to process close button clicks
         try:
-            _fps.tick(30)
+            if wait:
+                _fps.tick(fps)
         except KeyboardInterrupt:
-            pygame.quit()
-            sys.stderr = None
-            sys.exit()
+            draw_quit()
+            raise SystemExit
         try:
             events = pygame.event.get()
         except pygame.error:
-            pygame.quit()
-            sys.stderr = None
-            sys.exit()
+            draw_quit()
+            raise SystemExit
         for event in events:
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.stderr = None
-                sys.exit()
+            ingest(event)
+            if event.type in (pygame.QUIT, getattr(pygame, "WINDOWCLOSE", pygame.QUIT)):
+                draw_quit()
+                raise SystemExit
             elif event.type == pygame.VIDEORESIZE:
-                print('resize')
-                _resize(event.w, event.h)
+                if event.w > 0 and event.h > 0:
+                    _resize(event.w, event.h)
+            elif event.type == getattr(pygame, 'WINDOWRESIZED', -1):
+                if event.x > 0 and event.y > 0:
+                    _resize(event.x, event.y)
             elif event.type == pygame.KEYDOWN:
                 keysdown.append(event)
             elif event.type == pygame.KEYUP:
@@ -324,6 +333,10 @@ def draw_tick(r=1, *, display_update=True):
                 mousebuttonsdown.append(event)
             elif event.type == pygame.MOUSEBUTTONUP:
                 mousebuttonsup.append(event)
+
+        reconcile_focus()
+    _input.rescale_position(_input_scale())
+    _input.publish()
 
 
 def draw_sleep(t: Union[int, float]):
@@ -338,16 +351,19 @@ def draw_set_line_width(w):
 
 
 def _draw_go():
-    while True:
+    while _surface is not None and not _closed:
         # Keep the window responsive and ensure the last frame is flushed.
-        draw_tick()
+        try:
+            draw_tick()
+        except SystemExit:
+            return
 
 
 def draw_quit():
-    try:
-        pygame.quit()
-    except:
-        pass
+    global _closed
+    _closed = True
+    pygame.quit()
+
 
 
 def mouse_pos():

@@ -26,8 +26,8 @@ DrawZero. Каждый блок ниже подтягивает код напр�
 | [`13_gradients.py`](#13_gradientspy) | Помощник [Gradient](gradient.md) | Создает несколько шкал `Gradient` и визуализирует их с помощью сложенных прямоугольников. |
 | [`14_animation_close_vertex.py`](#14_animation_close_vertexpy) | Анимация графа близости | Перемещает случайные узлы `Pt` с циклическим движением, рисует линии между соседними парами и использует оверлей FPS. |
 | [`15_animation_firework.py`](#15_animation_fireworkpy) | Система частиц | Реализует классы `Particle` и `Firework` с обновлениями физики, свечением на основе градиента и логикой очистки. |
-| [`16_keyboard_and_mouse.py`](#16_keyboard_and_mousepy) | Обработка ввода | Читает массивы состояний клавиш и очереди событий для перемещения квадрата, отслеживания вводимых символов и следования за мышью. |
-| [`17_mouse_tube.py`](#17_mouse_tubepy) | Эффект следа мыши | Захватывает `mouse_pos()` на каждом кадре, выращивает концентрические круги с градиентом по мере их старения. |
+| [`16_keyboard_and_mouse.py`](#16_keyboard_and_mousepy) | Обработка ввода | Использует оси, группы модификаторов, действия при нажатии и координаты в момент щелчка. |
+| [`17_mouse_tube.py`](#17_mouse_tubepy) | Эффект следа мыши | Захватывает `mouse.pos` на каждом кадре, выращивает концентрические круги с градиентом по мере их старения. |
 | [`18_game_stars.py`](#18_game_starspy) | Мини-игра 3D-звездное поле | Использует датаклассы, случайные звезды и управление WASD/QE для навигации по псевдо-3D полю. |
 | [`19_game_colors.py`](#19_game_colorspy) | Игра на реакцию | Отображает слова-цвета в сравнении с фактическими цветами, обрабатывает выбор кнопок мыши со штрафами по времени. |
 | [`20_game_racing.py`](#20_game_racingpy) | Многопользовательская мини-игра | Назначает отдельные привязки клавиш для каждой машины, прокручивает предварительно вычисленную дорогу и ведет счет для каждого игрока. |
@@ -176,7 +176,7 @@ DrawZero. Каждый блок ниже подтягивает код напр�
 
 ### 16_keyboard_and_mouse.py
 
-![16_keyboard_and_mouse](imgs/ex_16.webp)
+![Удержание клавиш, оси и одно действие при нажатии](imgs/input-controls.png)
 ``` title="16_keyboard_and_mouse.py"
 --8<-- "src/drawzero/examples/16_keyboard_and_mouse.py"
 ```
@@ -211,4 +211,26 @@ DrawZero. Каждый блок ниже подтягивает код напр�
 ![20_game_racing](imgs/ex_20.webp)
 ``` title="20_game_racing.py"
 --8<-- "src/drawzero/examples/20_game_racing.py"
+```
+
+### 21_precise_drawing.py
+
+![Точное рисование по событиям мыши](imgs/input-drawing.png)
+
+```python
+--8<-- "src/drawzero/examples/21_precise_drawing.py"
+```
+
+### 22_text_and_scroll.py
+
+![Упорядоченный текст и прокрутка по двум осям](imgs/input-text-scroll.png)
+
+```python
+--8<-- "src/drawzero/examples/22_text_and_scroll.py"
+```
+
+### 99_errors.py
+
+```python
+--8<-- "src/drawzero/examples/99_errors.py"
 ```

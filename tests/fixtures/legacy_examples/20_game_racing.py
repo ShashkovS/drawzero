@@ -21,14 +21,15 @@ for i in 3, 2, 1:
     sleep(1)
 
 while True:
+    keys = get_keys_pressed()
     for i in range(len(cars_y)):
-        if keyboard.pressed(ups[i]):
+        if keys[ups[i]]:
             cars_y[i] -= 5
-        if keyboard.pressed(downs[i]):
+        if keys[downs[i]]:
             cars_y[i] += 5
-        if keyboard.pressed(lefts[i]):
+        if keys[lefts[i]]:
             cars_x[i] -= 5
-        if keyboard.pressed(rights[i]):
+        if keys[rights[i]]:
             cars_x[i] += 5
     clear()
     for i in range(len(cars_y)):
