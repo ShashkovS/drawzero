@@ -1,4 +1,5 @@
 import os
+import sys
 from typing import Type, Literal
 
 from math import sin, cos, pi
@@ -10,10 +11,12 @@ from drawzero.utils.i18n import I18N
 from drawzero.utils.converters import _to_color, _to_pos, _to_scaled_int, _to_line_width, _to_alpha, _to_flat, _to_rect, _to_points_list
 
 # TODO Check if GUI is possible
-if not bool(os.environ.get('EJUDGE_MODE', False)):
-    from drawzero.utils import renderer
-else:
+if bool(os.environ.get('EJUDGE_MODE', False)):
     from drawzero.utils import renderer_ejudge as renderer
+elif os.environ.get('DRAWZERO_BACKEND') == 'browser' or sys.platform == 'emscripten':
+    from drawzero.utils import renderer_browser as renderer
+else:
+    from drawzero.utils import renderer
 
 
 # TODO Refactor keyboard and mouse interface

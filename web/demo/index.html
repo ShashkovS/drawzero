@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>drawzero demo</title>
+<style>
+  :root { --bg:#f7f9f9; --ink:#21364b; --muted:#537486; --line:#d8e2e4; }
+  body { margin:0; font:15px/1.45 system-ui, sans-serif; color:var(--ink); background:var(--bg); }
+  main { display:grid; grid-template-columns:minmax(280px, 1fr) minmax(320px, 1fr); gap:16px; padding:16px; max-width:1200px; margin:0 auto; }
+  @media (max-width: 800px) { main { grid-template-columns:1fr; } }
+  textarea { width:100%; box-sizing:border-box; font:13px/1.5 ui-monospace, Menlo, monospace; border:1px solid var(--line); border-radius:8px; padding:8px; }
+  #code { height:360px; } #stdin { height:60px; }
+  .bar { display:flex; flex-wrap:wrap; gap:6px; margin:8px 0; align-items:center; }
+  button, select { font:inherit; padding:4px 10px; border:1px solid var(--line); border-radius:6px; background:#fff; color:var(--ink); }
+  #log { font:12px/1.5 ui-monospace, Menlo, monospace; background:#fff; border:1px solid var(--line); border-radius:8px; height:160px; overflow:auto; padding:6px; white-space:pre-wrap; }
+  #status { color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <section>
+    <div class="bar"><label>Example <select id="example"><option value="">—</option></select></label></div>
+    <textarea id="code" spellcheck="false">from drawzero import *
+
+grid()
+line('red', (100, 100), (900, 900))
+circle('yellow', (500, 500), 200, line_width=20)
+filled_rect((0, 128, 255, 128), (300, 300), 400, 200)
+text('white', 'Hello!', (500, 120), 64, '.^')
+</textarea>
+    <label>stdin <textarea id="stdin" spellcheck="false"></textarea></label>
+    <div class="bar"><button id="run">Run</button><button id="stop">Stop</button><button id="reset">Reset</button></div>
+    <div id="status">loading…</div>
+    <div id="log"></div>
+  </section>
+  <section><div id="canvas"></div></section>
+</main>
+<script type="module">
+  import { DrawLab, support } from "/s/drawzero/drawzero-web.js";
+  const $ = (id) => document.getElementById(id);
+  const EXAMPLES = ["00_hello_world", "01_grid_and_coordinates", "02_loops_and_rgb_colors", "03_simple_objects",
+    "04_loops_sin_plot", "05_points", "06_turtle_style", "07_animation_circles", "08_animation_traffic_light",
+    "09_animation_rectangles", "10_animation_planets", "11_transparency_and_line_width", "13_gradients",
+    "14_animation_close_vertex", "15_animation_firework", "16_keyboard_and_mouse", "17_mouse_tube", "18_game_stars",
+    "19_game_colors", "20_game_racing", "21_precise_drawing", "22_text_and_scroll"];
+  for (const name of EXAMPLES) $("example").add(new Option(name, name));
+  const ok = support();
+  if (!ok.ok) $("status").textContent = ok.reason;
+  const lab = new DrawLab($("canvas"));
+  window.lab = lab;
+  const log = (t) => { $("log").textContent += t; $("log").scrollTop = 1e9; };
+  lab.on("state", (s) => { $("status").textContent = s; document.body.dataset.state = s; });
+  lab.on("output", log);
+  lab.on("done", (r) => { log(`— ${r.status}, ${r.frames} frames, ${r.ms} ms${r.error ? "\n" + r.error.traceback : ""}\n`); window.lastResult = r; });
+  $("example").onchange = async () => {
+    if ($("example").value) $("code").value = await (await fetch(`/examples/${$("example").value}.py`)).text();
+  };
+  $("run").onclick = () => { lab.run($("code").value, $("stdin").value); lab.scene.svg.focus(); };
+  $("stop").onclick = () => lab.stop();
+  $("reset").onclick = () => lab.reset();
+  window.ready = lab.preload().then(() => { $("status").textContent = "ready"; });
+</script>
+</body>
+</html>
