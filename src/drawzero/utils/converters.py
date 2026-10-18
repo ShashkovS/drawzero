@@ -79,7 +79,7 @@ def _to_pos(pos, error: BadDrawParmsError):
 def _to_scaled_int(num: Real, error: BadDrawParmsError) -> Optional[int]:
     try:
         return to_canvas_x(num)
-    except:
+    except Exception:
         error.errors.append(I18N.bad_num.format(num))
         return None
 
@@ -89,7 +89,7 @@ def _to_line_width(num: Union[Real, None], error: BadDrawParmsError) -> Optional
         return _DFT_LINE_WIDTH
     try:
         return to_canvas_x(num)
-    except:
+    except Exception:
         error.errors.append(I18N.bad_width.format(num))
         error.errors.append(I18N.use_width_int)
         return None
@@ -102,7 +102,7 @@ def _to_alpha(num: Real, error: BadDrawParmsError) -> Optional[int]:
         use_num = int(num)
         assert 0 <= use_num <= 255
         return use_num
-    except:
+    except Exception:
         error.errors.append(I18N.bad_alpha.format(num))
         error.errors.append(I18N.use_alpha_int)
         return None

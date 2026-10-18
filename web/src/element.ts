@@ -16,6 +16,18 @@ export class DrawzeroCanvas extends HTMLElement {
   }
 }
 
+/**
+ * <turtle-canvas>: the same for a problem whose program uses Python's `turtle`.
+ * The portal runs it on a white canvas, where `import turtle` is drawzero's
+ * browser turtle.
+ */
+export class TurtleCanvas extends HTMLElement {
+  connectedCallback(): void {
+    this.hidden = true;
+  }
+}
+
 export function define(): void {
   if (!customElements.get("drawzero-canvas")) customElements.define("drawzero-canvas", DrawzeroCanvas);
+  if (!customElements.get("turtle-canvas")) customElements.define("turtle-canvas", TurtleCanvas);
 }

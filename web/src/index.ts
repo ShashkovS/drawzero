@@ -6,7 +6,7 @@ export const VERSION = __DRAWZERO_VERSION__;
 
 export { DrawLab, support, host, type LabState } from "./lab";
 export { Scene, shape, covers, SIZE } from "./scene";
-export { DrawzeroCanvas, define } from "./element";
+export { DrawzeroCanvas, TurtleCanvas, define } from "./element";
 export type { Op, Color, InputEvent, RunResult, RunError } from "./types";
 
 if (typeof customElements !== "undefined") define();
