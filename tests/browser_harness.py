@@ -14,7 +14,12 @@ import sys
 os.environ.pop('EJUDGE_MODE', None)
 os.environ['DRAWZERO_BACKEND'] = 'browser'
 
-from drawzero.utils import renderer_browser  # noqa: E402
+from drawzero.utils import renderer_browser, turtle_browser  # noqa: E402
+
+# As in the worker: `import turtle` is the browser turtle, and sleeping keeps the screen live.
+sys.modules['turtle'] = turtle_browser
+import time  # noqa: E402
+time.sleep = turtle_browser._sleep
 
 
 def main():
@@ -32,14 +37,17 @@ def main():
         return json.dumps(script[n] if n < len(script) else [])
 
     renderer_browser.connect(frame)
+    turtle_browser._reset()
     status = 'completed'
     error = None
     try:
         runpy.run_path(program, run_name='__main__')
+        turtle_browser._finish()
         renderer_browser.flush()
     except KeyboardInterrupt:
         status = 'stopped'
     except SystemExit:
+        turtle_browser._finish()
         renderer_browser.flush()
     except Exception as e:  # noqa: BLE001 - reported to the test
         status = 'error'

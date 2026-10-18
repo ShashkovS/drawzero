@@ -11,7 +11,7 @@ const run = (page, code, stdin = "") => page.evaluate(([c, s]) => lab.run(c, s),
 /** Start a run without waiting for its end. */
 const start = (page, code) => page.evaluate((c) => { window.running = lab.run(c); }, code);
 const until = (page, fn, arg) => page.waitForFunction(fn, arg, { timeout: 20_000 });
-const shapes = (page) => page.evaluate(() => [...lab.scene.svg.querySelectorAll("g > *")].map((e) => {
+const shapes = (page) => page.evaluate(() => [...lab.scene.svg.querySelectorAll("g:not([data-sprites]) > *")].map((e) => {
   const a = {};
   for (const at of e.attributes) a[at.name] = at.value;
   return { tag: e.tagName, text: e.textContent, ...a };
@@ -131,4 +131,61 @@ test("a new run starts on a black canvas", async ({ page }) => {
   await run(page, "from drawzero import *\nline('red', (0, 0), (10, 10))\n");
   expect((await shapes(page)).map((e) => e.tag)).toEqual(["line"]);
   expect(await page.evaluate(() => lab.scene.svg.firstElementChild.getAttribute("fill"))).toBe("rgb(0,0,0)");
+});
+
+test("import turtle draws with the browser turtle", async ({ page }) => {
+  await open(page);
+  const r = await run(page, `import turtle
+t = turtle.Turtle()
+t.speed(0)
+t.color('red', 'yellow')
+t.begin_fill()
+for _ in range(4):
+    t.forward(200)
+    t.left(90)
+t.end_fill()
+t.write('square', font=('Arial', 16, 'normal'))
+turtle.done()
+`);
+  expect(r.status).toBe("ok");
+  const s = await shapes(page);
+  expect(s.filter((e) => e.tag === "polyline").length).toBe(8); // four sides, then again over the fill
+  expect(s.find((e) => e.tag === "polygon")).toMatchObject({ fill: "rgb(255,255,0)" });
+  expect(s.find((e) => e.tag === "polyline")).toMatchObject({ points: "500 500 750 500", "stroke-linecap": "round" });
+  expect(s.find((e) => e.tag === "text")).toMatchObject({ text: "square", "font-weight": "normal" });
+  expect(await page.evaluate(() => lab.scene.svg.querySelector("rect").getAttribute("fill"))).toBe("rgb(255,255,255)");
+  // the turtle itself, over the picture
+  expect(await page.evaluate(() => lab.scene.svg.querySelectorAll("[data-sprites] > *").length)).toBe(2);
+});
+
+test("a slow turtle animates and Stop ends it", async ({ page }) => {
+  await open(page);
+  await start(page, "import turtle\nturtle.speed(1)\nwhile True:\n    turtle.forward(300)\n    turtle.left(170)\n");
+  await until(page, () => lab.frames > 20);
+  const pieces = await page.evaluate(() => lab.scene.svg.querySelectorAll("polyline").length);
+  expect(pieces).toBeGreaterThan(5);
+  await page.evaluate(() => lab.stop());
+  expect((await page.evaluate(() => window.running)).status).toBe("stopped");
+});
+
+test("a turtle fractal with tracer(0) is drawn at once", async ({ page }) => {
+  await open(page);
+  const t0 = Date.now();
+  const r = await run(page, `import turtle
+turtle.tracer(0)
+turtle.hideturtle()
+def dragon(n, size, sign=1):
+    if n == 0:
+        turtle.forward(size)
+        return
+    dragon(n - 1, size / 2 ** 0.5, 1)
+    turtle.left(90 * sign)
+    dragon(n - 1, size / 2 ** 0.5, -1)
+dragon(12, 300)
+turtle.update()
+turtle.mainloop()
+`);
+  expect(r.status).toBe("ok");
+  expect(Date.now() - t0).toBeLessThan(15_000);
+  expect(await page.evaluate(() => lab.scene.elementCount)).toBeGreaterThan(0);
 });

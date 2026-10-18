@@ -12,6 +12,9 @@
  * - text is FreeSans Bold at 0.6875 of the size, opaque, aligned by `align`
  *   (horizontal `<.>`, then vertical `^.v`).
  *
+ * Two operations are a turtle's: `bg` changes the background under the
+ * picture, and `sprites` replaces what lies over it (the turtles themselves).
+ *
  * A program that never clears keeps adding elements; past a limit the oldest
  * ones are flattened into one picture so the page stays quick.
  */
@@ -102,14 +105,28 @@ export function shape(op: Op): SVGElement | null {
       return e;
     }
     case "text": {
-      const [, c, text, x, y, size, align] = op;
+      const [, c, text, x, y, size, align, font] = op;
+      // drawzero's text is FreeSans Bold; a turtle's names its font, and its size is the pixel size.
       const e = el("text", {
-        x, y, fill: rgb(c), "font-family": FONT, "font-weight": "bold", "font-size": +(size * 0.6875).toFixed(2),
+        x, y, fill: rgb(c),
+        "font-family": font ? `${JSON.stringify(font[0])}, ${FONT}` : FONT,
+        "font-weight": font ? font[1] : "bold",
+        "font-style": font ? font[2] : "normal",
+        "font-size": font ? size : +(size * 0.6875).toFixed(2),
         "text-anchor": align[0] === "<" ? "start" : align[0] === ">" ? "end" : "middle",
         "dominant-baseline": align[1] === "^" ? "text-before-edge" : align[1] === "v" ? "text-after-edge" : "central",
       });
       e.setAttribute("style", "white-space:pre");
       e.textContent = text;
+      return e;
+    }
+    case "path": {
+      // A turtle's line: centred on the path, with round ends and joins, as in Tk.
+      const [, c, w, flat] = op;
+      if (w <= 0 || flat.length < 4) return null;
+      const e = paint(el("polyline", { points: flat.join(" ") }), c, w);
+      e.setAttribute("stroke-linecap", "round");
+      e.setAttribute("stroke-linejoin", "round");
       return e;
     }
     case "fill": {
@@ -130,6 +147,8 @@ export class Scene {
   readonly svg: SVGSVGElement;
   private background: SVGRectElement;
   private layer: SVGGElement;
+  /** What moves over the picture without leaving copies: the turtles. */
+  private sprites: SVGGElement;
   private count = 0;
   private generation = 0;
   private flattening = false;
@@ -140,19 +159,21 @@ export class Scene {
     this.svg.style.cssText = "display:block;width:100%;height:auto;aspect-ratio:1;background:#000;outline:none;touch-action:none;user-select:none";
     this.background = el("rect", { x: 0, y: 0, width: SIZE, height: SIZE, fill: "rgb(0,0,0)" }) as SVGRectElement;
     this.layer = el("g", {}) as SVGGElement;
-    this.svg.append(this.background, this.layer);
+    this.sprites = el("g", { "data-sprites": "" }) as SVGGElement;
+    this.svg.append(this.background, this.layer, this.sprites);
     container.appendChild(this.svg);
   }
 
-  /** A black canvas, as at the start of a program. */
-  reset(): void {
-    this.cover([0, 0, 0, 255]);
+  /** A blank canvas, as at the start of a program: black, or `background` (a turtle's is white). */
+  reset(background: Color = [0, 0, 0, 255]): void {
+    this.cover(background);
   }
 
   private cover(c: Color): void {
     this.generation += 1;
     this.background.setAttribute("fill", rgb(c));
     this.layer.replaceChildren();
+    this.sprites.replaceChildren();
     this.count = 0;
   }
 
@@ -164,10 +185,20 @@ export class Scene {
     }
     const frag = document.createDocumentFragment();
     let added = 0;
+    let sprites: Op[] | null = null;
     for (let i = from; i < ops.length; i++) {
       const op = ops[i];
       if (covers(op)) {
         this.cover(op[0] === "clear" ? [0, 0, 0, 255] : (op as ["fill", Color])[1]);
+        continue;
+      }
+      if (op[0] === "bg") {
+        // The background changes under what is drawn, unlike fill().
+        this.background.setAttribute("fill", rgb(op[1]));
+        continue;
+      }
+      if (op[0] === "sprites") {
+        sprites = op[1];
         continue;
       }
       const e = shape(op);
@@ -175,6 +206,11 @@ export class Scene {
     }
     this.layer.appendChild(frag);
     this.count += added;
+    if (sprites) {
+      const top = document.createDocumentFragment();
+      for (const op of sprites) { const e = shape(op); if (e) top.appendChild(e); }
+      this.sprites.replaceChildren(top);
+    }
     if (this.count > FLATTEN_AT && !this.flattening) void this.flatten();
   }
 

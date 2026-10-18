@@ -29,10 +29,15 @@ const FLUSH_CHARS = 4096;
 const GLUE = `
 import json
 import sys
+import time
 import traceback
 
 from drawzero import __version__
-from drawzero.utils import renderer_browser, screen_size
+from drawzero.utils import renderer_browser, screen_size, turtle_browser
+
+# There is no Tk here: \`import turtle\` is the turtle that draws on this canvas.
+sys.modules["turtle"] = turtle_browser
+time.sleep = turtle_browser._sleep
 
 
 def _frames_from_solution(tb):
@@ -59,6 +64,7 @@ def _error(error):
 def run_solution(source, frame):
     renderer_browser.connect(frame)
     screen_size.set_virtual_size(1000, 1000)
+    turtle_browser._reset()
     namespace = {"__name__": "__main__", "__builtins__": __builtins__}
     status, error = "ok", None
     try:
@@ -74,6 +80,7 @@ def run_solution(source, frame):
     if status != "stopped":
         # What was drawn before an error stays on the screen.
         try:
+            turtle_browser._finish()
             renderer_browser.flush()
         except KeyboardInterrupt:
             status = "stopped"
