@@ -7,7 +7,7 @@
  * replacing the worker.
  */
 import { Scene } from "./scene";
-import { EVENT_BYTES, type InputEvent, MAILBOX_BYTES, MB, type Op, type RunResult } from "./types";
+import { type Color, EVENT_BYTES, type InputEvent, MAILBOX_BYTES, MB, type Op, type RunResult } from "./types";
 
 const STOP_GRACE_MS = 1500;
 
@@ -155,9 +155,13 @@ export class DrawLab {
   private detach: () => void;
   state: LabState = "idle";
   frames = 0;
+  /** The blank canvas: black for drawzero, white for a turtle (`background: [255, 255, 255, 255]`). */
+  private background: Color;
 
-  constructor(container: Element, options: { workerUrl?: URL; label?: string } = {}) {
+  constructor(container: Element, options: { workerUrl?: URL; label?: string; background?: Color } = {}) {
     this.scene = new Scene(container, options);
+    this.background = options.background ?? [0, 0, 0, 255];
+    this.scene.reset(this.background);
     this.host = host(options.workerUrl);
     this.detach = this.listen();
   }
@@ -183,7 +187,7 @@ export class DrawLab {
     return support().ok ? this.host.start() : Promise.resolve();
   }
 
-  /** Run `source` with `stdin` on a fresh black canvas. */
+  /** Run `source` with `stdin` on a fresh blank canvas. */
   async run(source: string, stdin = ""): Promise<RunResult> {
     if (this.running) this.stop();
     const why = support();
@@ -192,7 +196,7 @@ export class DrawLab {
       this.emit("done", r);
       return r;
     }
-    this.scene.reset();
+    this.scene.reset(this.background);
     this.pending = [];
     this.frames = 0;
     this.setState("loading");
@@ -233,11 +237,11 @@ export class DrawLab {
     this.stopping = setTimeout(() => { if (this.runId === runId && this.running) this.host.kill(runId); }, STOP_GRACE_MS);
   }
 
-  /** Stop, and a black canvas. */
+  /** Stop, and a blank canvas. */
   reset(): void {
     this.stop();
     this.pending = [];
-    this.scene.reset();
+    this.scene.reset(this.background);
     if (!this.running) this.setState("idle");
   }
 

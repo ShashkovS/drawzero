@@ -8,8 +8,15 @@ export type Op =
   | ["arc", Color, number, number, number, number, number, number, number]
   | ["polygon", Color, number, number[]]
   | ["text", Color, string, number, number, number, string]
+  | ["text", Color, string, number, number, number, string, Font]
+  | ["path", Color, number, number[]]
+  | ["bg", Color]
+  | ["sprites", Op[]]
   | ["fill", Color]
   | ["clear"];
+
+/** A turtle's font: family, weight, slant; its size is then the pixel size itself. */
+export type Font = [string, string, string];
 
 /** An input event for Python's `_ingest`. Coordinates are canvas pixels (0..1000). */
 export type InputEvent =
